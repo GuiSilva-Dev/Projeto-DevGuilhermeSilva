@@ -19,6 +19,7 @@ document.querySelectorAll(
   //*ativa a observação para cada elemento selecionado
   myObserver.observe(el)
 );
+
 //*quando o HTML terminar de ser carregado(antes das imagens e outros recursos)
 document.addEventListener('DOMContentLoaded', () => {
   //*se não houver historico de navegação(ou seja, aceeso direto a pagina)

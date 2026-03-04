@@ -850,6 +850,15 @@
     width: 100%;
   }
 
+  .fundo-animado::before {
+    animation: none;
+    /** Desativa a animação */
+    transform: translate(0, 0) !important;
+    /** Garante posição estática */
+    background-size: cover;
+    /** Garante que o gradiente cubra a área */
+  }
+
   .header {
     padding: 0;
     /* Espaçamento interno */
