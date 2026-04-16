@@ -135,7 +135,7 @@ button {
   box-shadow: 0 0 20px rgba(#7b4397, #dc2430);
   /* sombra roxa suave */
   color: #fff;
-  margin: auto;
+  margin: 0 0 50px;
 }
 
 /* Efeito ao passar o mouse sobre o card */
