@@ -1,6 +1,6 @@
 {
   "name": "meu-portfolio",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Minha aplicaçao web de portfólio pessoal sobre minhas softs skills e hard skills",
   "scripts": {
     "dev": "live-server",

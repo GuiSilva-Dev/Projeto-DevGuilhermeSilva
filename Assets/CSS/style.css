@@ -611,7 +611,7 @@ body {
   border-right: .15em solid #892be2;
   white-space: nowrap;
   /* Animamos max-width em vez de width para melhor performance */
-  max-width: 0;
+  width: 88%;
   /* Começa com largura 0 */
   margin-top: 10px;
   /* Ajustamos a animação para incluir pausa e reset */
@@ -1428,12 +1428,12 @@ p {
 
 .rightNumber {
   top: -60px;
-  right: -65px;
+  right: -60px;
 }
 
 .leftNumber {
   top: -60px;
-  left: -65px;
+  left: -60px;
 }
 
 .projectContent {
@@ -1773,7 +1773,7 @@ p {
 }
 
 .card img:hover {
-  transform: scale(1.2);
+  transform: scale(1.05);
 }
 
 /* Área do conteúdo (texto) do card */
@@ -1791,6 +1791,7 @@ p {
   margin: 0 0 10px;
   /* Espaçamento inferior entre o título e o parágrafo */
   font-size: 1.5rem;
+  text-align: center;
 }
 
 /* Parágrafo de descrição */
@@ -1843,7 +1844,32 @@ button.btn-serv {
 .btn-serv:hover {
   background: linear-gradient(135deg, #6a00ff8d, #ff000091);
 }
+.card-tech-list {
+    display: flex;
+    flex-wrap: wrap; /* Faz os badges irem para a linha de baixo se faltar espaço */
+    gap: 10px 2px; /* Cria um respiro entre cada tecnologia */
+    margin-top: 15px;
+}
 
+.badge-tech {
+    background-color: #1a0b2e; /* Um fundo escuro combinando com a paleta do site */
+    color: #d4b3ff; /* Texto num tom de roxo mais claro */
+    padding: 6px 14px;
+    border-radius: 20px; /* É isso que cria o contorno de "pílula" arredondada */
+    font-size: 0.85rem;
+    font-family: monospace; /* Dá uma cara mais "dev" pro texto */
+    border: 1px solid #9b51e0; /* Borda com a cor de destaque da sua página */
+    transition: all 0.3s ease; /* Prepara o terreno para o hover */
+    cursor: default;
+}
+
+/* Efeito interativo quando passar o mouse por cima */
+.badge-tech:hover {
+    background-color: #9b51e0;
+    color: #ffffff;
+    box-shadow: 0 0 10px #9b51e0; /* Dá aquele brilho neon combinando com os títulos */
+    transform: translateY(-2px); /* Dá um leve "pulo" para cima */
+}
 /********FORMULARIO********/
 
 .formulario {

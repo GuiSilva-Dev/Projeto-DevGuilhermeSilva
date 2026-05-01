@@ -158,7 +158,7 @@ button {
 }
 
 .card img:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* Área do conteúdo (texto) do card */
@@ -247,16 +247,16 @@ button {
 
 }
 
+.img-tecno img {
+  background-color: #ffffff;
+
+}
+
 .link-live {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.img-tecno img:hover {
-  background-color: #ffffff;
-
 }
 
 .link-live img:hover {
@@ -400,44 +400,11 @@ button {
 
   /*efeito de piscar */
   .img-tecno img {
-    animation: blink 2s infinite;
     background: white;
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-
   }
 
   .link-live p {
     outline: none;
     user-select: none;
   }
-
-  /*efeito de girar */
-  .link-live img {
-    animation: rotate 1.5s ease-in-out infinite;
-
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
 }
