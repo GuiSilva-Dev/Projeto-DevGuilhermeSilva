@@ -1794,56 +1794,6 @@ p {
   text-align: center;
 }
 
-/* Parágrafo de descrição */
-.card-content p {
-  font-size: 14px;
-  /* Tamanho menor para leitura leve */
-  color: #ccc;
-  /* Cor cinza clara para o texto secundário */
-}
-
-/* Link para ação (como "Demonstração ao vivo") */
-.card-content a {
-  display: inline-block;
-  /* Permite aplicar padding e margin */
-  padding: 1rem 1rem;
-
-  /* Espaço acima do link */
-  color: #b700ff;
-  /* Cor ciano brilhante */
-  text-decoration: none;
-  /* Remove sublinhado padrão */
-  font-weight: bold;
-  /* Deixa o texto em negrito */
-  border-bottom: 1px solid transparent;
-  /* Borda inferior invisível (para animação no hover) */
-  transition: border 0.3s;
-  /* Suaviza o aparecimento da borda */
-  font-size: 17px;
-}
-
-button.btn-serv {
-  margin: 20px auto;
-  display: block;
-
-}
-
-.btn-serv {
-  width: 40%;
-  height: 60px;
-  padding: 0;
-  background: linear-gradient(135deg, #ff000091, #6a00ff8d);
-  border: none;
-  border-radius: 8px;
-  color: rgb(0, 0, 0);
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-serv:hover {
-  background: linear-gradient(135deg, #6a00ff8d, #ff000091);
-}
 .card-tech-list {
     display: flex;
     flex-wrap: wrap; /* Faz os badges irem para a linha de baixo se faltar espaço */

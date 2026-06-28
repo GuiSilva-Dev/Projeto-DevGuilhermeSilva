@@ -216,8 +216,6 @@ button {
   /* <- este pode ser um problema se .detalhes não estiver em um grid */
 }
 
-
-
 .coluna-2 {
   align-self: start;
   /* sobe de forma fluida e responsiva */
