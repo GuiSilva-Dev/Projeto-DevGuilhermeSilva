@@ -4,13 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-commerce - Projeto | Guilherme Silva</title>
-  <meta name="description" content="Projeto de e-commerce desenvolvido por Guilherme Silva. Loja virtual com carrinho de compras, controle de estoque e integração de pagamentos. Construído com HTML, CSS e JavaScript.">
-  <meta name="keywords" content="e-commerce, loja online, projeto, desenvolvedor, plataforma de vendas">
+  <title>Recibo Digital - Projeto | Guilherme Silva</title>
+  <meta name="description"
+    content="Projeto de emissão de recibos desenvolvido por Guilherme Silva. Site com formulário para preenchimento de recibos e notas fiscais, enviados automaticamente por e-mail. Construído com HTML, CSS e JavaScript.">
+  <meta name="keywords" content="recibo digital, nota fiscal, envio por e-mail, projeto, desenvolvedor, formulário">
   <meta name="author" content="Guilherme Silva">
   <meta name="robots" content="index, follow">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="E-commerce - Projeto">
+  <meta property="og:title" content="Recibo Digital - Projeto">
   <meta name="theme-color" content="#000000">
   <link rel="canonical" href="">
   <link rel="icon" href="CSS/IMG2/logo.port.png">
@@ -29,33 +30,38 @@
     <div class="btn-back">
       <button><a href="#" onclick="history.back()""><i class=" bi bi-arrow-left"></i></a></button>
     </div>
+    <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">EN</button>
     <div class="txt-portfolio">
-      <h1>Sistema de E-commerce</h1>
+      <h1 data-i18n="page3.title">Sistema de Recibo Digital</h1>
     </div>
     <div class="flex-portfolio">
       <div class="card">
-        <img src="CSS/IMG2/id-291942.webp" alt="E-commerce - Plataforma de vendas online">
+        <img src="CSS/IMG2/id-291942.webp" alt="Sistema de Recibo Digital - Emissão e envio de recibos por e-mail">
         <div class="card-content">
-          <h2>Blendly</h2>
-          <p>Desenvolvi um site de e-commerce moderno e responsivo para uma loja virtual, com o objetivo de oferecer uma
-            experiência de compra simples, intuitiva e eficiente. O projeto foi construído pensando tanto na experiência
-            do cliente final quanto na facilidade de gerenciamento por parte do(a) lojista.A plataforma permite a venda
-            de produtos físicos ou digitais, com funcionalidades essenciais para qualquer
-            negócio online, como cadastro de produtos, controle de estoque, carrinho de compras e integração com
-            sistemas de pagamento.</p>
+          <h2 data-i18n="page3.cardTitle">Blendly</h2>
+          <p data-i18n="page3.text">Desenvolvi uma aplicação web para emissão de recibos e notas fiscais, permitindo que
+            o usuário preencha os dados em um formulário intuitivo e receba o documento gerado automaticamente por
+            e-mail. O sistema automatiza todo o processo de preenchimento, geração e envio dos documentos,
+            proporcionando mais agilidade, praticidade e reduzindo a necessidade de processos manuais ou ferramentas
+            externas.
+          </p>
           <div class="detalhes">
-            <a href="">Tecnologias Usadas <div class="tecno">
-                <p><img src="CSS/IMG2/icons8-html5-48.png" alt="HTML5"></p>
-                <p><img src="CSS/IMG2/icons8-css-48.png" alt="CSS3"></p>
-                <p><img src="CSS/IMG2/icons8-js-48.png" alt="JavaScript"></p>
-              </div></a>
+            <a href=""><span data-i18n="subpage.techUsed">Tecnologias Usadas</span>
+              <div class="tecno">
+                <p><img src="CSS/IMG2/icons8-react-24.png" alt="React"></p>
+                <p><img src="CSS/IMG2/icons8-logo-java-coffee-cup-48.png" alt="Java"></p>
+                <p><img src="CSS/IMG2/icons8-mongodb-24.png" alt="MongoDB"></p>
+              </div>
+            </a>
 
-            <div class="coluna-2"><a href="https://github.com/Gu1lh3rm3-S1lv4/Loja-On" target="_blank">Código Fonte
+            <div class="coluna-2"><a href="https://github.com/GuiSilva-Dev/Software-NF-E" target="_blank"><span
+                  data-i18n="subpage.sourceCode">Código Fonte</span>
                 &rarr; <div class="img-tecno">
                   <p><img src="CSS/IMG2/icons8-github-50.png" alt="GitHub"></p>
                 </div></a>
-              <a href="https://github.com/GuiSilva-Dev/Projeto-de-Loja-Online/blob/main/README.md" target="_blank">Live
-                Link &rarr; <div class="link-live">
+              <a href="https://github.com/GuiSilva-Dev/Software-NF-E/blob/main/README.md" target="_blank"><span
+                  data-i18n="subpage.liveLink">Live
+                  Link</span> &rarr; <div class="link-live">
                   <p><img src="CSS/IMG2/icons8-global-50.png" alt="Visit Live Link"></p>
                 </div></a>
             </div><!--FIM COLUNA-2-->
@@ -65,6 +71,7 @@
     </div><!--FIM FLEX-PORTOFLIO-->
   </div><!--FIM contaainer-->
 </body>
+<script src="../Assets/js/i18n.js"></script>
 <script src="js/rolagemX2.js"></script>
 
 </html>
