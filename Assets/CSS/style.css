@@ -1,5 +1,3 @@
-/**=================== HTML5 CSS Reset Minified - Eric Meyer  ========================== */
-
 html,
 body,
 div,
@@ -430,6 +428,40 @@ body {
   position: relative;
   z-index: 100;
   /* Sobre outros elementos */
+}
+
+/* Botão de troca de idioma */
+.lang-toggle {
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  transition: all 0.3s ease;
+  width: 100px;
+}
+
+
+.lang-toggle {
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  transition: all 0.3s ease;
+}
+
+.lang-toggle:hover {
+  background: linear-gradient(135deg, #ff000091, #6a00ff8d);
+  border-color: transparent;
 }
 
 /* Ícone do menu hamburguer */

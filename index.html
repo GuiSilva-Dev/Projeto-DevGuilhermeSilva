@@ -5,14 +5,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guilherme Silva - Desenvolvedor Full Stack | Portfólio</title>
-  <meta name="description" content="Portfólio profissional de Guilherme Silva. Desenvolvedor full stack especializado em React, Node.js, JavaScript, HTML, CSS e desenvolvimento web. Confira meus projetos, habilidades e experiências.">
-  <meta name="keywords" content="desenvolvedor, full stack, React, Node.js, JavaScript, HTML, CSS, portfólio, desenvolvedor web">
+  <meta name="description"
+    content="Portfólio profissional de Guilherme Silva. Desenvolvedor full stack especializado em React, Node.js, JavaScript, HTML, CSS e desenvolvimento web. Confira meus projetos, habilidades e experiências.">
+  <meta name="keywords"
+    content="desenvolvedor, full stack, React, Node.js, JavaScript, HTML, CSS, portfólio, desenvolvedor web">
   <meta name="author" content="Guilherme Silva">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="theme-color" content="#000000">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Guilherme Silva - Desenvolvedor Full Stack">
-  <meta property="og:description" content="Portfólio com projetos em React, Node.js, E-commerce, SaaS e APIs RESTful. Desenvolvedor full stack com foco em soluções modernas e escaláveis.">
+  <meta property="og:description"
+    content="Portfólio com projetos em React, Node.js, E-commerce, SaaS e APIs RESTful. Desenvolvedor full stack com foco em soluções modernas e escaláveis.">
   <meta property="og:image" content="Assets/Img/logo.port.png">
   <meta property="og:locale" content="pt_BR">
   <meta name="twitter:card" content="summary_large_image">
@@ -68,11 +71,12 @@
     </div>
     <div class="menu-aberto">
       <nav class="nav-menu">
-        <a href="#particles-js">INÍCIO</a>
-        <a href="#section-sobre">SOBRE </a>
-        <a href="#projects"> PROJETOS</a>
-        <a href="#portfolio"> EXPERIÊNCIAS</a>
-        <a href="#formulario"> CONTATO</a>
+        <a href="#particles-js" data-i18n="nav.inicio">INÍCIO</a>
+        <a href="#section-sobre" data-i18n="nav.sobre">SOBRE</a>
+        <a href="#projects" data-i18n="nav.projetos">PROJETOS</a>
+        <a href="#portfolio" data-i18n="nav.experiencias">EXPERIÊNCIAS</a>
+        <a href="#formulario" data-i18n="nav.contato">CONTATO</a>
+        <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">EN</button>
       </nav>
     </div>
   </header>
@@ -107,7 +111,7 @@
         <h1>Guilherme Silva</h1>
       </div>
       <div class="txt-efeito">
-        <h2>Software Developer</h2>
+        <h2 data-i18n="hero.role">Software Developer</h2>
       </div>
     </div>
   </main>
@@ -115,13 +119,14 @@
   <section id="section-sobre" class="sobre">
     <div class="container-sobre">
       <div class="txt-sobre">
-        <h2>
+        <h2 data-i18n="about.title">
           Sobre</h2>
       </div>
       <div class="flex">
         <div class="box-sobre">
-          <h3>// Minha Jornada()</h3>
-          <p>Desenvolvedor e estudante de bacharelado em Ciência da Computação, entusiasmado com o desenvolvimento de soluções
+          <h3 data-i18n="about.journeyTitle">// Minha Jornada()</h3>
+          <p data-i18n="about.journeyText">Desenvolvedor e estudante de bacharelado em Ciência da Computação,
+            entusiasmado com o desenvolvimento de soluções
             tecnológicas
             criativas, funcionais e alinhadas às necessidades reais dos usuários. Tenho paixão por programação,
             tecnologia da informação e desenvolvimento de sistemas, buscando constantemente aprimorar minhas habilidades
@@ -134,22 +139,23 @@
 
         <div class="btn-pdf">
           <a href="Assets/Img/Curriculo Luiz Guilherme.pdf.pdf" Download>
-            <button class="btn-button">BAIXAR CV <i>&#8595;</i></button>
+            <button class="btn-button"><span data-i18n="about.downloadCv">BAIXAR CV</span> <i>&#8595;</i></button>
           </a>
         </div>
         <div class="img-sobre">
           <div class="conteudo-img">
-            <img src="Assets/Img/img foto pessoal.png" alt="Foto de perfil de Guilherme Silva - Desenvolvedor Full Stack">
+            <img src="Assets/Img/img foto pessoal.png"
+              alt="Foto de perfil de Guilherme Silva - Desenvolvedor Full Stack">
             <span>💻</span>
-            <h4>Guilherme Silva <br><span>Desenvolvedor</span></h4>
-            <a href="https://wa.me/+5511945224638">Contrate</a>
+            <h4>Guilherme Silva <br><span data-i18n="about.role">Desenvolvedor</span></h4>
+            <a href="https://wa.me/+5511945224638" data-i18n="about.hire">Contrate</a>
           </div>
         </div>
 
       </div><!-- fim flex-->
       <div class="sobre-skills">
         <div class="softs-skills">
-          <h3>Ferramentas</h3>
+          <h3 data-i18n="skills.tools">Ferramentas</h3>
           <nav class="img-softs">
             <ul class="img-skills" id="bar-skills">
               <i><img src="assets/img/icons8-git-48.png" alt="Git - Ferramenta de controle de versão"></i>
@@ -161,11 +167,10 @@
           </nav>
         </div>
         <div class="softs-2">
-          <h3>Front-End</h3>
+          <h3 data-i18n="skills.frontend">Front-End</h3>
           <nav class="img-2">
             <ul class="img-12" id="bar">
               <i><img src="assets/img/icons8-tailwindcss-48.png" alt="Tailwind CSS - Framework de CSS"></i>
-              <!-- <i title="React"><img src="assets/img/icons8-nextjs-48.png" alt="Next.js"></i>-->
               <i><img src="assets/img/icons8-html5-48.png" alt="HTML5 - Linguagem de marcação"></i>
               <i><img src="assets/img/icons8-css-48.png" alt="CSS3 - Estilização web"></i>
               <i><img src="assets/img/icons8-react-24.png" alt="React - Biblioteca JavaScript"></i>
@@ -174,7 +179,7 @@
           </nav>
         </div>
         <div class="softs-p3">
-          <h3>Back-End</h3>
+          <h3 data-i18n="skills.backend">Back-End</h3>
           <nav class="img-p3">
             <ul class="img-p13" id="bar-pt3">
               <i><img src="assets/img/icons8-js-48.png" alt="JavaScript - Linguagem de programação"></i>
@@ -186,7 +191,7 @@
           </nav>
         </div>
         <div class="softs-p4">
-          <h3>Banco de dados</h3>
+          <h3 data-i18n="skills.database">Banco de dados</h3>
           <nav class="img-p4">
             <ul class="img-p14" id="bar-pt4">
               <i><img src="assets/img/icons8-mysql-48.png" alt="MySQL - Banco de dados relacional"></i>
@@ -202,7 +207,7 @@
 
   <section id="projects" class="projectSection">
     <div class="outerSectionDiv">
-      <h2 class="projectTitle"> Projetos</h2>
+      <h2 class="projectTitle" data-i18n="projects.title">Projetos</h2>
       <div class="Container-projetos">
         <div class="projectCard" id="project1">
 
@@ -212,15 +217,15 @@
               <!--*MINI IMG NO PROJECT1-->
               <img class="projectSkill" src="" alt="" />
             </div>
-            <h2 class="projectHeading">Desenvolvimento Saas</h2>
-            <p class="projectSubHeading">
+            <h2 class="projectHeading" data-i18n="projects.p1.heading">Desenvolvimento Saas</h2>
+            <p class="projectSubHeading" data-i18n="projects.p1.text">
               Este projeto é uma aplicação SaaS desenvolvida como parte dos meus estudos em Ciência da Computação. A
               plataforma oferece [serviço X — ex: gestão de tarefas, controle financeiro, agendamentos online], com foco
               em simplicidade, escalabilidade e experiência do usuário.
             </p>
             <div class="btnGroup">
               <a href="Sub-Pages/pagina-1.html">
-                <button class="projectBtn">Saiba Mais</button>
+                <button class="projectBtn" data-i18n="projects.learnMore">Saiba Mais</button>
               </a>
               <a href="https://github.com/AayushBharti/Razorpay-clone" class="github" target="_blank">
                 <i title="GitHub Link" class="fa-brands fa-github icon"></i>
@@ -236,8 +241,8 @@
               <!--*MINI IMG NO PROJECT2-->
               <img class="projectSkill" src="" alt="" />
             </div>
-            <h2 class="projectHeading">Portfólio e Site pessoal</h2>
-            <p class="projectSubHeading">
+            <h2 class="projectHeading" data-i18n="projects.p2.heading">Portfólio e Site pessoal</h2>
+            <p class="projectSubHeading" data-i18n="projects.p2.text">
               Criação de portfólios personalizados, desenvolvidos para destacar de forma
               profissional os projetos, habilidades e a identidade de cada pessoa. Utilizo design responsivo para
               garantir uma boa visualização em qualquer dispositivo, além de focar na usabilidade e na organização das
@@ -246,7 +251,7 @@
             </p>
             <div class="btnGroup">
               <a href="Sub-Pages/pagina-2.html">
-                <button class="projectBtn">Saiba Mais</button>
+                <button class="projectBtn" data-i18n="projects.learnMore">Saiba Mais</button>
               </a>
               <a href="https://github.com/AayushBharti/Discord-clone" class="github" target="_blank">
                 <i title="GitHubLink" class="fa-brands fa-github icon"></i>
@@ -261,17 +266,16 @@
               <!--*MINI IMG NO PROJECT3-->
               <img class="projectSkill" src="" alt="" />
             </div>
-            <h2 class="projectHeading">Sistema de E-commerce</h2>
-            <p class="projectSubHeading">
-              Desenvolvi esta loja virtual do zero, aplicando meus conhecimentos em front-end e back-end. Fui
-              responsável por todo o processo de criação: desde o layout responsivo e intuitivo até as funcionalidades
-              como carrinho de compras, login de usuário e simulação de pagamentos. O projeto foi feito com foco na
-              usabilidade e na performance, utilizando tecnologias modernas para garantir uma ótima experiência ao
-              usuário.
+            <h2 class="projectHeading" data-i18n="projects.p3.heading">Sistema de Recibo Digital</h2>
+            <p class="projectSubHeading" data-i18n="projects.p3.text">
+              Desenvolvi um site para emissão de recibos e notas fiscais, onde o usuário preenche os dados
+              necessários em um formulário simples e recebe o documento gerado diretamente por e-mail. O projeto
+              foi construído com foco em agilidade e praticidade, automatizando o preenchimento, a geração e o
+              envio do recibo sem a necessidade de ferramentas externas ou papéis.
             </p>
             <div class="btnGroup">
               <a href="Sub-Pages/pagina-3.html">
-                <button class="projectBtn">Saiba Mais</button>
+                <button class="projectBtn" data-i18n="projects.learnMore">Saiba Mais</button>
               </a>
               <a href="https://github.com/AayushBharti/Password-Generator" class="github" target="_blank">
                 <i title="GitHubLink" class="fa-brands fa-github icon"></i>
@@ -286,8 +290,8 @@
               <!--*MINI IMG NO PROJECT4-->
               <img class="projectSkill" src="" alt="" />
             </div>
-            <h2 class="projectHeading"> API RESTful</h2>
-            <p class="projectSubHeading">
+            <h2 class="projectHeading" data-i18n="projects.p4.heading">API RESTful</h2>
+            <p class="projectSubHeading" data-i18n="projects.p4.text">
               Desenvolvi uma API RESTful utilizando Node.js e o framework Express, projetada para servir como o motor de
               um sistema de cadastro de usuários. O sistema gerencia o fluxo de dados no servidor, utilizando SQLite
               para a persistência de informações pessoais como nome, sobrenome, idade e peso. Fui responsável pela
@@ -296,7 +300,7 @@
               requisições e entrega respostas estruturadas em JSON para a interface web.
             <div class="btnGroup">
               <a href="Sub-Pages/pagina-4.html">
-                <button class="projectBtn">Saiba Mais</button>
+                <button class="projectBtn" data-i18n="projects.learnMore">Saiba Mais</button>
               </a>
               <a href="" class="github" target="_blank">
                 <i title="GitHubLink" class="fa-brands fa-github icon"></i>
@@ -311,53 +315,22 @@
   <section id="portfolio" class="portfolio">
     <div class="container-portfolio">
       <div class="txt-portfolio">
-        <h1>
+        <h1 data-i18n="experience.title">
           Experiências</h1>
       </div>
       <div class="flex-portfolio">
         <div class="card">
           <img src="Assets/Img/proa_ai_logo.jpeg" alt="Proa AI - Experiência como desenvolvedor React e Node.js">
           <div class="card-content">
-            <h2>Desenvolvedor</h2>
+            <h2 data-i18n="experience.role">Desenvolvedor</h2>
             <ul class="card-tech-list">
               <br>
-              <li class="badge-tech"> React.js, node.js</li>
-              <li class="badge-tech"> Micro Serviços</li>
-              <li class="badge-tech"> AWS Lambda, MongoDb</li>
-              <li class="badge-tech"> Criação e integração de APIs</li>
-              <li class="badge-tech"> Chatbots e inteligência artificial</li>
+              <li class="badge-tech" data-i18n="experience.tech1">React.js, node.js</li>
+              <li class="badge-tech" data-i18n="experience.tech2">Micro Serviços</li>
+              <li class="badge-tech" data-i18n="experience.tech3">AWS Lambda, MongoDb</li>
+              <li class="badge-tech" data-i18n="experience.tech4">Criação e integração de APIs</li>
+              <li class="badge-tech" data-i18n="experience.tech5">Chatbots e inteligência artificial</li>
             </ul>
-            <!--<a href="https://github.com/Gu1lh3rm3-S1lv4/Maintenance-store">Demonstração ao vivo</a>-->
-            <!-- <button class="btn-serv"><a href="#formulario">Solicitar &rarr;</a></button>-->
-          </div>
-        </div>
-        <!--<div class="card">
-          <img src="Assets/Img/pexels-pixabay-39284.jpg" alt="Imagem do projeto">
-          <div class="card-content">
-            <h2>Certificados Dio</h2>
-            <ul>
-              <br>
-              <li><strong>1.</strong> Infraestrutura AWS</li>
-              <li><strong>2.</strong> Aplicação com React</li>
-              <li><strong>3.</strong> Lógica de Programação</li>
-            </ul>-->
-            <!--<a href="https://github.com/Gu1lh3rm3-S1lv4/Loja-On">Demonstração ao vivo</a>-->
-            <!-- <button class="btn-serv"><a href="#formulario">Solicitar &rarr;</a></button>-->
-          </div>
-        </div>
-
-        <!--<div class="card">
-          <img src="Assets/Img/coresdecodigo.jpg" alt="Imagem do projeto">
-          <div class="card-content">
-            <h2>Certificados Alura</h2>
-            <ul>
-              <br>
-              <li><strong>1.</strong> Aplicação com Html. css e javaScript</li>
-              <li><strong>2.</strong> Aplicação com node.js</li>
-              <li><strong>3.</strong> </li>
-            </ul>-->
-            <!--<a href="https://github.com/Gu1lh3rm3-S1lv4/Site-Adv">Demonstração ao vivo</a>-->
-            <!-- <button class="btn-serv"><a href="#formulario">Solicitar &rarr;</a></button>-->
           </div>
         </div>
       </div><!--fim flex-portfolio-->
@@ -369,25 +342,28 @@
     <div class="container-contato">
       <div class="flex">
         <div class="conteudo-form">
-          <h2>
+          <h2 data-i18n="contact.title">
             Contato
           </h2>
-          <p>
+          <p data-i18n="contact.text">
             Tem um projeto em mente ou precisa de uma solução digital? Entre em contato e vamos conversar!
           </p>
           <div class="complemento-form">
           </div>
           <form class="form" action="https://formsubmit.co/Guilherme.lsp10@gmail.com" target="_blank" method="post"
             autocomplete="off">
-            <input type="text" name="nome" id="nome" placeholder="Seu nome" required autocomplete="off">
-            <input type="phone" name="telefone" id="telefone" placeholder="Seu numero" required autocomplete="off">
-            <input type="text" name="email" id="email" placeholder="seu e-mail" required autocomplete="off">
-            <textarea name="mensagem" id="mensagem" placeholder="Descreva sua mensagem aqui..." required
-              autocomplete="off"></textarea>
-            <button class="btn-form"> Enviar</button>
+            <input type="text" name="nome" id="nome" placeholder="Seu nome"
+              data-i18n-placeholder="contact.namePlaceholder" required autocomplete="off">
+            <input type="phone" name="telefone" id="telefone" placeholder="Seu numero"
+              data-i18n-placeholder="contact.phonePlaceholder" required autocomplete="off">
+            <input type="text" name="email" id="email" placeholder="seu e-mail"
+              data-i18n-placeholder="contact.emailPlaceholder" required autocomplete="off">
+            <textarea name="mensagem" id="mensagem" placeholder="Descreva sua mensagem aqui..."
+              data-i18n-placeholder="contact.messagePlaceholder" required autocomplete="off"></textarea>
+            <button class="btn-form"><span data-i18n="contact.send">Enviar</span></button>
           </form>
           <div class="social-section">
-            <h3>Conecte-se comigo</h3>
+            <h3 data-i18n="contact.connectTitle">Conecte-se comigo</h3>
 
             <a href="https://www.linkedin.com/in/luiz-guilherme-da-silva-pereira-a64793251/" class="social-btn"
               target="_blank">
@@ -396,7 +372,7 @@
                   <path
                     d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7 0h5v2.56c.7-1.3 2.4-2.56 4.8-2.56 5.12 0 6 3.36 6 7.72V24h-5v-7c0-1.6-.03-3.68-2.4-3.68-2.4 0-2.76 1.88-2.76 3.56V24H7V8z" />
                 </svg></span>
-              <span class="text">Vamos se Conectar</span>
+              <span class="text" data-i18n="contact.connect">Vamos se Conectar</span>
             </a>
 
             <a href="https://www.instagram.com/guii.syllva/" class="social-btn" target="_blank">
@@ -406,7 +382,7 @@
                     d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm8.88 2.13a1.12 1.12 0 110 2.25 1.12 1.12 0 010-2.25zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" />
                 </svg>
               </span>
-              <span class="text">Vamos se Conectar</span>
+              <span class="text" data-i18n="contact.connect">Vamos se Conectar</span>
             </a>
 
             <a href="https://github.com/Gu1lh3rm3-S1lv4" class="social-btn" target="_blank">
@@ -416,7 +392,7 @@
                     d="M12 0.297C5.372 0.297 0 5.67 0 12.297c0 5.28 3.438 9.75 8.207 11.325.6.111.793-.261.793-.577 0-.285-.012-1.237-.017-2.244-3.338.724-4.042-1.61-4.042-1.61-.546-1.386-1.333-1.755-1.333-1.755-1.09-.745.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.832 2.807 1.303 3.492.997.108-.776.418-1.303.76-1.602-2.665-.305-5.466-1.333-5.466-5.93 0-1.31.467-2.382 1.235-3.22-.123-.304-.535-1.527.117-3.176 0 0 1.008-.322 3.3 1.23a11.45 11.45 0 013.003-.403c1.02.005 2.045.138 3.003.403 2.29-1.552 3.296-1.23 3.296-1.23.654 1.649.242 2.872.12 3.176.77.838 1.233 1.91 1.233 3.22 0 4.61-2.805 5.624-5.475 5.92.43.372.823 1.104.823 2.222 0 1.604-.015 2.898-.015 3.293 0 .319.192.694.8.576C20.565 22.043 24 17.573 24 12.297 24 5.67 18.627 0.297 12 0.297z" />
                 </svg>
               </span>
-              <span class="text"> Vamos se Conectar</span>
+              <span class="text" data-i18n="contact.connect">Vamos se Conectar</span>
             </a>
           </div><!--fim social-section-->
         </div><!--fim conteudo-form-->
@@ -427,8 +403,8 @@
   <footer class="footer">
     <div class="container-footer">
       <div class="txt-footer">
-        <p>&copy; 2025 Todos os direitos reservados.</p>
-        <p>Desenvolvido por GS│Dev.</p>
+        <p data-i18n="footer.rights">&copy; 2025 Todos os direitos reservados.</p>
+        <p data-i18n="footer.devBy">Desenvolvido por GS│Dev.</p>
       </div>
     </div>
 
@@ -436,10 +412,10 @@
 
   <!-- scripts -->
   <script src="../particles.js"></script>
+  <script src="Assets/js/i18n.js"></script>
   <script src="Assets/js/app.js"></script>
   <script src="Assets/js/backtotop.js"></script>
   <script src="Assets/js/btnSocial.js"></script>
-  <script src="Assets/js/effectPalavra.js"></script>
   <script src="Assets/js/efffectSkills.js"></script>
   <script src="Assets/js/menu.js"></script>
   <script src="Assets/js/rolagemx.js"></script>

@@ -30,32 +30,33 @@
     <div class="btn-back">
       <button><a href="#" onclick="history.back()""><i class=" bi bi-arrow-left"></i></a></button>
     </div>
+    <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">EN</button>
     <div class="txt-portfolio">
-      <h1>Portfólio pessoal</h1>
+      <h1 data-i18n="page2.title">Portfólio pessoal</h1>
     </div>
     <div class="flex-portfolio">
       <div class="card">
         <img src="CSS/IMG2/Espaço Criativo e Tecnológico de João.jpg" alt="Portfólio pessoal - Website profissional">
         <div class="card-content">
-          <h2>Blendly</h2>
-          <p>Desenvolvi um site pessoal e portfólio para um(a) cliente como uma solução profissional e escalável para
+          <h2 data-i18n="page2.cardTitle">Blendly</h2>
+          <p data-i18n="page2.text">Desenvolvi um site pessoal e portfólio para um(a) cliente como uma solução profissional e escalável para
             fortalecer sua presença online. O projeto foi planejado desde a arquitetura da informação até a
             implementação final, garantindo uma navegação fluida, visual moderno e compatibilidade com dispositivos
             móveis.O site funciona como uma plataforma central para destacar os principais projetos, áreas de atuação e
             experiência profissional da pessoa, além de facilitar o contato com recrutadores, clientes ou parceiros de
             negócio.</p>
           <div class="detalhes">
-            <a href="">Tecnologias Usadas <div class="tecno">
+            <a href=""><span data-i18n="subpage.techUsed">Tecnologias Usadas</span> <div class="tecno">
                 <p><img src="CSS/IMG2/icons8-html5-48.png" alt="HTML5"></p>
                 <p><img src="CSS/IMG2/icons8-css-48.png" alt="CSS3"></p>
                 <p><img src="CSS/IMG2/icons8-js-48.png" alt="JavaScript"></p>
               </div></a>
 
-            <div class="coluna-2"><a href="https://github.com/Gu1lh3rm3-S1lv4/Site-Portfolio" target="_blank">Código
-                Fonte &rarr; <div class="img-tecno">
+            <div class="coluna-2"><a href="https://github.com/Gu1lh3rm3-S1lv4/Site-Portfolio" target="_blank"><span data-i18n="subpage.sourceCode">Código
+                Fonte</span> &rarr; <div class="img-tecno">
                   <p><img src="CSS/IMG2/icons8-github-50.png" alt="GitHub"></p>
                 </div></a>
-              <a href="https://gu1lh3rm3-s1lv4.github.io/Site-Portfolio/" target="_blank">Live Link &rarr; <div
+              <a href="https://gu1lh3rm3-s1lv4.github.io/Site-Portfolio/" target="_blank"><span data-i18n="subpage.liveLink">Live Link</span> &rarr; <div
                   class="link-live">
                   <p><img src="CSS/IMG2/icons8-global-50.png" alt="Visit Live Link"></p>
                 </div></a>
@@ -66,6 +67,7 @@
     </div><!--FIM FLEX-PORTOFLIO-->
   </div><!--FIM contaainer-->
 </body>
+<script src="../Assets/js/i18n.js"></script>
 <script src="js/rolagemX2.js"></script>
 
 </html>

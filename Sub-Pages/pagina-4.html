@@ -29,15 +29,16 @@
     <div class="btn-back">
       <button><a href="#" onclick="history.back()""><i class=" bi bi-arrow-left"></i></a></button>
     </div>
+    <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">EN</button>
     <div class="txt-portfolio">
-      <h1>Desenvolvimento de API REST</h1>
+      <h1 data-i18n="page4.title">Desenvolvimento de API REST</h1>
     </div>
     <div class="flex-portfolio">
       <div class="card">
         <img src="CSS/IMG2/foto api.png" alt="API RESTful - Backend com Node.js e Express">
         <div class="card-content">
-          <h2>Blendly</h2>
-          <p>Implementei uma solução de API Back-end focada no cadastro de usuários, responsável por receber requisições
+          <h2 data-i18n="page4.cardTitle">Blendly</h2>
+          <p data-i18n="page4.text">Implementei uma solução de API Back-end focada no cadastro de usuários, responsável por receber requisições
             externas, validar dados JSON e realizar a persistência segura em um banco de dados SQLite. O desenvolvimento
             deste projeto prático foi fundamental para consolidar competências em arquitetura de software, utilizando o
             framework Express para a criação de endpoints e o domínio do protocolo HTTP para manipulação correta de
@@ -45,16 +46,16 @@
             de persistência assíncrona com async/await e utilizei o ThunderClient para simulações de teste, marcando
             mais um passo importante na construção de sistemas escaláveis e bem estruturados.</p>
           <div class="detalhes">
-            <a href="https://github.com/Gu1lh3rm3-S1lv4/Maintenance-store">Tecnologias Usadas <div class="tecno">
+            <a href="https://github.com/Gu1lh3rm3-S1lv4/Maintenance-store"><span data-i18n="subpage.techUsed">Tecnologias Usadas</span> <div class="tecno">
                 <p><img src="CSS/IMG2/icons8-nodejs-48.png" alt="Node.js"></p>
                 <p><img src="CSS/IMG2/icons8-servidor-microsoft-sql-48.png" alt="SQL Server"></p>
                 <p><img src="CSS/IMG2/icons8-js-48.png" alt="JavaScript"></p>
               </div></a>
-            <div class="coluna-2"><a href="https://github.com/Gu1lh3rm3-S1lv4/Api-Rest" target="_blank">Código Fonte
+            <div class="coluna-2"><a href="https://github.com/Gu1lh3rm3-S1lv4/Api-Rest" target="_blank"><span data-i18n="subpage.sourceCode">Código Fonte</span>
                 &rarr; <div class="img-tecno">
                   <p><img src="CSS/IMG2/icons8-github-50.png" alt="GitHub"></p>
                 </div></a>
-              <a href="https://github.com/Gu1lh3rm3-S1lv4/Api-Rest/blob/main/Server.js" target="_blank">Live Link &rarr;
+              <a href="https://github.com/Gu1lh3rm3-S1lv4/Api-Rest/blob/main/Server.js" target="_blank"><span data-i18n="subpage.liveLink">Live Link</span> &rarr;
                 <div class="link-live">
                   <p><img src="CSS/IMG2/icons8-global-50.png" alt="Visit Live Link"></p>
                 </div></a>
@@ -65,6 +66,7 @@
     </div><!--FIM FLEX-PORTOFLIO-->
   </div><!--FIM contaainer-->
 </body>
+<script src="../Assets/js/i18n.js"></script>
 <script src="js/rolagemX2.js"></script>
 
 </html>
