@@ -24,19 +24,19 @@ const translations = {
     "projects.title": "Projetos",
     "projects.learnMore": "Saiba Mais",
     "projects.p1.heading": "Desenvolvimento Saas",
-    "projects.p1.text": "Este projeto é uma aplicação SaaS desenvolvida como parte dos meus estudos em Ciência da Computação. A plataforma oferece [serviço X — ex: gestão de tarefas, controle financeiro, agendamentos online], com foco em simplicidade, escalabilidade e experiência do usuário.",
+    "projects.p1.text": "Plataforma SaaS para gestão de negócios online, simples e escalável — do cadastro ao pagamento, tudo em um só lugar.",
     "projects.p2.heading": "Portfólio e Site pessoal",
-    "projects.p2.text": "Criação de portfólios personalizados, desenvolvidos para destacar de forma profissional os projetos, habilidades e a identidade de cada pessoa. Utilizo design responsivo para garantir uma boa visualização em qualquer dispositivo, além de focar na usabilidade e na organização das informações. Meu objetivo é criar portfólios que não só impressionem visualmente, mas também facilitem a navegação e a comunicação clara do conteúdo.",
+    "projects.p2.text": "Portfólios personalizados que unem design responsivo e identidade única, feitos para impressionar e converter.",
     "projects.p3.heading": "Sistema de Recibo Digital",
-    "projects.p3.text": "Desenvolvi um site para emissão de recibos e notas fiscais, onde o usuário preenche os dados necessários em um formulário simples e recebe o documento gerado diretamente por e-mail. O projeto foi construído com foco em agilidade e praticidade, automatizando o preenchimento, a geração e o envio do recibo sem a necessidade de ferramentas externas.",
+    "projects.p3.text": "Emissão de recibos e notas fiscais em segundos: preencha, gere e receba por e-mail — sem papel, sem complicação.",
     "projects.p4.heading": "API RESTful",
-    "projects.p4.text": "Desenvolvi uma API RESTful utilizando Node.js e o framework Express, projetada para servir como o motor de um sistema de cadastro de usuários. O sistema gerencia o fluxo de dados no servidor, utilizando SQLite para a persistência de informações pessoais como nome, sobrenome, idade e peso. Fui responsável pela arquitetura do backend, desde a modelagem da tabela de usuários até a criação de endpoints para inserção e remoção de dados, incluindo a validação de campos obrigatórios no servidor. O projeto processa as requisições e entrega respostas estruturadas em JSON para a interface web.",
+    "projects.p4.text": "API RESTful robusta em Node.js e Express, com persistência em SQLite e endpoints prontos para cadastro de usuários.",
 
     "experience.title": "Experiências",
     "experience.role": "Desenvolvedor",
     "experience.tech1": "React.js, node.js",
     "experience.tech2": "Micro Serviços",
-    "experience.tech3": "AWS Lambda, MongoDb",
+    "experience.tech3": "AWS, MongoDb",
     "experience.tech4": "Criação e integração de APIs",
     "experience.tech5": "Chatbots e inteligência artificial",
 
@@ -59,19 +59,19 @@ const translations = {
 
     "page1.title": "Projeto SaaS",
     "page1.cardTitle": "Blendly",
-    "page1.text": "Desenvolvi uma plataforma SaaS (Software como Serviço) voltada para pequenos empreendedores que desejam criar e gerenciar suas próprias lojas online de forma simples, rápida e sem a necessidade de conhecimentos técnicos. A aplicação permite que o usuário personalize sua loja, cadastre produtos, controle pedidos e integre métodos de pagamento, tudo por meio de um painel administrativo intuitivo e acessível, oferecendo uma solução escalável, responsiva e fácil de usar.",
+    "page1.text": "Blendly é uma plataforma SaaS que permite pequenos empreendedores criarem e gerenciarem lojas online sem conhecimento técnico. Inclui personalização da loja, cadastro de produtos, controle de pedidos e integração de pagamentos em um painel administrativo intuitivo.",
 
     "page2.title": "Portfólio pessoal",
     "page2.cardTitle": "Blendly",
-    "page2.text": "Desenvolvi um site pessoal e portfólio para um(a) cliente como uma solução profissional e escalável para fortalecer sua presença online. O projeto foi planejado desde a arquitetura da informação até a implementação final, garantindo uma navegação fluida, visual moderno e compatibilidade com dispositivos móveis. O site funciona como uma plataforma central para destacar os principais projetos, áreas de atuação e experiência profissional da pessoa, além de facilitar o contato com recrutadores, clientes ou parceiros de negócio.",
+    "page2.text": "Site de portfólio pessoal desenvolvido para um cliente, planejado da arquitetura da informação ao design final. Destaca projetos, áreas de atuação e experiência profissional, com navegação fluida, visual moderno e total responsividade em qualquer dispositivo.",
 
     "page3.title": "Sistema de Recibo Digital",
     "page3.cardTitle": "Blendly",
-    "page3.text": "Desenvolvi um site para emissão de recibos e notas fiscais, onde o usuário preenche os dados necessários em um formulário simples e recebe o documento gerado diretamente por e-mail. O projeto foi construído com foco em agilidade e praticidade, automatizando o preenchimento, a geração e o envio do recibo sem a necessidade de ferramentas externas.",
+    "page3.text": "Aplicação web para emissão de recibos e notas fiscais. O usuário preenche os dados em um formulário simples e recebe o documento gerado automaticamente por e-mail, eliminando a necessidade de ferramentas externas ou processos manuais.",
 
     "page4.title": "Desenvolvimento de API REST",
     "page4.cardTitle": "Blendly",
-    "page4.text": "Implementei uma solução de API Back-end focada no cadastro de usuários, responsável por receber requisições externas, validar dados JSON e realizar a persistência segura em um banco de dados SQLite. O desenvolvimento deste projeto prático foi fundamental para consolidar competências em arquitetura de software, utilizando o framework Express para a criação de endpoints e o domínio do protocolo HTTP para manipulação correta de verbos e Status Codes. Além de aprimorar o tratamento e validação de dados no servidor, apliquei conceitos de persistência assíncrona com async/await e utilizei o ThunderClient para simulações de teste, marcando mais um passo importante na construção de sistemas escaláveis e bem estruturados."
+    "page4.text": "API back-end desenvolvida em Node.js e Express para cadastro de usuários, com validação de dados JSON e persistência segura em banco SQLite. O projeto aplica boas práticas de arquitetura, endpoints RESTful, tratamento do protocolo HTTP e persistência assíncrona com async/await."
   },
   en: {
     "nav.inicio": "HOME",
@@ -97,19 +97,19 @@ const translations = {
     "projects.title": "Projects",
     "projects.learnMore": "Learn More",
     "projects.p1.heading": "SaaS Development",
-    "projects.p1.text": "This project is a SaaS application developed as part of my Computer Science studies. The platform offers [service X — e.g.: task management, financial control, online scheduling], focused on simplicity, scalability and user experience.",
+    "projects.p1.text": "A SaaS platform for managing online businesses — simple, scalable, all-in-one, from setup to payment.",
     "projects.p2.heading": "Portfolio & Personal Website",
-    "projects.p2.text": "Creation of custom portfolios, developed to professionally showcase each person's projects, skills and identity. I use responsive design to ensure a great viewing experience on any device, while focusing on usability and information organization. My goal is to create portfolios that not only impress visually, but also make navigation and communication of content clear.",
+    "projects.p2.text": "Custom portfolios blending responsive design and unique identity, built to impress and convert.",
     "projects.p3.heading": "Digital Receipt System",
-    "projects.p3.text": "I built a website for issuing receipts and invoices, where the user fills in the required data through a simple form and receives the generated document directly by email. The project was built with a focus on speed and convenience, automating the filling, generation and sending of the receipt without the need for external tools.",
+    "projects.p3.text": "Issue receipts and invoices in seconds: fill in, generate and receive by email — no paper, no hassle.",
     "projects.p4.heading": "RESTful API",
-    "projects.p4.text": "I built a RESTful API using Node.js and the Express framework, designed to power a user registration system. The system manages server-side data flow, using SQLite to persist personal information such as first name, last name, age and weight. I was responsible for the backend architecture, from modeling the users table to creating endpoints for inserting and deleting data, including required field validation on the server. The project processes requests and returns structured JSON responses for the web interface.",
+    "projects.p4.text": "A robust RESTful API in Node.js and Express, with SQLite persistence and ready-to-use user registration endpoints.",
 
     "experience.title": "Experience",
     "experience.role": "Developer",
     "experience.tech1": "React.js, node.js",
     "experience.tech2": "Microservices",
-    "experience.tech3": "AWS Lambda, MongoDb",
+    "experience.tech3": "AWS, MongoDb",
     "experience.tech4": "API creation and integration",
     "experience.tech5": "Chatbots and artificial intelligence",
 
@@ -132,19 +132,19 @@ const translations = {
 
     "page1.title": "SaaS Project",
     "page1.cardTitle": "Blendly",
-    "page1.text": "I developed a SaaS (Software as a Service) platform aimed at small business owners who want to create and manage their own online stores simply, quickly, and without needing technical knowledge. The application lets users customize their store, register products, manage orders and integrate payment methods, all through an intuitive, accessible admin panel — delivering a scalable, responsive and easy-to-use solution.",
+    "page1.text": "Blendly is a SaaS platform that lets small business owners create and manage online stores without technical knowledge. It includes store customization, product registration, order management and payment integration through an intuitive admin dashboard.",
 
     "page2.title": "Personal Portfolio",
     "page2.cardTitle": "Blendly",
-    "page2.text": "I developed a personal website and portfolio for a client as a professional, scalable solution to strengthen their online presence. The project was planned from information architecture through to final implementation, ensuring smooth navigation, a modern look and mobile compatibility. The site serves as a central hub to showcase the person's key projects, areas of expertise and professional experience, while making it easier for recruiters, clients or business partners to get in touch.",
+    "page2.text": "Personal portfolio website built for a client, planned from information architecture through to final design. It highlights key projects, areas of expertise and professional experience, with smooth navigation, a modern look and full responsiveness across devices.",
 
     "page3.title": "Digital Receipt System",
     "page3.cardTitle": "Blendly",
-    "page3.text": "I developed a web application for issuing receipts and invoices, allowing users to fill out the required information through an intuitive form and receive the generated document automatically via email. The system streamlines the entire process of completing, generating, and sending documents, providing greater speed, convenience, and reducing the need for manual processes or external tools.",
+    "page3.text": "Web application for issuing receipts and invoices. Users fill in the required data through a simple form and automatically receive the generated document by email, removing the need for external tools or manual processes.",
 
     "page4.title": "REST API Development",
     "page4.cardTitle": "Blendly",
-    "page4.text": "I implemented a back-end API solution focused on user registration, responsible for receiving external requests, validating JSON data and securely persisting it in an SQLite database. Building this hands-on project was key to consolidating my software architecture skills, using the Express framework to create endpoints and mastering the HTTP protocol to correctly handle verbs and status codes. Besides improving server-side data handling and validation, I applied asynchronous persistence concepts with async/await and used ThunderClient for test simulations — another important step in building scalable, well-structured systems."
+    "page4.text": "Back-end API built with Node.js and Express for user registration, featuring JSON data validation and secure persistence in an SQLite database. The project applies solid architecture practices, RESTful endpoints, proper HTTP handling and asynchronous persistence with async/await."
   }
 };
 

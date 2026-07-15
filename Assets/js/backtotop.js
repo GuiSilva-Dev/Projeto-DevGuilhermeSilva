@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Ação ao clicar no botão "Voltar ao Topo"
   backToTopButton.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth', backgroundColor: 'transparent'});
   });
 });
 

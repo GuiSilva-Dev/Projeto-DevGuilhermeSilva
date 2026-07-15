@@ -376,7 +376,7 @@ button {
 
   .card {
     width: 70%;
-    height: 750px;
+    height: auto;
   }
 
   .detalhes {
