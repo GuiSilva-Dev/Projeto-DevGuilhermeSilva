@@ -1113,7 +1113,7 @@
     left: 0px;
   }
 
-  /*******SEVIÇOS********/
+  /*******EXPERIÊNCIA*******/
   .portfolio {
     min-height: 100dvh;
     width: 100%;
@@ -1169,10 +1169,15 @@
 
   .card {
     box-sizing: border-box;
-    width: 100%;
+    width: 90%;
     max-width: 280px;
     margin: 0 auto;
     padding: 1.25rem;
+  }
+
+  .card img {
+    width: 80%;
+    margin: 0 auto;
   }
 
   .card-content {
@@ -1197,6 +1202,9 @@
     padding: 4px 10px;
     font-size: 0.75rem;
   }
+  .card-tech-list li{
+    font-size: 10px;
+  }
 
   .card-content a {
     padding: 0;
@@ -1219,6 +1227,8 @@
     filter: blur(15px);
     transform: translateX(+50%);
     transition: all .52 ease;
+      box-shadow: 1px 1px 5px 40px rgba(40, 40, 40, 0.356);
+
   }
 
   .show {
