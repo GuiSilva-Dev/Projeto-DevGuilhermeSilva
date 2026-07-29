@@ -24,11 +24,11 @@ const translations = {
     "projects.title": "Projetos",
     "projects.learnMore": "Saiba Mais",
     "projects.p1.heading": "Desenvolvimento Saas",
-    "projects.p1.text": "Plataforma SaaS para gestão de negócios online, simples e escalável — do cadastro ao pagamento, tudo em um só lugar.",
+    "projects.p1.text": "Plataforma SaaS para gestão de negócios online — simples, escalável e completa, do cadastro ao pagamento.",
     "projects.p2.heading": "Portfólio e Site pessoal",
-    "projects.p2.text": "Portfólios personalizados que unem design responsivo e identidade única, feitos para impressionar e converter.",
+    "projects.p2.text": "Portfólios personalizados que combinam design responsivo e identidade única, criados para impressionar e converter.",
     "projects.p3.heading": "Sistema de Recibo Digital",
-    "projects.p3.text": "Emissão de recibos e notas fiscais em segundos: preencha, gere e receba por e-mail — sem papel, sem complicação.",
+    "projects.p3.text": "Emissão de recibos e notas fiscais em segundos: preencha, gere e receba por e-mail — sem papel, sem complicações.",
     "projects.p4.heading": "API RESTful",
     "projects.p4.text": "API RESTful robusta em Node.js e Express, com persistência em SQLite e endpoints prontos para cadastro de usuários.",
 
@@ -62,8 +62,8 @@ const translations = {
     "page1.text": "Blendly é uma plataforma SaaS que permite pequenos empreendedores criarem e gerenciarem lojas online sem conhecimento técnico. Inclui personalização da loja, cadastro de produtos, controle de pedidos e integração de pagamentos em um painel administrativo intuitivo.",
 
     "page2.title": "Portfólio pessoal",
-    "page2.cardTitle": "Blendly",
-    "page2.text": "Site de portfólio pessoal desenvolvido para um cliente, planejado da arquitetura da informação ao design final. Destaca projetos, áreas de atuação e experiência profissional, com navegação fluida, visual moderno e total responsividade em qualquer dispositivo.",
+    "page2.cardTitle": "Website pessoal",
+    "page2.text": "Website de portfólio pessoal criado para destacar projetos, habilidades e experiência profissional. Inclui navegação intuitiva, design moderno, seções claras e responsividade completa em todos os dispositivos.",
 
     "page3.title": "Sistema de Recibo Digital",
     "page3.cardTitle": "Blendly",
@@ -71,7 +71,7 @@ const translations = {
 
     "page4.title": "Desenvolvimento de API REST",
     "page4.cardTitle": "Blendly",
-    "page4.text": "API back-end desenvolvida em Node.js e Express para cadastro de usuários, com validação de dados JSON e persistência segura em banco SQLite. O projeto aplica boas práticas de arquitetura, endpoints RESTful, tratamento do protocolo HTTP e persistência assíncrona com async/await."
+    "page4.text": "API backend desenvolvida em Node.js e Express para cadastro de usuários, com validação de dados JSON e persistência segura em SQLite. O projeto aplica boas práticas de arquitetura, endpoints RESTful, tratamento correto de HTTP e persistência assíncrona com async/await."
   },
   en: {
     "nav.inicio": "HOME",
@@ -135,8 +135,8 @@ const translations = {
     "page1.text": "Blendly is a SaaS platform that lets small business owners create and manage online stores without technical knowledge. It includes store customization, product registration, order management and payment integration through an intuitive admin dashboard.",
 
     "page2.title": "Personal Portfolio",
-    "page2.cardTitle": "Blendly",
-    "page2.text": "Personal portfolio website built for a client, planned from information architecture through to final design. It highlights key projects, areas of expertise and professional experience, with smooth navigation, a modern look and full responsiveness across devices.",
+    "page2.cardTitle": "Personal Website",
+    "page2.text": "Personal portfolio website designed to showcase projects, skills, and professional experience. It features intuitive navigation, modern visuals, clear section hierarchy, and full responsiveness across all devices.",
 
     "page3.title": "Digital Receipt System",
     "page3.cardTitle": "Blendly",

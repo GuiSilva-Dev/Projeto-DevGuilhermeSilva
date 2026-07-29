@@ -1103,6 +1103,14 @@
     will-change: opacity, transform, filter;
   }
 
+  #project1,
+  #project2,
+  #project3,
+  #project4 {
+    max-width: 80%;
+    min-height: 0;
+  }
+
   .projectCard {
     margin: 2rem auto;
     box-shadow: 0px 0px 1000px rgba(102, 5, 53, 0.765);
@@ -1202,7 +1210,8 @@
     padding: 4px 10px;
     font-size: 0.75rem;
   }
-  .card-tech-list li{
+
+  .card-tech-list li {
     font-size: 10px;
   }
 
@@ -1227,7 +1236,7 @@
     filter: blur(15px);
     transform: translateX(+50%);
     transition: all .52 ease;
-      box-shadow: 1px 1px 5px 40px rgba(40, 40, 40, 0.356);
+    box-shadow: 1px 1px 5px 40px rgba(40, 40, 40, 0.356);
 
   }
 
@@ -1267,7 +1276,7 @@
     border-radius: 20px;
     background: #00000000;
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     resize: none;
     /*retira expansão de text area*/
   }
