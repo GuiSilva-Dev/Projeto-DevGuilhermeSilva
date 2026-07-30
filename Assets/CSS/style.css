@@ -1392,7 +1392,7 @@ p {
   background-repeat: no-repeat;
   position: relative;
   border-radius: var(--card-radius);
-  margin: 2rem auto;
+  margin: 4rem auto;
   z-index: 1;
   /** Transição apenas para propriedades aceleradas por GPU */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1795,7 +1795,8 @@ p {
 
 /* Estilo da imagem dentro do card */
 .card img {
-  width: 100%;
+margin: 0 auto;
+  width: 90%;
   /* Imagem ocupa 100% da largura do card */
   height: auto;
   /* Altura automática proporcional */

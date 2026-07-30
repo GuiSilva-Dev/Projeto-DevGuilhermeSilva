@@ -383,12 +383,19 @@ button {
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
-    font-size: 12px;
     user-select: none;
+  }
+
+  .detalhes img {
+    width: 80%;
   }
 
   .detalhes p {
     margin: 10px;
+  }
+
+  .detalhes span{
+    font-size: 12px;
   }
 
   .coluna-2 {
@@ -403,6 +410,10 @@ button {
   /*efeito de piscar */
   .img-tecno img {
     background: white;
+  }
+
+  .tecno img {
+    width: 80%;
   }
 
   .link-live p {
