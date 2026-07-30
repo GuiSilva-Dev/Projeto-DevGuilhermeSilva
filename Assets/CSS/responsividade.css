@@ -1109,6 +1109,7 @@
   #project4 {
     max-width: 80%;
     min-height: 0;
+    height: auto;
   }
 
   .projectCard {

@@ -382,12 +382,22 @@ button {
   .detalhes {
     margin-bottom: 10px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
     user-select: none;
   }
 
-  .detalhes img {
-    width: 80%;
+  /* Tamanho único e confortável para todos os ícones (tech, github, live link) */
+  .detalhes img,
+  .tecno img,
+  .img-tecno img,
+  .link-live img {
+    width: 44px;
+    height: 44px;
+    max-width: 44px;
+    object-fit: contain;
   }
 
   .detalhes p {
@@ -399,7 +409,8 @@ button {
   }
 
   .coluna-2 {
-    width: 10%;
+    width: auto;
+    align-items: center;
   }
 
   .img-tecno p {
@@ -410,10 +421,7 @@ button {
   /*efeito de piscar */
   .img-tecno img {
     background: white;
-  }
-
-  .tecno img {
-    width: 80%;
+    border-radius: 50%;
   }
 
   .link-live p {

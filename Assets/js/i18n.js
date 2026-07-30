@@ -24,7 +24,7 @@ const translations = {
     "projects.title": "Projetos",
     "projects.learnMore": "Saiba Mais",
     "projects.p1.heading": "Desenvolvimento Saas",
-    "projects.p1.text": "Plataforma SaaS para gestão de negócios online — simples, escalável e completa, do cadastro ao pagamento.",
+    "projects.p1.text": "Vitrine de um SaaS para gestão de negócios online, simples e escalável — do cadastro ao pagamento, tudo em um só lugar.",
     "projects.p2.heading": "Portfólio e Site pessoal",
     "projects.p2.text": "Portfólios personalizados que combinam design responsivo e identidade única, criados para impressionar e converter.",
     "projects.p3.heading": "Sistema de Recibo Digital",
@@ -59,7 +59,7 @@ const translations = {
 
     "page1.title": "Projeto SaaS",
     "page1.cardTitle": "Blendly",
-    "page1.text": "Blendly é uma plataforma SaaS que permite pequenos empreendedores criarem e gerenciarem lojas online sem conhecimento técnico. Inclui personalização da loja, cadastro de produtos, controle de pedidos e integração de pagamentos em um painel administrativo intuitivo.",
+    "page1.text": "Solução digital para empresas de assistência técnica em eletrodomésticos, estruturada como funil completo de conversão — da apresentação dos serviços à captação de leads via formulário e WhatsApp. Construída com foco em escalabilidade, podendo ser replicada e adaptada para outras empresas do setor.",
 
     "page2.title": "Portfólio pessoal",
     "page2.cardTitle": "Website pessoal",
@@ -97,7 +97,7 @@ const translations = {
     "projects.title": "Projects",
     "projects.learnMore": "Learn More",
     "projects.p1.heading": "SaaS Development",
-    "projects.p1.text": "A SaaS platform for managing online businesses — simple, scalable, all-in-one, from setup to payment.",
+    "projects.p1.text": "A showcase site for a SaaS platform to manage online businesses — simple and scalable, from sign-up to payment, all in one place.",
     "projects.p2.heading": "Portfolio & Personal Website",
     "projects.p2.text": "Custom portfolios blending responsive design and unique identity, built to impress and convert.",
     "projects.p3.heading": "Digital Receipt System",
@@ -132,7 +132,7 @@ const translations = {
 
     "page1.title": "SaaS Project",
     "page1.cardTitle": "Blendly",
-    "page1.text": "Blendly is a SaaS platform that lets small business owners create and manage online stores without technical knowledge. It includes store customization, product registration, order management and payment integration through an intuitive admin dashboard.",
+    "page1.text": "A digital solution for home-appliance repair businesses, built as a complete conversion funnel — from showcasing the services to capturing leads through a form and WhatsApp. Designed with scalability in mind, so it can be replicated and adapted for other companies in the industry.",
 
     "page2.title": "Personal Portfolio",
     "page2.cardTitle": "Personal Website",
