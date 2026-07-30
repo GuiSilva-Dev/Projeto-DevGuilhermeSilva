@@ -24,19 +24,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-/*MENU TOGGLE*/
-Document.addEventListener('DOMContentLoaded', function () {
-
-  const menuToggle = document.getElementById('menuToggle');
-  const menuAberto = document.getElementById('menu-aberto');
-
-  menuToggle.addEventListener('change', function () {
-    if (menuToggle.checked) {
-      menuAberto.classList.add('active');
-    } else {
-      menuToggle.classList.remove('active')
-    }
-  });
-});
 
 

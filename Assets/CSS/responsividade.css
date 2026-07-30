@@ -1,838 +1,300 @@
-/******NOTEBOOK*****/
-@media (min-width: 1024px) and (max-width: 1920px) and (orientation:landscape) {
+/* ============================================================
+   NOTEBOOK PADRÃO (1025px–1440px)
+   Cobre os laptops mais comuns: 1366x768, 1280x800, 1440x900.
+   Mesma hierarquia visual do desktop, com fontes, espaçamentos,
+   grids e cards reduzidos proporcionalmente para caber sem
+   exigir scroll excessivo nem ficar com elementos pequenos
+   demais para clicar.
+   ============================================================ */
+@media (min-width: 1025px) and (max-width: 1440px) {
 
+  /* ---------- Header / Menu ---------- */
   .header {
-    width: 100%;
+    padding: 1.5rem 1rem;
   }
 
   .logo-topo img {
-
-    width: 180px;
+    width: 170px;
   }
 
   .menu {
-    font-size: 13px;
+    margin: 0 20px;
   }
 
-  .menu-aberto {
-    top: 0;
+  .nav-menu {
+    gap: 3rem;
   }
 
-  .menu-aberto a {
-    font-size: 35px;
+  .nav-menu a {
+    font-size: 2rem;
+  }
+
+  /* ---------- Hero ---------- */
+  .inicio {
+    margin-bottom: 40px;
   }
 
   .inicio h1 {
-    font-size: 50px;
+    font-size: 3.4rem;
   }
 
-  .inicio h2 {
-    font-size: 45px;
+  .txt-efeito {
+    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
   }
 
-  /******SOBRE********/
+  /* ---------- Sobre ---------- */
+  .sobre {
+    padding: 96px 24px;
+  }
+
   .sobre h2 {
-
-    background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgba(200, 80, 192, 0.547) 46%, rgb(255, 204, 112) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    width: fit-content;
-    margin: 0 auto;
-    /* -webkit-text-stroke: 0.4px rgb(188, 12, 223); */
-    font-weight: 700;
-    font-size: 60px;
-    /* line-height: 75px; */
-    /* padding: 50px 0 30px; */
-    text-align: center;
-    color: rgb(235, 196, 247);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 48px;
+    margin-bottom: 56px;
     animation: efeito 2s ease-in-out infinite;
   }
 
-  /* Animação de movimento do gradiente */
-  @keyframes efeito {
-    to {
-      background-position-x: 0;
-    }
+  .sobre h3 {
+    font-size: 1.8rem;
   }
 
-  .container-sobre {
-    opacity: 0;
-    /* Elemento começa invisível (transparente) */
-    transform: translateX(-96%);
-    /* Desloca o elemento completamente para a esquerda, fora da tela */
-    /*Ajuste  para apple*/
-    filter: blur(15px);
-    /* Aplica um desfoque inicial de 15px, dando efeito de "fora de foco" */
-  }
-
-  .show {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateX(0);
-    transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out,
-      filter 0.6s ease-out;
-    will-change: opacity, transform, filter;
+  .flex {
+    flex-wrap: wrap;
+    gap: 96px;
   }
 
   .box-sobre {
-    max-width: 650px;
+    order: 1;
+    max-width: 560px;
+    height: auto;
+    min-height: 340px;
+    padding: 1.5rem;
+    gap: 1rem;
+    /* Zera a margem inteira (o base deixa margin-right:auto ativo,
+       que num flex item "engole" o espaço livre e empurra a foto
+       para a direita) — o espaçamento passa a vir só do gap do .flex */
+    margin: 0;
   }
 
-  .sobre h3 {
-    color: #6a00ff;
-    font-size: 2rem;
-    text-align: center;
-
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  .sobre-skills h3 {
-    font-size: 30px;
-  }
-
-  .sobre-skills img {
-    width: 55px
+  .box-sobre p {
+    font-size: 0.95rem;
   }
 
   .img-sobre {
-    right: 80px;
-    width: 400px;
-    height: 400px;
-
+    order: 2;
+    width: 320px;
+    height: 320px;
   }
 
+  .img-sobre:before {
+    inset: -10px 100px;
+  }
+
+  .conteudo-img h4 {
+    font-size: 22px;
+  }
+
+  /* Em vez de posicionamento absoluto com pixels "chutados" (que
+     ficava sobrepondo o card em algumas alturas), o botão volta a
+     fazer parte do fluxo do .flex, numa linha própria e centralizada
+     abaixo do texto/foto — se adapta a qualquer tamanho de conteúdo. */
   .btn-pdf {
-    left: 22%;
-    top: 620px;
+    position: static;
+    order: 3;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
   }
 
+  /* ---------- Skills (ferramentas / stacks) ---------- */
   .sobre-skills {
-    flex-wrap: nowrap;
-    gap: 20px;
+    top: 48px;
+    gap: 24px;
+  }
 
+  .sobre-skills h3 {
+    font-size: 26px;
+    margin-bottom: 8px;
   }
 
   .softs-skills,
   .softs-2,
   .softs-p3,
   .softs-p4 {
-    max-width: 290px;
-    height: 130px;
+    max-width: 260px;
+    height: 120px;
+    gap: 0.5rem;
   }
 
-  /*******PROJETOS*******/
-  .projectTitle {
-    padding-top: 15rem;
-    /* color: rgb(255, 255, 255);  
-  text-shadow: 0 0 10px #a101a1, 0 0 20px #a002a0, 0 0 40px #a802a8; */
+  .img-skills i img,
+  .img-12 i img,
+  .img-p13 i img,
+  .img-p14 i img {
+    max-width: 48px;
+    height: 48px;
+  }
 
-    background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    width: fit-content;
-    margin: 0 auto;
-    /* -webkit-text-stroke: 0.4px rgb(188, 12, 223); */
-    font-weight: 700;
-    font-size: 60px;
-    /* line-height: 75px; */
-    /* padding: 50px 0 30px; */
-    text-align: center;
-    color: rgb(235, 196, 247);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-family: 'Courier New', Courier, monospace;
+  /* ---------- Projetos ---------- */
+  .projectSection {
+    width: 48%;
+  }
+
+  .projectTitle {
+    padding-top: 80px;
+    padding-bottom: 24px;
+    font-size: 42px;
     animation: animação 2s ease-in-out infinite;
   }
 
-  /* Animação de movimento do gradiente */
-  @keyframes animação {
-    to {
-      background-position-x: 0;
-    }
-  }
-
-  .outerSectionDiv {
-    opacity: 0;
-    transform: translateX(+100%);
-    filter: blur(15px);
-  }
-
-  .show {
-    opacity: 1;
-    /* Torna o elemento visível */
-    filter: blur(0);
-    /* Remove o desfoque */
-    transform: translateX(0);
-    /* Move o elemento para sua posição original */
-    transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out,
-      filter 0.6s ease-out;
-    will-change: opacity, transform, filter;
-  }
-
-  .projectContainer {
-    width: 80%;
+  .Container-projetos {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 120px;
+    gap: 48px;
   }
 
-  #project1 {
-    background-image: url(../Img/saas.jpg);
-    right: 5%;
-    margin-top: 5rem;
-  }
-
-  #project2 {
-    background-image: url(../Img/software.webp);
-    left: 5%;
-  }
-
-  #project3 {
-    background-image: url(../Img/pexels-designecologist-1779487.jpg);
-    right: 5%;
-  }
-
-  #project4 {
-    background-image: url(../Img/pexels-negativespace-97077.jpg);
-    left: 5%;
-  }
-
+  /* Restaura o aspect-ratio do desktop (em vez de altura fixa),
+     evitando cards estreitos e altos demais nesta faixa de largura.
+     min-height garante espaço suficiente para o conteúdo não
+     encostar no próximo card. */
   .projectCard {
-    max-width: 80%;
-    height: 500px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-    background-color: rgba(255, 255, 255, 0);
-    border-radius: 20px;
-    margin: 2rem auto;
-    z-index: 1;
-    transition: 1s;
+    max-width: 100%;
+    min-height: 280px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
   }
-
-  .projectCard:hover {
-    box-shadow: 0px 0px 1000px rgba(102, 5, 53, 0.765);
-  }
-
-  .projectCard::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    /* background: linear-gradient(45deg, #343d68, #343d68be, #343d687c); */
-    background: linear-gradient(90deg, #000000b0, rgba(0, 0, 0, 0.266), #95969600);
-    z-index: 1;
-    transition: 0.5s;
-    border-radius: 18px;
-
-    transform-origin: left;
-    transform: scaleX(0);
-    /* transform: translate(-83%, 0%); */
-  }
-
-  .projectCard:hover::before {
-    transform: scaleX(1);
-    /* transform: translate(0%, 0%); */
-  }
-
 
   .projectNumber {
-    position: absolute;
-    font-size: 125px;
-    font-weight: 600;
-    color: rgba(245, 217, 231, 0.506);
-    display: none;
-    z-index: 10;
-    transition: 0.8s;
+    font-size: 90px;
   }
 
   .rightNumber {
-    top: -60px;
-    right: -65px;
+    top: -40px;
+    right: -30px;
   }
 
   .leftNumber {
-    top: -60px;
-    left: -65px;
-  }
-
-  .projectCard:hover .projectNumber {
-    display: block;
-  }
-
-  .projectCard::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #1f1f1f9a;
-    border-radius: 20px;
-    z-index: 0;
+    top: -40px;
+    left: -30px;
   }
 
   .projectContent {
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(255, 255, 255, 0);
-    gap: 1rem;
-    color: rgb(255, 255, 255);
-    padding: 2em;
-    bottom: 20%;
-    position: absolute;
-    z-index: 5;
-    transition: 0.4s;
-    max-width: 80%;
-    bottom: 7%;
-  }
-
-  .leftProjectContent {
-    left: 5%;
-  }
-
-  .rightProjectContent {
-    right: 5%;
+    gap: 0.6rem;
+    padding: 1.5em;
+    max-width: 85%;
   }
 
   .projectSkillsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 60%;
-    gap: 1em;
+    max-width: 70%;
   }
 
   .projectSkill {
-    width: 40px;
+    width: 30px;
   }
 
   .projectHeading {
-    font-size: 35px;
-    font-weight: bold;
-    line-height: 3rem;
-    font-family: 'Catamaran', sans-serif;
+    font-size: 26px;
+    line-height: 1.25;
   }
 
   .projectSubHeading {
     font-size: 13px;
-    font-style: italic;
-    width: 70%;
-    opacity: 70%;
-    border-radius: 6px;
-    backdrop-filter: blur(8px);
-  }
-
-  .projectCard:hover .projectContent {
-    transform: scale(1.05);
-  }
-
-  .btnGroup {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 1rem;
+    width: 90%;
   }
 
   .projectBtn {
-    border-radius: 40px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.65em 1.5em;
-    letter-spacing: 1px;
-    border: none;
-    background-position: left;
-    background-size: 300%;
-    background-image: linear-gradient(135deg, #9419d2, #dc2430, #dc2449, #9a31cf);
-    transition: 0.3s;
-    cursor: pointer;
-  }
-
-  .projectBtn:hover {
-    scale: 0.96;
-    background-position: right;
-    filter: drop-shadow(0px 0px 20px #2101017e);
+    font-size: 0.75rem;
+    padding: 0.55em 1.2em;
   }
 
   .icon {
-    cursor: pointer;
-    color: white;
-    font-size: 32px;
-    transition: 0.3s;
-    /* font-size: 18px; */
+    font-size: 24px;
   }
 
   .github {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    background-color: #11010100;
-    border-radius: 40px;
-    cursor: pointer;
-    font-size: 0.80rem;
-    font-weight: 600;
-    letter-spacing: 1.8px;
-    transform-origin: left;
-    transition: 0.3s;
+    font-size: 0.7rem;
   }
 
-  .github:hover {
-    padding: 0.15em 1em;
-    background-color: #110101;
-    filter: drop-shadow(0px 0px 20px #0000006c);
-  }
-
-  .github:hover::after {
-    content: "Github";
-    padding-left: 0.6em;
-  }
-
-  .icon:hover,
-  .github:hover .icon {
-    /* font-size: 18px; */
-    scale: 0.6;
-  }
-
-  @media (max-width:900px) {
-    .projectTitle {
-      font-size: 50px;
-      /* filter: drop-shadow(0px 0px 7px #780159); */
-    }
-
-    .projectContainer {
-      max-width: 650px;
-      margin: 0 auto;
-      padding: 0 0;
-      gap: 2rem;
-    }
-
-    #project1,
-    #project2,
-    #project3,
-    #project4 {
-      left: 0%;
-      right: 0%;
-    }
-
-    .projectCard {
-      margin: 2rem auto;
-      height: 250px;
-      margin: 0 auto;
-      box-shadow: 0px 0px 100px rgba(61, 0, 66, 0.682);
-    }
-
-    /* .projectCard:hover .projectNumber {
-    display: none;
-  } */
-    .projectCard::before {
-      transform: scaleX(1);
-    }
-
-    .projectCard::after {
-      background-color: #1f1f1f7c;
-    }
-
-    .projectContent {
-      gap: 0rem;
-      padding: 0.5em;
-      bottom: 2%;
-
-      transform: scale(1.05);
-
-    }
-
-    .projectNumber {
-      font-size: 50px;
-      display: block;
-      filter: drop-shadow(0px 0px 19px #ffffff);
-
-    }
-
-    .rightNumber,
-    .leftNumber {
-      top: -20px;
-      left: 85%;
-    }
-
-    .leftProjectContent,
-    .rightProjectContent {
-      left: 4%;
-    }
-
-    .btnGroup {
-      margin-top: 0.4em;
-    }
-
-    .projectBtn {
-      height: 20px;
-      min-width: none;
-      font-size: 0.5em;
-
-    }
-
-    .projectSkillsContainer {
-      gap: 0.35em;
-    }
-
-    .projectSkill {
-      width: 17px;
-    }
-
-    .projectHeading {
-      font-size: 16px;
-    }
-
-    .projectSubHeading {
-      font-size: 9px;
-    }
-
-    .icon {
-      font-size: 16px;
-      filter: drop-shadow(0px 0px 8px #ffffff);
-    }
-
-    .github:hover {
-      padding: 0 0;
-      background-color: #110101;
-      filter: drop-shadow(0px 0px 20px #00000000);
-    }
-
-    .github:hover::after {
-      content: "";
-      padding-left: 0em;
-    }
-
-    .icon:hover,
-    .github:hover .icon {
-      font-size: 16px;
-      scale: none;
-    }
-  }
-
-  /*******PORTFOLIO*********/
-
-  .container-portfolio {
-    opacity: 0;
-    transform: translateX(-100%);
-    filter: blur(15px);
-  }
-
-  .show {
-    opacity: 1;
-    /* Torna o elemento visível */
-    filter: blur(0);
-    /* Remove o desfoque */
-    transform: translateX(0);
-    /* Move o elemento para sua posição original */
-    transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out,
-      filter 0.6s ease-out;
-    will-change: opacity, transform, filter;
+  /* ---------- Experiências ---------- */
+  .portfolio {
+    padding: 96px 24px;
   }
 
   .txt-portfolio h1 {
-    padding: 6rem;
-    /* color: rgb(255, 255, 255);  
-  text-shadow: 0 0 10px #a101a1, 0 0 20px #a002a0, 0 0 40px #a802a8; */
-
-    background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    width: fit-content;
-    margin: 0 auto;
-    /* -webkit-text-stroke: 0.4px rgb(188, 12, 223); */
-    font-weight: 700;
-    font-size: 60px;
-    /* line-height: 75px; */
-    /* padding: 50px 0 30px; */
-    text-align: center;
-    color: rgb(235, 196, 247);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-family: 'Courier New', Courier, monospace;
+    padding: 0 0 40px;
+    font-size: 46px;
     animation: rolagem 2s ease-in-out infinite;
   }
 
-  /* Animação de movimento do gradiente */
-  @keyframes rolagem {
-    to {
-      background-position-x: 0;
-    }
-  }
-
-  /* Container que organiza os cards */
-  .flex-portfolio {
-    display: flex;
-    /* Layout em linha */
-    flex-wrap: wrap;
-    /* Permite quebra de linha se necessário */
-    justify-content: center;
-    /* Centraliza os cards horizontalmente */
-    gap: 30px;
-    /* Espaçamento entre os cards */
-    margin-top: 30px;
-    /* Espaço acima do container */
-  }
-
-  /* Estilização individual de cada card */
-
   .card {
-    border-radius: 16px;
-    /* Cantos arredondados */
-    overflow: hidden;
-    /* Esconde conteúdo que passar dos limites */
-    max-width: 330px;
-    /* Largura fixa do card */
-    box-shadow: 0 8px 24px rgba(255, 0, 0, 0.4);
-    /* Sombra suave */
-    transition: transform 0.3s, box-shadow 0.3s;
-    /* Suaviza animação de hover */
-    position: relative;
-    /* Permite posicionamento interno absoluto se necessário */
-    background: rgba(255, 255, 255, 0);
-    /* fundo escuro e translúcido */
-    padding: 2rem;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-    /* sombra roxa suave */
-    color: #fff;
-    margin: auto;
+    max-width: 260px;
+    padding: 1.25rem;
   }
 
-  /* Efeito ao passar o mouse sobre o card */
-  .card:hover {
-    transform: translateY(-10px);
-    /* Move o card levemente para cima */
-    box-shadow: 0 12px 32px rgba(130, 2, 250, 0.6);
-    /* Aumenta a sombra para dar profundidade */
-  }
-
-  /* Estilo da imagem dentro do card */
-  .card img {
-    width: 100%;
-    /* Imagem ocupa 100% da largura do card */
-    height: auto;
-    /* Altura automática proporcional */
-    display: block;
-    /* Remove espaço embaixo da imagem */
-    transition: all .9s;
-  }
-
-  .card img:hover {
-    transform: scale(1.2);
-  }
-
-  /* Área do conteúdo (texto) do card */
   .card-content {
-    padding: 20px;
-    /* Espaçamento interno */
-    text-align: left;
-    /* Alinha texto à esquerda */
+    padding: 14px;
   }
 
-  /* Título do card */
   .card-content h2 {
-    color: #a259ff;
-    /* Roxo suave para o título */
-    margin: 0 0 10px;
-    /* Espaçamento inferior entre o título e o parágrafo */
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
-  /* Parágrafo de descrição */
-  .card-content p {
-    font-size: 14px;
-    /* Tamanho menor para leitura leve */
-    color: #ccc;
-    /* Cor cinza clara para o texto secundário */
+  .card-tech-list {
+    gap: 6px 4px;
+    margin-top: 10px;
   }
 
-  /* Link para ação (como "Demonstração ao vivo") */
-  .card-content a {
-    display: inline-block;
-    /* Permite aplicar padding e margin */
-    padding: 1rem 1rem;
-
-    /* Espaço acima do link */
-    color: #b700ff;
-    /* Cor ciano brilhante */
-    text-decoration: none;
-    /* Remove sublinhado padrão */
-    font-weight: bold;
-    /* Deixa o texto em negrito */
-    border-bottom: 1px solid transparent;
-    /* Borda inferior invisível (para animação no hover) */
-    transition: border 0.3s;
-    /* Suaviza o aparecimento da borda */
-    font-size: 17px;
-    white-space: nowrap;
+  .badge-tech {
+    padding: 4px 10px;
+    font-size: 0.75rem;
   }
 
-  button.btn-serv {
-    margin: 20px auto;
-    display: block;
-
-  }
-
-  .btn-serv {
-    width: 40%;
-    height: 60px;
-    padding: 0;
-    background: linear-gradient(135deg, #ff000091, #6a00ff8d);
-    border: none;
-    border-radius: 8px;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .btn-serv:hover {
-    background: linear-gradient(135deg, #6a00ff8d, #ff000091);
-  }
-
-  /*****FORMULARIO*******/
-  .formulario {
-    margin-top: -200px;
-  }
-
+  /* ---------- Formulário / Contato ---------- */
   .container-contato {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    margin-top: 200px;
-    margin-bottom: 100px;
-
-    opacity: 0;
-    /* O elemento começa invisível */
-    filter: blur(15px);
-    /* Começa com um desfoque de 15px */
-    transform: translateX(+100%);
-    /* Desloca o elemento completamente para a esquerda (fora da tela) */
-    transition: all 2s ease;
-    /* Anima todas as propriedades acima em 2 segundos com transição suave */
-    background: rgba(65, 64, 64, 0.433);
-    padding: 3rem 1rem 7rem;
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px 50px rgba(40, 40, 40, 0.356);
-    max-width: 400px;
-    backdrop-filter: blur(10px);
-
+    margin-top: 80px;
+    margin-bottom: 48px;
+    padding: 2rem 2rem 2.5rem;
+    max-width: 420px;
+    box-shadow: 0 0 40px rgba(40, 40, 40, 0.35);
   }
 
-  .show {
-    opacity: 1;
-    /* Torna o elemento visível */
-    filter: blur(0);
-    /* Remove o desfoque */
-    transform: translateX(0);
-    /* Move o elemento para sua posição original */
+  .container-contato h2 {
+    font-size: 2.2rem;
+    margin-bottom: 24px;
   }
 
   .container-contato p {
-    font-size: 13px;
-    color: #aaa;
-    margin-bottom: 150px;
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
 
+  /* Base tem margin-top:-100px no .form, pensado para compensar o
+     antigo margin-bottom:150px do parágrafo acima. Como reduzimos
+     esse espaçamento, zeramos aqui para não sobrepor os campos. */
+  .form {
+    margin-top: 0;
   }
 
   input,
   textarea {
-    width: 60%;
-    padding: 12px;
-    margin: 5px 0;
-    border: 1px solid hsla(0, 0%, 100%, 0.474);
-    border-radius: 20px;
-    background: #00000000;
-    color: #fff;
-    resize: none;
-    /*retira expansão de text area*/
+    width: 80%;
+    margin: 8px 0;
   }
 
   .btn-form {
-    width: 70%;
-    padding: 12px;
-    background: linear-gradient(135deg, #9d4edd, #7b2cbf);
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    width: 60%;
   }
 
   .social-section {
-    box-shadow: 1px 1px 5px 12px rgba(103, 103, 103, 0.118);
-    border-radius: 20px;
-    margin-top: 150px;
-    background-color: rgba(103, 103, 103, 0.118);
-
-  }
-
-
-  :root {
-    --color-white: #ffffff;
-    --color-primary: #0A66C2;
+    margin-top: 40px;
+    padding: 1.25rem 0.5rem;
+    box-shadow: 0 0 20px rgba(103, 103, 103, 0.18);
   }
 
   .social-btn {
-    display: inline-flex;
-    align-items: center;
-    margin: auto;
-    gap: 20px;
-    /*espaço entre icone e texto*/
-    padding: 10px 15px;
-    background: linear-gradient(135deg, #ff000091, #6a00ff8d);
-    color: var(--color-white);
-    border-radius: 30px;
-    cursor: pointer;
-    overflow: hidden;
-    width: 21px;
-    /*inicialmente só cabe o icone*/
-    transition: width .4s ease;
-    white-space: nowrap;
-    font-family: Arial, sans-serif;
-    border: 1px solid rgba(255, 255, 255, 0.211);
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+    padding: 10px 14px;
   }
-
-  .social-btn svg {
-    width: 20px;
-    margin-bottom: 1px;
-
-  }
-
-  .social-btn .text {
-    display: inline-block;
-    transform: translateX(-100%);
-    opacity: 0;
-    transition: transform .4s ease, opacity .4s ease;
-  }
-
-  .social-btn:hover {
-    width: 200px;
-    /*aumenta para caber  texto + icone*/
-  }
-
-  .social-btn .text {
-    transform: translateX(0);
-    opacity: 1;
-  }
-
 }
 
 /** ========== CSS RESPONSIVO ========== */
@@ -1116,7 +578,10 @@
     margin: 2rem auto;
     box-shadow: 0px 0px 1000px rgba(102, 5, 53, 0.765);
   }
-
+.projectBtn{
+  width: 80px;
+  height: 20px;
+}
   .leftNumber {
     top: -20px;
     left: 0px;
@@ -1195,7 +660,7 @@
   }
 
   .card-content h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .card-content p {
@@ -1337,31 +802,110 @@
   }
 }
 
-/*******TABLETS*******/
-@media (min-width:769px) and (max-width:1024px) {
+/* ============================================================
+   NOTEBOOK PEQUENO / TABLET PAISAGEM (769px–1024px)
+   Refina o layout empilhado do mobile acima para aproveitar
+   melhor a largura disponível em telas menores de notebook e
+   tablets em modo paisagem (ex: 1024x768, iPad landscape).
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  /* ---------- Hero ---------- */
   .inicio h1 {
-    font-size: 80px;
+    font-size: 4rem;
+    white-space: nowrap;
   }
 
   .inicio h2 {
-    font-size: 50px;
+    font-size: 2rem;
+    width: auto;
+  }
+
+  /* ---------- Sobre ---------- */
+  .sobre {
+    padding: 120px 40px;
   }
 
   .sobre h2 {
-    font-size: 500px;
+    font-size: 42px;
+  }
+
+  .flex {
+    width: 100%;
+    max-width: 640px;
+    gap: 32px;
   }
 
   .box-sobre {
-    width: 680px;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .img-sobre {
+    width: 260px;
+    height: 260px;
+    top: 0;
+  }
+
+  /* ---------- Skills ---------- */
+  .softs-skills,
+  .softs-2,
+  .softs-p3,
+  .softs-p4 {
+    max-width: 320px;
+  }
+
+  /* ---------- Projetos ---------- */
+  .projectSection {
+    width: 90%;
+  }
+
+  .projectTitle {
+    font-size: 2.4rem;
+  }
+
+  .Container-projetos {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    gap: 32px;
+  }
+
+  .projectHeading {
+    font-size: 20px;
+  }
+
+  .projectSubHeading {
+    font-size: 12px;
   }
 
   .rightNumber {
-    top: -10;
-    right: -0;
+    top: -16px;
+    right: 0;
   }
 
   .leftNumber {
-    top: -10;
+    top: -16px;
     left: 0;
+  }
+
+  /* ---------- Experiências ---------- */
+  .flex-portfolio {
+    max-width: 400px;
+  }
+
+  .card {
+    max-width: 360px;
+  }
+
+  /* ---------- Formulário ---------- */
+  .container-contato {
+    max-width: 440px;
+  }
+
+  input,
+  textarea {
+    width: 85%;
   }
 }

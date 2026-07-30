@@ -33,12 +33,12 @@ const translations = {
     "projects.p4.text": "API RESTful robusta em Node.js e Express, com persistência em SQLite e endpoints prontos para cadastro de usuários.",
 
     "experience.title": "Experiências",
-    "experience.role": "Desenvolvedor",
+    "experience.role": "Desenvolvedor FullStack",
     "experience.tech1": "React.js, node.js",
     "experience.tech2": "Micro Serviços",
     "experience.tech3": "AWS, MongoDb",
-    "experience.tech4": "Criação e integração de APIs",
-    "experience.tech5": "Chatbots e inteligência artificial",
+    "experience.tech4": "integração de APIs",
+    "experience.tech5": "Chatbots e LLMs",
 
     "contact.title": "Contato",
     "contact.text": "Tem um projeto em mente ou precisa de uma solução digital? Entre em contato e vamos conversar!",
@@ -63,7 +63,7 @@ const translations = {
 
     "page2.title": "Portfólio pessoal",
     "page2.cardTitle": "Website pessoal",
-    "page2.text": "Website de portfólio pessoal criado para destacar projetos, habilidades e experiência profissional. Inclui navegação intuitiva, design moderno, seções claras e responsividade completa em todos os dispositivos.",
+    "page2.text": "Site de portfólio pessoal desenvolvido para um cliente, planejado da arquitetura da informação ao design final. Destaca projetos, áreas de atuação e experiência profissional, com navegação fluida, visual moderno e total responsividade em qualquer dispositivo.",
 
     "page3.title": "Sistema de Recibo Digital",
     "page3.cardTitle": "Blendly",
@@ -71,7 +71,7 @@ const translations = {
 
     "page4.title": "Desenvolvimento de API REST",
     "page4.cardTitle": "Blendly",
-    "page4.text": "API backend desenvolvida em Node.js e Express para cadastro de usuários, com validação de dados JSON e persistência segura em SQLite. O projeto aplica boas práticas de arquitetura, endpoints RESTful, tratamento correto de HTTP e persistência assíncrona com async/await."
+    "page4.text": "API back-end desenvolvida em Node.js e Express para cadastro de usuários, com validação de dados JSON e persistência segura em banco SQLite. O projeto aplica boas práticas de arquitetura, endpoints RESTful, tratamento do protocolo HTTP e persistência assíncrona com async/await."
   },
   en: {
     "nav.inicio": "HOME",
@@ -106,12 +106,12 @@ const translations = {
     "projects.p4.text": "A robust RESTful API in Node.js and Express, with SQLite persistence and ready-to-use user registration endpoints.",
 
     "experience.title": "Experience",
-    "experience.role": "Developer",
+    "experience.role": "Full-Stack Developer",
     "experience.tech1": "React.js, node.js",
     "experience.tech2": "Microservices",
     "experience.tech3": "AWS, MongoDb",
-    "experience.tech4": "API creation and integration",
-    "experience.tech5": "Chatbots and artificial intelligence",
+    "experience.tech4": "API integration",
+    "experience.tech5": "Chatbots and LLMs",
 
     "contact.title": "Contact",
     "contact.text": "Have a project in mind or need a digital solution? Get in touch and let's talk!",
@@ -136,7 +136,7 @@ const translations = {
 
     "page2.title": "Personal Portfolio",
     "page2.cardTitle": "Personal Website",
-    "page2.text": "Personal portfolio website designed to showcase projects, skills, and professional experience. It features intuitive navigation, modern visuals, clear section hierarchy, and full responsiveness across all devices.",
+    "page2.text": "Personal portfolio website built for a client, planned from information architecture through to final design. It showcases projects, areas of expertise and professional experience, with fluid navigation, a modern look and full responsiveness on every device.",
 
     "page3.title": "Digital Receipt System",
     "page3.cardTitle": "Blendly",

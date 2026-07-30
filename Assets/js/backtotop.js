@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 10);
     } else {
       backToTopButton.style.opacity = '0';
-      whatsappButton.style.opacity = '0';
       setTimeout(() => {
         backToTopButton.style.display = 'none';
       }, 500);

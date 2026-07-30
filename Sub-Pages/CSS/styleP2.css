@@ -123,7 +123,7 @@ button {
   /* Esconde conteúdo que passar dos limites */
   max-width: 600px;
   /* Largura fixa do card */
-  box-shadow: 0 8px 24px rgba(255, 0, 0, 0.4);
+  box-shadow: 0 8px 20px rgba(131, 131, 131, 0.4);
   /* Sombra suave */
   transition: transform 1s, box-shadow 1s;
   /* Suaviza animação de hover */
@@ -132,18 +132,9 @@ button {
   background: rgba(255, 255, 255, 0);
   /* fundo escuro e translúcido */
   padding: 2rem;
-  box-shadow: 0 0 20px rgba(#7b4397, #dc2430);
   /* sombra roxa suave */
   color: #fff;
   margin: 0 0 50px;
-}
-
-/* Efeito ao passar o mouse sobre o card */
-.card:hover {
-  transform: translateY(-10px);
-  /* Move o card levemente para cima */
-  box-shadow: 0 0px 1000px rgba(130, 2, 250, 0.6);
-  /* Aumenta a sombra para dar profundidade */
 }
 
 /* Estilo da imagem dentro do card */
@@ -283,7 +274,7 @@ button {
   }
 
   .txt-portfolio h1 {
-    font-size: 50px;
+    font-size: 40px;
   }
 
   .card {
@@ -295,7 +286,7 @@ button {
     grid-template-columns: 1fr 1fr;
     gap: 0px;
     white-space: nowrap;
-    margin-left: -40px;
+    margin-left: -80px;
     grid-column: 1;
     /* <- este pode ser um problema se .detalhes não estiver em um grid */
   }
@@ -353,7 +344,7 @@ button {
   }
 
   .txt-portfolio h1 {
-    font-size: 2rem;
+    font-size: 1.9rem;
     text-align: center;
   }
 
@@ -375,8 +366,8 @@ button {
   }
 
   .card {
-    width: 70%;
-    height: auto;
+    max-width: 250px;
+    height: 0 auto;
   }
 
   .detalhes {
@@ -411,6 +402,8 @@ button {
   .coluna-2 {
     width: auto;
     align-items: center;
+    display: flex;
+    flex-flow: nowrap;
   }
 
   .img-tecno p {
