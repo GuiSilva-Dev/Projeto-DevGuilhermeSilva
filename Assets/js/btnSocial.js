@@ -17,10 +17,3 @@ document.addEventListener('click', function (event) {
     socialContainer.classList.remove('active');
   }
 });
-
-/*ADICIONA UM OUVINTE DE EVENTO DE CLIQUE NO BOTAO PRINCIPAL*/
-Document.querySelector('.btn-social').addEventListener('click', function (event) {
-  /*IMPEDE QUE O CLIQUE NO BOTAO PRINCIPAL SE PROPAGUE PARA O DOCUMENTO*/
-  /*EVITA QUE O BOTAO FECHE IMEDIATAMENTE AO SER CLICADO*/
-  event.stopPropagation();
-});
