@@ -10,6 +10,18 @@ body {
   overflow-x: hidden;
 }
 
+/* Remove o quadrado azul de destaque ao tocar em botões/links/cards no mobile */
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* Fundo animado separado */
 .fundo-animado {
   position: fixed;
@@ -80,7 +92,7 @@ button {
 
 .txt-portfolio h1 {
   padding: 3rem;
-  /* color: rgb(255, 255, 255);  
+  /* color: rgb(255, 255, 255);
   text-shadow: 0 0 10px #a101a1, 0 0 20px #a002a0, 0 0 40px #a802a8; */
 
   background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
@@ -177,93 +189,88 @@ button {
   /* Cor cinza clara para o texto secundário */
 }
 
-/* Link para ação (como "Demonstração ao vivo") */
-.card-content a {
-  display: flex;
-  display: inline-block;
-  /* Permite aplicar padding e margin */
-  padding: 1rem 4rem;
-  margin-top: 15px;
-  /* Espaço acima do link */
-  color: #b700ff;
-  /* Cor ciano brilhante */
-  text-decoration: none;
-  /* Remove sublinhado padrão */
-  font-weight: bold;
-  /* Deixa o texto em negrito */
-  border-bottom: 1px solid transparent;
-  /* Borda inferior invisível (para animação no hover) */
-  transition: border 0.3s;
-  /* Suaviza o aparecimento da borda */
-}
-
+/* Bloco de tecnologias + links do projeto */
 .detalhes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 90px;
-  white-space: nowrap;
-  margin-top: 20px;
-  grid-column: 1;
-  /* <- este pode ser um problema se .detalhes não estiver em um grid */
-}
-
-.coluna-2 {
-  align-self: start;
-  /* sobe de forma fluida e responsiva */
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  /* alinha à direita */
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
 }
 
-.detalhes img {
-  max-width: 75px;
-  border-radius: 30px;
+.detalhes-title {
+  color: #b98aff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
+/* Linha de ícones das tecnologias usadas */
 .tecno {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-.img-tecno {
+.tech-chip {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(155, 81, 224, 0.35);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.tecno img {
-  width: 50px;
+.tech-chip img {
+  max-width: 34px;
+  max-height: 34px;
+  width: auto;
 }
 
-.img-tecno img {
-  background-color: #ffffff;
-
+.tech-chip:hover {
+  transform: translateY(-3px);
+  border-color: #9b51e0;
+  box-shadow: 0 0 12px rgba(155, 81, 224, 0.4);
 }
 
-.link-live {
+/* Linha com os botões de Código Fonte / Live Link */
+.detalhes-links {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 16px;
 }
 
-.link-live img:hover {
-  animation: rotate 1.5s ease-in-out infinite;
+.link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid #9b51e0;
+  border-radius: 999px;
+  color: #b98aff;
+  font-weight: bold;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
+.link-pill i {
+  font-size: 1.1em;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.link-pill:hover {
+  background: #9b51e0;
+  color: #fff;
+  box-shadow: 0 0 12px #9b51e0;
+  transform: translateY(-2px);
 }
 
 /*NOTEBOOK RESPONSIVO*/
@@ -282,36 +289,36 @@ button {
   }
 
   .detalhes {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0px;
-    white-space: nowrap;
-    margin-left: -80px;
-    grid-column: 1;
-    /* <- este pode ser um problema se .detalhes não estiver em um grid */
+    gap: 14px;
+    margin-top: 16px;
   }
 
-
-  .detalhes img {
-    max-width: 40px;
-    border-radius: 30px;
-    margin-top: 10px;
+  .detalhes-title {
+    font-size: 0.7rem;
   }
 
   .tecno {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 10px;
   }
 
-  .coluna-2 {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    margin: auto;
+  .tech-chip {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
 
+  .tech-chip img {
+    max-width: 24px;
+    max-height: 24px;
+  }
+
+  .detalhes-links {
+    gap: 10px;
+  }
+
+  .link-pill {
+    padding: 6px 12px;
+    font-size: 0.75rem;
   }
 }
 
@@ -371,54 +378,38 @@ button {
   }
 
   .detalhes {
-    margin-bottom: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 24px;
-    user-select: none;
+    margin: 10px 0;
+    gap: 16px;
   }
 
-  /* Tamanho único e confortável para todos os ícones (tech, github, live link) */
-  .detalhes img,
-  .tecno img,
-  .img-tecno img,
-  .link-live img {
+  .detalhes-title {
+    font-size: 0.7rem;
+    text-align: center;
+  }
+
+  .tecno {
+    gap: 10px;
+  }
+
+  .tech-chip {
     width: 44px;
     height: 44px;
-    max-width: 44px;
-    object-fit: contain;
+    border-radius: 12px;
   }
 
-  .detalhes p {
-    margin: 10px;
+  .tech-chip img {
+    max-width: 24px;
+    max-height: 24px;
   }
 
-  .detalhes span{
-    font-size: 12px;
-  }
-
-  .coluna-2 {
-    width: auto;
+  .detalhes-links {
+    flex-direction: column;
     align-items: center;
-    display: flex;
-    flex-flow: nowrap;
+    gap: 10px;
   }
 
-  .img-tecno p {
-    outline: none;
-    user-select: none;
-  }
-
-  /*efeito de piscar */
-  .img-tecno img {
-    background: white;
-    border-radius: 50%;
-  }
-
-  .link-live p {
-    outline: none;
-    user-select: none;
+  .link-pill {
+    padding: 8px 16px;
+    font-size: 0.75rem;
   }
 }

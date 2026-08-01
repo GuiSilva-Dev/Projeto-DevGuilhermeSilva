@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -305,19 +304,38 @@
       </div>
       <div class="flex-portfolio">
         <div class="card">
-          <img src="Assets/Img/proa_ai_logo.jpeg" alt="Proa AI - Experiência como desenvolvedor React e Node.js"
-            loading="lazy">
           <div class="card-content">
             <h2 data-i18n="experience.role">Desenvolvedor FullStack</h2>
-            <br>
-            <ul class="card-tech-list">
-              <br>
-              <li class="badge-tech" data-i18n="experience.tech1">React.js, node.js</li>
-              <li class="badge-tech" data-i18n="experience.tech2">Micro Serviços</li>
-              <li class="badge-tech" data-i18n="experience.tech3">AWS, MongoDb</li>
-              <li class="badge-tech" data-i18n="experience.tech4">integração de APIs</li>
-              <li class="badge-tech" data-i18n="experience.tech5">Chatbots e LLMs</li>
-            </ul>
+            <div class="tech-groups">
+              <div class="tech-group tech-frontend">
+                <h4 class="tech-group-title" data-i18n="experience.group.frontend">Frontend</h4>
+                <ul class="card-tech-list">
+                  <li class="badge-tech"><i class="bi bi-code-slash"></i><span data-i18n="experience.tech.react">React.js</span></li>
+                </ul>
+              </div>
+              <div class="tech-group tech-backend">
+                <h4 class="tech-group-title" data-i18n="experience.group.backend">Backend</h4>
+                <ul class="card-tech-list">
+                  <li class="badge-tech"><i class="bi bi-hdd-network"></i><span data-i18n="experience.tech.node">Node.js</span></li>
+                  <li class="badge-tech"><i class="bi bi-diagram-3"></i><span data-i18n="experience.tech.microservices">Micro serviços</span></li>
+                  <li class="badge-tech"><i class="bi bi-plug"></i><span data-i18n="experience.tech.apis">APIs</span></li>
+                </ul>
+              </div>
+              <div class="tech-group tech-cloud">
+                <h4 class="tech-group-title" data-i18n="experience.group.cloud">Cloud e Dados</h4>
+                <ul class="card-tech-list">
+                  <li class="badge-tech"><i class="bi bi-cloud"></i><span data-i18n="experience.tech.aws">AWS</span></li>
+                  <li class="badge-tech"><i class="bi bi-database"></i><span data-i18n="experience.tech.mongo">MongoDB</span></li>
+                </ul>
+              </div>
+              <div class="tech-group tech-ai">
+                <h4 class="tech-group-title" data-i18n="experience.group.ai">IA e Automação</h4>
+                <ul class="card-tech-list">
+                  <li class="badge-tech"><i class="bi bi-robot"></i><span data-i18n="experience.tech.chatbots">Chatbots</span></li>
+                  <li class="badge-tech"><i class="bi bi-cpu"></i><span data-i18n="experience.tech.llms">LLMs</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div><!--fim flex-portfolio-->

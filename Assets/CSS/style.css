@@ -172,6 +172,24 @@ html {
   overflow-x: hidden;
 }
 
+/* Remove o quadrado azul de destaque ao tocar em botões/links/cards no mobile.
+   Definir só no html nem sempre é suficiente (Android/Chrome), então
+   reforçamos em todos os elementos. */
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* :focus-visible só marca o contorno quando a navegação é por teclado —
+   assim o toque/clique no mobile não mostra anel de foco, mas o Tab
+   continua acessível para quem navega pelo teclado. */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+[role="button"]:focus:not(:focus-visible) {
+  outline: none;
+}
+
 :root {
   /* Variáveis para facilitar alterações futuras */
   --card-radius: 20px;
@@ -1776,14 +1794,33 @@ margin: 0 auto;
   text-align: center;
 }
 
-.card-tech-list {
+/* Agrupa as tecnologias por categoria (Frontend/Backend/Cloud e Dados/IA) */
+.tech-groups {
     display: flex;
-    flex-wrap: wrap; /* Faz os badges irem para a linha de baixo se faltar espaço */
-    gap: 10px 2px; /* Cria um respiro entre cada tecnologia */
+    flex-direction: column;
+    gap: 14px;
     margin-top: 15px;
 }
 
+.tech-group-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #9a94a8;
+    margin: 0 0 6px;
+}
+
+.card-tech-list {
+    display: flex;
+    flex-wrap: wrap; /* Faz os badges irem para a linha de baixo se faltar espaço */
+    gap: 8px; /* Cria um respiro entre cada tecnologia */
+}
+
 .badge-tech {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     background-color: #1a0b2e; /* Um fundo escuro combinando com a paleta do site */
     color: #d4b3ff; /* Texto num tom de roxo mais claro */
     padding: 6px 14px;
@@ -1795,12 +1832,55 @@ margin: 0 auto;
     cursor: default;
 }
 
+.badge-tech i {
+    font-size: 0.85em;
+}
+
 /* Efeito interativo quando passar o mouse por cima */
 .badge-tech:hover {
     background-color: #9b51e0;
     color: #ffffff;
     box-shadow: 0 0 10px #9b51e0; /* Dá aquele brilho neon combinando com os títulos */
     transform: translateY(-2px); /* Dá um leve "pulo" para cima */
+}
+
+/* Backend — tom ciano */
+.tech-backend .badge-tech {
+    background-color: #0b1a2e;
+    color: #9fdfff;
+    border-color: #00b4ff;
+}
+
+.tech-backend .badge-tech:hover {
+    background-color: #00b4ff;
+    color: #001622;
+    box-shadow: 0 0 10px #00b4ff;
+}
+
+/* Cloud e Dados — tom verde-menta */
+.tech-cloud .badge-tech {
+    background-color: #0b2318;
+    color: #8de8c9;
+    border-color: #00c896;
+}
+
+.tech-cloud .badge-tech:hover {
+    background-color: #00c896;
+    color: #00291d;
+    box-shadow: 0 0 10px #00c896;
+}
+
+/* IA e Automação — tom laranja */
+.tech-ai .badge-tech {
+    background-color: #2a1608;
+    color: #ffc79b;
+    border-color: #ff8c3c;
+}
+
+.tech-ai .badge-tech:hover {
+    background-color: #ff8c3c;
+    color: #2a1000;
+    box-shadow: 0 0 10px #ff8c3c;
 }
 /********FORMULARIO********/
 
