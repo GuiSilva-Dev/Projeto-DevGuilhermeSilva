@@ -189,6 +189,38 @@ button {
   /* Cor cinza clara para o texto secundário */
 }
 
+/* Mini case study: Problema / Decisão técnica / Resultado */
+.case-study {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 16px;
+  border-left: 2px solid #9b51e0;
+  background: rgba(155, 81, 224, 0.05);
+  border-radius: 0 12px 12px 0;
+}
+
+.case-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.case-label {
+  color: #b98aff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.case-item p {
+  font-size: 14px;
+  color: #ccc;
+  margin: 0;
+}
+
 /* Bloco de tecnologias + links do projeto */
 .detalhes {
   display: flex;
@@ -371,20 +403,20 @@ button {
     font-size: 30px;
     outline: none;
   }
-
   .card {
-    max-width: 250px;
-    height: 0 auto;
+width: none;
+box-shadow: none;
   }
 
   .detalhes {
     margin: 10px 0;
-    gap: 16px;
+    gap: 0 25px;
   }
 
   .detalhes-title {
     font-size: 0.7rem;
     text-align: center;
+    margin-top: 20px;
   }
 
   .tecno {

@@ -1151,16 +1151,6 @@ p {
   /* espaço acima e abaixo dos ícones */
 }
 
-/* Faixa onde os ícones são colocados, que se moverá horizontalmente */
-.img-skills {
-  display: flex;
-  /* organiza os elementos em linha */
-  gap: 30px;
-  /* espaço entre os ícones */
-  padding-left: 100%;
-  /* empurra os ícones para fora da tela no início, para entrarem deslizando */
-}
-
 /* Estilo individual dos ícones */
 .img-skills i img {
   max-width: 68px;
@@ -1262,6 +1252,193 @@ p {
   transform: scale(1.2);
 }
 
+/*=============================== GitHub Stats =============================== */
+
+.github-stats {
+  color: white;
+  padding: 80px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animação de entrada ao rolar a página, igual às outras seções (Sobre, Projetos...) */
+.container-github {
+  opacity: 0;
+  transform: translateX(+100%);
+  /**AVISA O NAVEGADOR PARA PREPARAR A GPU*/
+  will-change: opacity, transform;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.container-github {
+  width: 100%;
+  max-width: 1300px;
+  text-align: center;
+}
+
+.github-title {
+  background: linear-gradient(135deg, #ff0000, #6a00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: fit-content;
+  margin: 0 auto;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+  color: rgb(235, 196, 247);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.github-subtitle {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin: 12px 0 0;
+}
+
+.github-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.github-card {
+  flex: 1 1 320px;
+  max-width: 420px;
+  min-width: 260px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(155, 81, 224, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.github-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 24px rgba(155, 81, 224, 0.4);
+}
+
+/* Cards nativos (HTML/CSS), alimentados pela API oficial do GitHub via githubStats.js */
+.github-native-card {
+  flex: 1 1 320px;
+  max-width: 420px;
+  min-width: 260px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(155, 81, 224, 0.35);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.github-native-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 24px rgba(155, 81, 224, 0.4);
+}
+
+.gh-card-title {
+  color: #d4b3ff;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Faixa de estatísticas full-width, sem card/borda - números grandes em destaque */
+.gh-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 64px;
+  margin: 32px 0 48px;
+}
+
+.gh-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.gh-stat-num {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.gh-stat-num::after {
+  content: '+';
+  color: #b98aff;
+}
+
+/* Estatísticas que não são "pelo menos X" (ex: tempo codando) não levam o + */
+.gh-stat-num--noplus::after {
+  content: '';
+}
+
+.gh-stat-label {
+  font-size: 0.8rem;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.gh-lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gh-lang-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 38px;
+  align-items: center;
+  gap: 10px;
+}
+
+.gh-lang-name {
+  font-size: 0.8rem;
+  color: #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gh-lang-bar-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.gh-lang-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #9b51e0, #ff6ec7);
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.gh-lang-count {
+  font-size: 0.75rem;
+  color: #aaa;
+  text-align: right;
+}
+
+.gh-loading,
+.gh-error {
+  font-size: 0.85rem;
+  color: #aaa;
+  text-align: center;
+  padding: 20px 0;
+}
 
 /*=============================== Projects Section =============================== */
 

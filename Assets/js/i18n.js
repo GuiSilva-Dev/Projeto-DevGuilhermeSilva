@@ -63,22 +63,48 @@ const translations = {
     "subpage.techUsed": "Tecnologias Usadas",
     "subpage.sourceCode": "Código Fonte",
     "subpage.liveLink": "Live Link",
+    "subpage.case.problem": "Problema",
+    "subpage.case.decision": "Decisão técnica",
+    "subpage.case.result": "Resultado",
+
+    "github.title": "Atividade no GitHub",
+    "github.subtitle": "Estatísticas geradas automaticamente a partir do meu perfil público.",
+    "github.stat.title": "Perfil",
+    "github.lang.title": "Tecnologias mais usadas",
+    "github.loading": "Carregando dados do GitHub...",
+    "github.error": "Não foi possível carregar os dados do GitHub agora.",
+    "github.stat.repos": "Repositórios",
+    "github.stat.stars": "Estrelas",
+    "github.stat.followers": "Seguidores",
+    "github.stat.codingTime": "Anos codando",
 
     "page1.title": "Projeto SaaS",
     "page1.cardTitle": "Blendly",
     "page1.text": "Solução digital para empresas de assistência técnica em eletrodomésticos, estruturada como funil completo de conversão — da apresentação dos serviços à captação de leads via formulário e WhatsApp. Construída com foco em escalabilidade, podendo ser replicada e adaptada para outras empresas do setor.",
+    "page1.case.problem": "Pequenos negócios de assistência técnica em eletrodomésticos não tinham presença digital capaz de transformar visitantes em leads qualificados.",
+    "page1.case.decision": "Funil de conversão construído em HTML, CSS e JavaScript puro, priorizando carregamento leve e captação direta via formulário e WhatsApp, com arquitetura pensada para ser replicada para outras empresas do setor.",
+    "page1.case.result": "Site publicado e funcional, servindo de base replicável para outras empresas do setor.",
 
     "page2.title": "Portfólio pessoal",
     "page2.cardTitle": "Blendly",
     "page2.text": "Site de portfólio pessoal desenvolvido para um cliente, planejado da arquitetura da informação ao design final. Destaca projetos, áreas de atuação e experiência profissional, com navegação fluida, visual moderno e total responsividade em qualquer dispositivo.",
+    "page2.case.problem": "O cliente precisava de um portfólio profissional para se apresentar, sem nenhuma ferramenta pronta que refletisse sua identidade.",
+    "page2.case.decision": "Planejamento completo, da arquitetura da informação ao design final, com foco em navegação fluida e responsividade total em qualquer dispositivo.",
+    "page2.case.result": "Site publicado e em uso pelo cliente como cartão de visita digital.",
 
     "page3.title": "Sistema de Recibo Digital",
     "page3.cardTitle": "Blendly",
     "page3.text": "Aplicação web para emissão de recibos e notas fiscais. O usuário preenche os dados em um formulário simples e recebe o documento gerado automaticamente por e-mail, eliminando a necessidade de ferramentas externas ou processos manuais.",
+    "page3.case.problem": "A emissão de recibos e notas fiscais dependia de ferramentas externas e processos manuais repetitivos.",
+    "page3.case.decision": "Front-end em React consumindo uma API em Java, com persistência em MongoDB, automatizando a geração do documento e o envio por e-mail direto a partir do formulário.",
+    "page3.case.result": "Processo reduzido a um único formulário, sem necessidade de ferramentas externas ou etapas manuais.",
 
     "page4.title": "Desenvolvimento de API REST",
     "page4.cardTitle": "Blendly",
-    "page4.text": "API back-end desenvolvida em Node.js e Express para cadastro de usuários, com validação de dados JSON e persistência segura em banco SQLite. O projeto aplica boas práticas de arquitetura, endpoints RESTful, tratamento do protocolo HTTP e persistência assíncrona com async/await."
+    "page4.text": "API back-end desenvolvida em Node.js e Express para cadastro de usuários, com validação de dados JSON e persistência segura em banco SQLite. O projeto aplica boas práticas de arquitetura, endpoints RESTful, tratamento do protocolo HTTP e persistência assíncrona com async/await.",
+    "page4.case.problem": "Faltava uma base de back-end sólida, seguindo boas práticas REST, para cadastro de usuários.",
+    "page4.case.decision": "API construída em Node.js e Express, com validação de dados JSON e persistência assíncrona (async/await) em SQLite, seguindo uma arquitetura RESTful padronizada.",
+    "page4.case.result": "API funcional com endpoints RESTful documentados no próprio código, pronta para servir de base a outros projetos."
   },
   en: {
     "nav.inicio": "HOME",
@@ -143,22 +169,48 @@ const translations = {
     "subpage.techUsed": "Technologies Used",
     "subpage.sourceCode": "Source Code",
     "subpage.liveLink": "Live Link",
+    "subpage.case.problem": "Problem",
+    "subpage.case.decision": "Technical decision",
+    "subpage.case.result": "Result",
+
+    "github.title": "GitHub Activity",
+    "github.subtitle": "Stats generated automatically from my public profile.",
+    "github.stat.title": "Profile",
+    "github.lang.title": "Most used technologies",
+    "github.loading": "Loading GitHub data...",
+    "github.error": "Couldn't load GitHub data right now.",
+    "github.stat.repos": "Repositories",
+    "github.stat.stars": "Stars",
+    "github.stat.followers": "Followers",
+    "github.stat.codingTime": "Years coding",
 
     "page1.title": "SaaS Project",
     "page1.cardTitle": "Blendly",
     "page1.text": "A digital solution for home-appliance repair businesses, built as a complete conversion funnel — from showcasing the services to capturing leads through a form and WhatsApp. Designed with scalability in mind, so it can be replicated and adapted for other companies in the industry.",
+    "page1.case.problem": "Small home-appliance repair businesses had no digital presence able to turn visitors into qualified leads.",
+    "page1.case.decision": "Built a conversion funnel in plain HTML, CSS and JavaScript, prioritizing a lightweight load and direct lead capture through a form and WhatsApp, with an architecture designed to be replicated for other companies in the same industry.",
+    "page1.case.result": "A published, working site that serves as a replicable base for other businesses in the industry.",
 
     "page2.title": "Personal Portfolio",
     "page2.cardTitle": "Personal Website",
     "page2.text": "Personal portfolio website built for a client, planned from information architecture through to final design. It showcases projects, areas of expertise and professional experience, with fluid navigation, a modern look and full responsiveness on every device.",
+    "page2.case.problem": "The client needed a professional portfolio to present themselves, with no ready-made tool that reflected their identity.",
+    "page2.case.decision": "Full planning from information architecture to final design, focusing on fluid navigation and full responsiveness across every device.",
+    "page2.case.result": "A published site the client now uses as their digital business card.",
 
     "page3.title": "Digital Receipt System",
     "page3.cardTitle": "Blendly",
     "page3.text": "Web application for issuing receipts and invoices. Users fill in the required data through a simple form and automatically receive the generated document by email, removing the need for external tools or manual processes.",
+    "page3.case.problem": "Issuing receipts and invoices depended on external tools and repetitive manual processes.",
+    "page3.case.decision": "React front-end consuming a Java API, with MongoDB persistence, automating document generation and emailing it directly from the form.",
+    "page3.case.result": "The process was reduced to a single form, with no need for external tools or manual steps.",
 
     "page4.title": "REST API Development",
     "page4.cardTitle": "Blendly",
-    "page4.text": "Back-end API built with Node.js and Express for user registration, featuring JSON data validation and secure persistence in an SQLite database. The project applies solid architecture practices, RESTful endpoints, proper HTTP handling and asynchronous persistence with async/await."
+    "page4.text": "Back-end API built with Node.js and Express for user registration, featuring JSON data validation and secure persistence in an SQLite database. The project applies solid architecture practices, RESTful endpoints, proper HTTP handling and asynchronous persistence with async/await.",
+    "page4.case.problem": "There was no solid, REST-compliant back-end foundation for user registration.",
+    "page4.case.decision": "Built the API with Node.js and Express, JSON payload validation and asynchronous (async/await) persistence in SQLite, following a standardized RESTful architecture.",
+    "page4.case.result": "A working API with RESTful endpoints documented in the code itself, ready to serve as a foundation for future projects."
   }
 };
 
@@ -201,6 +253,10 @@ const translations = {
     localStorage.setItem(STORAGE_KEY, lang);
     window.currentLang = lang;
   }
+
+  // Exposto para outros scripts (ex: githubStats.js) reaplicarem a
+  // tradução em conteúdo injetado dinamicamente após o carregamento inicial.
+  window.applyLang = applyLang;
 
   function toggleLang() {
     var next = window.currentLang === "pt" ? "en" : "pt";
