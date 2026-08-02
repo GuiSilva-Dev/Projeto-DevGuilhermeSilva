@@ -14,7 +14,7 @@ const myObserver = new IntersectionObserver((entries) => {
 
 //*seleciona todos os elementos que queremos animar ao entrar na tela
 document.querySelectorAll(
-  ".container-sobre, .outerSectionDiv, .container-portfolio, .container-contato, .container-portfolio-2"
+  ".container-sobre, .container-github, .outerSectionDiv, .container-portfolio, .container-contato, .container-portfolio-2"
 ).forEach(el =>
   //*ativa a observação para cada elemento selecionado
   myObserver.observe(el)

@@ -134,6 +134,19 @@
     height: 48px;
   }
 
+  /* ---------- GitHub Stats ---------- */
+  .github-stats {
+    padding: 64px 24px;
+  }
+
+  .github-title {
+    font-size: 36px;
+  }
+
+  .github-cards {
+    margin-top: 28px;
+  }
+
   /* ---------- Projetos ---------- */
   .projectSection {
     width: 48%;
@@ -530,6 +543,29 @@
   .img-p14 i img {
     max-width: 50px;
     max-height: 40px;
+  }
+
+  /*******GITHUB STATS*******/
+  .github-stats {
+    padding: 60px 20px;
+  }
+
+  .github-title {
+    font-size: 1.9rem;
+  }
+
+  .github-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .github-cards {
+    margin-top: 24px;
+    gap: 16px;
+  }
+
+  .github-card {
+    flex: 1 1 100%;
+    min-width: 0;
   }
 
   /*******PORTFOLIO*******/
