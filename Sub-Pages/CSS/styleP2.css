@@ -404,13 +404,13 @@ button {
     outline: none;
   }
   .card {
-width: none;
-box-shadow: none;
+    width: none;
+    box-shadow: none;
   }
 
   .detalhes {
     margin: 10px 0;
-    gap: 0 25px;
+    gap: 25px;
   }
 
   .detalhes-title {
