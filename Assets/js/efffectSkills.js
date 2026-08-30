@@ -5,17 +5,19 @@ function setupSlider(id) {
   const slider = document.getElementById(id);
   if (!slider) return;
 
-  slider.style.paddingLeft = 0;
-
-  //* 1. MENSURAÇÃO: Pega a largura do conteúdo ORIGINAL antes de duplicar
-  const originalWidth = slider.scrollWidth;
+  const originalCount = slider.children.length;
   const content = slider.innerHTML;
 
   //* Se precisar de mais para telas muito largas, pode manter 4x.
-  slider.innerHTML = content + content + content + content; 
+  slider.innerHTML = content.repeat(4);
+
+  //* 1. MENSURAÇÃO: Mede a distância real no DOM entre o 1º item original e sua 1ª cópia. Isso ignora erros de cálculo com padding/gap/subpixels e elimina o "pulo" no reset.
+  const firstItem = slider.children[0];
+  const secondCopyItem = slider.children[originalCount];
+  const originalWidth = secondCopyItem.getBoundingClientRect().left - firstItem.getBoundingClientRect().left;
 
   let pos = 0;
-  const speed = 1; 
+  const speed = 1;
   let animationId = null;
 
   function moveSlider() {
@@ -25,7 +27,7 @@ function setupSlider(id) {
 
     //* Usar subtração (pos -= originalWidth) em vez de (pos = 0) evita perda de subpixels e deixa mais fluido.
     if (pos >= originalWidth) {
-      pos -= originalWidth; 
+      pos -= originalWidth;
     }
 
     animationId = requestAnimationFrame(moveSlider);

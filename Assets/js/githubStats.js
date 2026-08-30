@@ -2,25 +2,25 @@
 // evitando depender de serviços terceiros de geração de imagem (ex: github-readme-stats),
 // que sofrem rate-limit por serem compartilhados por milhões de perfis.
 (function () {
-  var USERNAME = "GuiSilva-Dev";
-  var CACHE_KEY = "gh-stats-cache-v2";
-  var CACHE_TTL = 60 * 60 * 1000; // 1 hora
+  let USERNAME = "GuiSilva-Dev";
+  let CACHE_KEY = "gh-stats-cache-v2";
+  let CACHE_TTL = 60 * 60 * 1000; // 1 hora
 
-  var statsBody = document.getElementById("gh-stats-body");
-  var langsBody = document.getElementById("gh-langs-body");
+  let statsBody = document.getElementById("gh-stats-body");
+  let langsBody = document.getElementById("gh-langs-body");
   if (!statsBody && !langsBody) return;
 
   function t(key) {
-    var lang = (window.currentLang === "en") ? "en" : "pt";
-    var dict = (window.translations || {})[lang] || {};
+    let lang = (window.currentLang === "en") ? "en" : "pt";
+    let dict = (window.translations || {})[lang] || {};
     return dict[key] || key;
   }
 
   function readCache() {
     try {
-      var raw = localStorage.getItem(CACHE_KEY);
+      let raw = localStorage.getItem(CACHE_KEY);
       if (!raw) return null;
-      var parsed = JSON.parse(raw);
+      let parsed = JSON.parse(raw);
       if (Date.now() - parsed.ts > CACHE_TTL) return null;
       return parsed.data;
     } catch (e) {
@@ -39,7 +39,7 @@
   function render(data) {
     // Tempo codando não vem da API (não é algo que o GitHub mede) - valor
     // fixo, calculado aqui dentro pra pegar o idioma já detectado.
-    var codingYears = (window.currentLang === "en") ? "0.4" : "0,4";
+  let codingYears = (window.currentLang === "en" && "pt") ? "0.5" : "0,5";
 
     if (statsBody) {
       statsBody.innerHTML =
@@ -49,17 +49,17 @@
     }
 
     if (langsBody) {
-      var langs = data.langs || [];
+      let langs = data.langs || [];
       if (!langs.length) {
         langsBody.innerHTML = '<div class="gh-loading">—</div>';
       } else {
-        var max = langs[0][1];
-        var total = langs.reduce(function (sum, entry) { return sum + entry[1]; }, 0);
+        let max = langs[0][1];
+        let total = langs.reduce(function (sum, entry) { return sum + entry[1]; }, 0);
         langsBody.innerHTML = langs.map(function (entry) {
-          var name = entry[0];
-          var bytes = entry[1];
-          var barPct = Math.round((bytes / max) * 100);
-          var sharePct = total ? Math.round((bytes / total) * 100) : 0;
+          let name = entry[0];
+          let bytes = entry[1];
+          let  barPct = Math.round((bytes / max) * 100);
+          let sharePct = total ? Math.round((bytes / total) * 100) : 0;
           return '<div class="gh-lang-row">' +
             '<span class="gh-lang-name">' + name + '</span>' +
             '<div class="gh-lang-bar-track"><div class="gh-lang-bar-fill" style="width:' + barPct + '%"></div></div>' +
@@ -71,7 +71,7 @@
   }
 
   function renderError() {
-    var msg = '<div class="gh-error">' + t("github.error") + '</div>';
+    let msg = '<div class="gh-error">' + t("github.error") + '</div>';
     if (statsBody) statsBody.innerHTML = msg;
     if (langsBody) langsBody.innerHTML = msg;
   }
@@ -82,11 +82,11 @@
   function getStarredCount() {
     return fetch("https://api.github.com/users/" + USERNAME + "/starred?per_page=1").then(function (r) {
       if (!r.ok) throw new Error("starred fetch failed");
-      var link = r.headers.get("Link");
+      let link = r.headers.get("Link");
       if (!link) {
         return r.json().then(function (arr) { return arr.length; });
       }
-      var match = link.match(/[?&]page=(\d+)>; rel="last"/);
+      let match = link.match(/[?&]page=(\d+)>; rel="last"/);
       return match ? parseInt(match[1], 10) : 0;
     });
   }
@@ -97,14 +97,14 @@
   // fato, já que um repo de front-end costuma ter mais bytes de CSS/HTML do
   // que de JS mesmo quando o JS é a parte que mais importa.
   function getLanguageTotals(repos) {
-    var requests = repos.map(function (repo) {
+    let requests = repos.map(function (repo) {
       return fetch("https://api.github.com/repos/" + USERNAME + "/" + repo.name + "/languages")
         .then(function (r) { return r.ok ? r.json() : {}; })
         .catch(function () { return {}; });
     });
 
     return Promise.all(requests).then(function (results) {
-      var totals = {};
+      let totals = {};
       results.forEach(function (langBytes) {
         Object.keys(langBytes).forEach(function (name) {
           totals[name] = (totals[name] || 0) + langBytes[name];
@@ -129,12 +129,12 @@
       }),
       getStarredCount()
     ]).then(function (results) {
-      var user = results[0];
-      var repos = results[1];
-      var starredCount = results[2];
+      let user = results[0];
+      let repos = results[1];
+      let starredCount = results[2];
 
       return getLanguageTotals(repos).then(function (langs) {
-        var data = {
+        let data = {
           repos: user.public_repos || 0,
           stars: starredCount,
           followers: user.followers || 0,
@@ -147,7 +147,7 @@
     });
   }
 
-  var cached = readCache();
+  let cached = readCache();
   if (cached) {
     render(cached);
   }
