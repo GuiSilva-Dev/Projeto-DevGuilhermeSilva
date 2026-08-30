@@ -1151,12 +1151,21 @@ p {
   /* espaço acima e abaixo dos ícones */
 }
 
+/* Trava o tamanho do item ANTES da imagem carregar, pra faixa nunca ser medida
+   com espaço vazio (imagem com 0px) e o loop resetar cedo demais. */
+.img-skills i {
+  display: block;
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
+}
+
 /* Estilo individual dos ícones */
 .img-skills i img {
-  max-width: 68px;
-  /* largura padrão dos ícones */
-  height: 68px;
-  /* altura padrão dos ícones */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
   transition: transform 0.3s;
   /* efeito suave ao fazer hover (transformação) */
   box-shadow: .5px .5px .5px 0px rgba(0, 0, 0, .9);
@@ -1206,43 +1215,48 @@ p {
   width: 100%;
   overflow: hidden;
   padding: 20px 0;
-  /* Dica de performance para áreas de scroll/animação */
   transform: translateZ(0);
 }
 
 /* --- FAIXAS (Trilhos que se movem) --- */
-/* Exemplo base para as suas listas (ul) */
 .img-skills, .img-12, .img-p13, .img-p14 {
   display: flex;
   align-items: center;
   list-style: none;
-  
-  gap: 32px; /* Exemplo: espaço entre os ícones */
-  padding-right: 32px; /* Obrigatório: O padding final DEVE ter o mesmo valor do gap! */
-
+  gap: 32px; 
+  padding-right: 32px; 
   margin: 0;
   padding-left: 0; 
-  width: max-content; /* Garante que a div estique de acordo com os ícones */
+  width: max-content; 
+  /* AQUI ENTRA O TRANSITION NONE (Para não brigar com o JS) */
+  transition: none !important;
+  will-change: transform; /* Avisa a GPU que o trilho todo vai se mover */
+}
+
+/* Trava o tamanho do item ANTES da imagem carregar, pra faixa nunca ser medida
+   com espaço vazio (imagem com 0px) e o loop resetar cedo demais. */
+.img-12 i,
+.img-p13 i,
+.img-p14 i {
+  display: block;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
 }
 
 /* --- ÍCONES (Imagens) --- */
 .img-12 i img,
 .img-p13 i img,
 .img-p14 i img {
-  max-width: 68px;
-  height: 68px;
-  box-shadow: .5px .5px .5px 0px rgba(0, 0, 0, .9);
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
   border-radius: 1px;
-
-  /* OTIMIZAÇÃO DE PERFORMANCE E FLUIDEZ */
+  /* REMOVIDOS OS SUBPIXELS DO BOX-SHADOW */
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.6);
+  /* VOLTA A TRANSIÇÃO PARA O ZOOM DO HOVER FICAR SUAVE */
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  /* Curva mais natural */
-  will-change: transform;
-  /* Avisa o navegador que vai mudar */
-  backface-visibility: hidden;
-  /* Evita serrilhados/blur durante o zoom */
-  transform: translateZ(0);
-  /* Ativa aceleração de hardware */
 }
 
 /* Hover nos Ícones */
