@@ -254,8 +254,7 @@ const translations = {
     window.currentLang = lang;
   }
 
-  // Exposto para outros scripts (ex: githubStats.js) reaplicarem a
-  // tradução em conteúdo injetado dinamicamente após o carregamento inicial.
+  // Usado por outros scripts para traduzir conteúdo injetado depois
   window.applyLang = applyLang;
 
   function toggleLang() {
