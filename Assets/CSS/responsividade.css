@@ -1,11 +1,4 @@
-/* ============================================================
-   NOTEBOOK PADRÃO (1025px–1440px)
-   Cobre os laptops mais comuns: 1366x768, 1280x800, 1440x900.
-   Mesma hierarquia visual do desktop, com fontes, espaçamentos,
-   grids e cards reduzidos proporcionalmente para caber sem
-   exigir scroll excessivo nem ficar com elementos pequenos
-   demais para clicar.
-   ============================================================ */
+/* ===== NOTEBOOK PADRÃO (1025px–1440px): 1366x768, 1280x800, 1440x900 ===== */
 @media (min-width: 1025px) and (max-width: 1440px) {
 
   /* ---------- Header / Menu ---------- */
@@ -69,9 +62,7 @@
     min-height: 340px;
     padding: 1.5rem;
     gap: 1rem;
-    /* Zera a margem inteira (o base deixa margin-right:auto ativo,
-       que num flex item "engole" o espaço livre e empurra a foto
-       para a direita) — o espaçamento passa a vir só do gap do .flex */
+    /* margin-right:auto do base empurrava a foto; o espaçamento vem do gap */
     margin: 0;
   }
 
@@ -93,10 +84,7 @@
     font-size: 22px;
   }
 
-  /* Em vez de posicionamento absoluto com pixels "chutados" (que
-     ficava sobrepondo o card em algumas alturas), o botão volta a
-     fazer parte do fluxo do .flex, numa linha própria e centralizada
-     abaixo do texto/foto — se adapta a qualquer tamanho de conteúdo. */
+  /* Botão no fluxo do .flex, em linha própria, em vez de position absolute */
   .btn-pdf {
     position: static;
     order: 3;
@@ -166,10 +154,7 @@
     gap: 48px;
   }
 
-  /* Restaura o aspect-ratio do desktop (em vez de altura fixa),
-     evitando cards estreitos e altos demais nesta faixa de largura.
-     min-height garante espaço suficiente para o conteúdo não
-     encostar no próximo card. */
+  /* aspect-ratio do desktop + min-height para o conteúdo não encostar no próximo card */
   .projectCard {
     max-width: 100%;
     min-height: 280px;
@@ -282,9 +267,7 @@
     margin-bottom: 32px;
   }
 
-  /* Base tem margin-top:-100px no .form, pensado para compensar o
-     antigo margin-bottom:150px do parágrafo acima. Como reduzimos
-     esse espaçamento, zeramos aqui para não sobrepor os campos. */
+  /* Anula o margin-top:-100px do base para não sobrepor os campos */
   .form {
     margin-top: 0;
   }
@@ -310,7 +293,7 @@
   }
 }
 
-/** ========== CSS RESPONSIVO ========== */
+/* ===== CSS RESPONSIVO ===== */
 @media (max-width: 1024px) {
   * {
     margin: 0;
@@ -321,22 +304,17 @@
 
   .fundo-animado {
     height: calc(110dvh);
-    /* ajusta a altura para compensar */
     width: 100%;
   }
 
   .fundo-animado::before {
     animation: none;
-    /** Desativa a animação */
     transform: translate(0, 0) !important;
-    /** Garante posição estática */
     background-size: cover;
-    /** Garante que o gradiente cubra a área */
   }
 
   .header {
     padding: 0;
-    /* Espaçamento interno */
     width: 100%;
 
   }
@@ -347,9 +325,7 @@
 
   .menu-aberto.active {
     position: fixed;
-    /* substitui o margin */
     height: calc(107dvh - 4px);
-    /* ajusta a altura para compensar */
     text-align: center;
     top: 0;
   }
@@ -412,9 +388,7 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
-    /* Centraliza horizontalmente */
     justify-content: center;
-    /* Centraliza verticalmente, se altura permitir */
 
   }
 
@@ -442,7 +416,7 @@
     top: 50px
   }
 
-  /*efeito viusal na borda*/
+  /* efeito visual na borda */
   .img-sobre:before {
     content: '';
     position: absolute;
@@ -463,9 +437,7 @@
   .btn-pdf {
     position: absolute;
     left: auto;
-    /*auto*/
     top: 460px;
-    /* ou qualquer valor desejado */
   }
 
   .btn-pdf button {
@@ -572,8 +544,6 @@
 
   .projectSection {
     padding: 0;
-    /* background-color: #000000; */
-    /* background-color:  rgb(30, 30, 30); */
     width: 100vw;
 
   }
@@ -667,9 +637,7 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
-    /* Centraliza horizontalmente */
     justify-content: center;
-    /* Centraliza verticalmente, se altura permitir */
     gap: 20px;
   }
 
@@ -777,7 +745,6 @@
     color: #fff;
     font-size: 0.8rem;
     resize: none;
-    /*retira expansão de text area*/
   }
 
   .btn-form {
@@ -835,12 +802,7 @@
   }
 }
 
-/* ============================================================
-   NOTEBOOK PEQUENO / TABLET PAISAGEM (769px–1024px)
-   Refina o layout empilhado do mobile acima para aproveitar
-   melhor a largura disponível em telas menores de notebook e
-   tablets em modo paisagem (ex: 1024x768, iPad landscape).
-   ============================================================ */
+/* ===== NOTEBOOK PEQUENO / TABLET PAISAGEM (769px–1024px) ===== */
 @media (min-width: 769px) and (max-width: 1024px) {
 
   /* ---------- Hero ---------- */

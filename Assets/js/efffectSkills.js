@@ -1,4 +1,3 @@
-//* Lista com os IDs de todos os sliders que você quer animar
 const sliderIds = ["bar-skills", "bar", "bar-pt3", "bar-pt4"];
 
 function setupSlider(id) {
@@ -8,10 +7,9 @@ function setupSlider(id) {
   const originalCount = slider.children.length;
   const content = slider.innerHTML;
 
-  //* Se precisar de mais para telas muito largas, pode manter 4x.
   slider.innerHTML = content.repeat(4);
 
-  //* 1. MENSURAÇÃO: Mede a distância real no DOM entre o 1º item original e sua 1ª cópia. Isso ignora erros de cálculo com padding/gap/subpixels e elimina o "pulo" no reset.
+  // Mede no DOM a distância até a 1ª cópia (inclui gap/subpixels) para o reset não "pular"
   const firstItem = slider.children[0];
   const secondCopyItem = slider.children[originalCount];
   const originalWidth = secondCopyItem.getBoundingClientRect().left - firstItem.getBoundingClientRect().left;
@@ -25,7 +23,7 @@ function setupSlider(id) {
     slider.style.transform = `translateX(-${pos}px)`;
 
 
-    //* Usar subtração (pos -= originalWidth) em vez de (pos = 0) evita perda de subpixels e deixa mais fluido.
+    // Subtrair em vez de zerar preserva os subpixels
     if (pos >= originalWidth) {
       pos -= originalWidth;
     }
