@@ -1,10 +1,14 @@
 // Config do particles.js (inline; particlesJS.load exigiria servir o particles.json)
+// Menos partículas/velocidade em telas pequenas e sem animação se o usuário pediu menos movimento
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 particlesJS('particles-js',
-  
+
   {
     "particles": {
       "number": {
-        "value": 80,
+        "value": isMobile ? 45 : 75,
         "density": {
           "enable": true,
           "value_area": 800
@@ -50,14 +54,14 @@ particlesJS('particles-js',
       },
       "line_linked": {
         "enable": true,
-        "distance": 150,
+        "distance": 120,
         "color": "#ffffff",
         "opacity": 0.4,
         "width": 1
       },
       "move": {
         "enable": true,
-        "speed": 6,
+        "speed": reduceMotion ? 0 : 2,
         "direction": "none",
         "random": false,
         "straight": false,
@@ -107,7 +111,7 @@ particlesJS('particles-js',
         }
       }
     },
-    "retina_detect": true,
+    "retina_detect": false,
     "config_demo": {
       "hide_card": false,
       "background_color": "#b61924",
@@ -119,3 +123,16 @@ particlesJS('particles-js',
   }
 
 );
+
+// O canvas é recalculado a cada frame (O(n²) por causa das linhas): pausa quando o hero sai da tela
+(function () {
+  const instance = window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS;
+  const container = document.getElementById('particles-js');
+  if (!instance || !container || !('IntersectionObserver' in window)) return;
+
+  new IntersectionObserver(function (entries) {
+    const visible = entries[0].isIntersecting;
+    cancelAnimationFrame(instance.fn.drawAnimFrame);
+    if (visible) instance.fn.drawAnimFrame = requestAnimationFrame(instance.fn.vendors.draw);
+  }).observe(container);
+})();

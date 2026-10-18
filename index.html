@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +23,7 @@
   <meta name="twitter:description" content="Portfólio com projetos em React, Node.js, E-commerce, SaaS e APIs RESTful.">
   <link rel="canonical" href="">
   <link rel="icon" href="Assets/Img/logo.port.png">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" media="screen" href="Assets/CSS/style.css">
   <link rel="stylesheet" href="Assets/CSS/responsividade.css">
@@ -55,7 +57,7 @@
   </div>
   <header class="header">
     <div class="logo-topo">
-      <img src="Assets/Img/logo.port.png" alt="Guilherme Silva - Logo do portfólio" loading="lazy">
+      <img src="Assets/Img/logo.port.png" alt="Guilherme Silva - Logo do portfólio" decoding="async">
     </div>
     <div class="menu">
       <label class="hamburger">
@@ -100,8 +102,6 @@
   </div>
   <!-- particles.js container -->
   <div id="particles-js"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <main>
     <div id="inicio" class="inicio">
@@ -160,6 +160,8 @@
                   loading="lazy"></i>
               <i><img src="assets/img/icons8-docker-48.png" alt="Docker - Plataforma de containerização"
                   loading="lazy"></i>
+              <i><img src="assets/img/icons8-nextjs-48.png" alt="Next.js - Framework React"
+                  loading="lazy"></i>
             </ul>
           </nav>
         </div>
@@ -167,11 +169,16 @@
           <h3 data-i18n="skills.frontend">Front-End</h3>
           <nav class="img-2">
             <ul class="img-12" id="bar">
-              <i><img src="assets/img/icons8-tailwindcss-48.png" alt="Tailwind CSS - Framework de CSS"></i>
-              <i><img src="assets/img/icons8-html5-48.png" alt="HTML5 - Linguagem de marcação"></i>
-              <i><img src="assets/img/icons8-css-48.png" alt="CSS3 - Estilização web"></i>
-              <i><img src="assets/img/icons8-react-24.png" alt="React - Biblioteca JavaScript"></i>
-              <i><img src="assets/img/icons8-bootstrap-24.png" alt="Bootstrap - Framework CSS"></i>
+              <i><img src="assets/img/icons8-tailwindcss-48.png" alt="Tailwind CSS - Framework de CSS" loading="lazy"
+                  decoding="async"></i>
+              <i><img src="assets/img/icons8-html5-48.png" alt="HTML5 - Linguagem de marcação" loading="lazy"
+                  decoding="async"></i>
+              <i><img src="assets/img/icons8-css-48.png" alt="CSS3 - Estilização web" loading="lazy"
+                  decoding="async"></i>
+              <i><img src="assets/img/icons8-react-24.png" alt="React - Biblioteca JavaScript" loading="lazy"
+                  decoding="async"></i>
+              <i><img src="assets/img/icons8-bootstrap-24.png" alt="Bootstrap - Framework CSS" loading="lazy"
+                  decoding="async"></i>
             </ul>
           </nav>
         </div>
@@ -179,10 +186,14 @@
           <h3 data-i18n="skills.backend">Back-End</h3>
           <nav class="img-p3">
             <ul class="img-p13" id="bar-pt3">
-              <i><img src="assets/img/icons8-js-48.png" alt="JavaScript - Linguagem de programação"></i>
-              <i><img src="assets/img/icons8-nodejs-48.png" alt="Node.js - Runtime JavaScript"></i>
-              <i><img src="assets/img/icons8-c-47.png" alt="C - Linguagem de programação"></i>
-              <i><img src="assets/img/icons8-logo-java-coffee-cup-48.png" alt="Java - Linguagem de programação"></i>
+              <i><img src="assets/img/icons8-js-48.png" alt="JavaScript - Linguagem de programação" loading="lazy"
+                  decoding="async"></i>
+              <i><img src="assets/img/icons8-nodejs-48.png" alt="Node.js - Runtime JavaScript" loading="lazy"
+                  decoding="async"></i>
+              <i><img src="assets/img/icons8-c-47.png" alt="C - Linguagem de programação" loading="lazy"
+                  decoding="async"></i>
+              <i><img src="assets/img/icons8-logo-java-coffee-cup-48.png" alt="Java - Linguagem de programação"
+                  loading="lazy" decoding="async"></i>
             </ul>
           </nav>
         </div>
@@ -190,9 +201,12 @@
           <h3 data-i18n="skills.database">Banco de dados</h3>
           <nav class="img-p4">
             <ul class="img-p14" id="bar-pt4">
-              <i><img src="assets/img/icons8-mysql-48.png" alt="MySQL - Banco de dados relacional"></i>
-              <i><img src="Assets/Img/icons8-mongodb-24.png" alt="MongoDB - Banco de dados NoSQL"></i>
-              <i><img src="Assets/Img/icons8-sqlite-50.png" alt="SQLite - Banco de dados leve"></i>
+              <i><img src="assets/img/icons8-mysql-48.png" alt="MySQL - Banco de dados relacional" loading="lazy"
+                  decoding="async"></i>
+              <i><img src="Assets/Img/icons8-mongodb-24.png" alt="MongoDB - Banco de dados NoSQL" loading="lazy"
+                  decoding="async"></i>
+              <i><img src="Assets/Img/icons8-sqlite-50.png" alt="SQLite - Banco de dados leve" loading="lazy"
+                  decoding="async"></i>
             </ul>
           </nav>
         </div>
@@ -204,13 +218,15 @@
   <section id="github-stats" class="github-stats">
     <div class="container-github">
       <h2 class="github-title" data-i18n="github.title">Atividade no GitHub</h2>
-      <p class="github-subtitle" data-i18n="github.subtitle">Estatísticas geradas automaticamente a partir do meu perfil público.</p>
+      <p class="github-subtitle" data-i18n="github.subtitle">Estatísticas geradas automaticamente a partir do meu perfil
+        público.</p>
       <div class="gh-hero-stats" id="gh-stats-body">
         <div class="gh-loading" data-i18n="github.loading">Carregando dados do GitHub...</div>
       </div>
 
       <div class="github-cards">
-        <img class="github-card" src="https://streak-stats.demolab.com/?user=GuiSilva-Dev&hide_border=true&background=00000000&stroke=9b51e0&ring=9b51e0&fire=ff6ec7&currStreakLabel=d4b3ff&currStreakNum=ffffff&sideLabels=d4b3ff&sideNums=ffffff&dates=aaaaaa"
+        <img class="github-card"
+          src="https://streak-stats.demolab.com/?user=GuiSilva-Dev&hide_border=true&background=00000000&stroke=9b51e0&ring=9b51e0&fire=ff6ec7&currStreakLabel=d4b3ff&currStreakNum=ffffff&sideLabels=d4b3ff&sideNums=ffffff&dates=aaaaaa"
           alt="Sequência de contribuições no GitHub de Guilherme Silva" loading="lazy">
 
         <div class="github-native-card" id="gh-langs-card">
@@ -236,7 +252,8 @@
             </div>
             <h2 class="projectHeading" data-i18n="projects.p1.heading">Desenvolvimento Saas</h2>
             <p class="projectSubHeading" data-i18n="projects.p1.text">
-              Vitrine de um SaaS para gestão de negócios online, simples e escalável — do cadastro ao pagamento, tudo em um
+              Vitrine de um SaaS para gestão de negócios online, simples e escalável — do cadastro ao pagamento, tudo em
+              um
               só lugar.
             </p>
             <div class="btnGroup">
@@ -330,29 +347,39 @@
               <div class="tech-group tech-frontend">
                 <h4 class="tech-group-title" data-i18n="experience.group.frontend">Frontend</h4>
                 <ul class="card-tech-list">
-                  <li class="badge-tech"><i class="bi bi-code-slash"></i><span data-i18n="experience.tech.react">React.js</span></li>
+                  <li class="badge-tech"><i class="bi bi-code-slash"></i><span
+                      data-i18n="experience.tech.react">React.js</span></li>
+                  <li class="badge-tech"><i class="bi bi-next"></i><span data-i18n="experience.tech.next">Next.js</span>
+                  </li>
                 </ul>
               </div>
               <div class="tech-group tech-backend">
                 <h4 class="tech-group-title" data-i18n="experience.group.backend">Backend</h4>
                 <ul class="card-tech-list">
-                  <li class="badge-tech"><i class="bi bi-hdd-network"></i><span data-i18n="experience.tech.node">Node.js</span></li>
-                  <li class="badge-tech"><i class="bi bi-diagram-3"></i><span data-i18n="experience.tech.microservices">Micro serviços</span></li>
-                  <li class="badge-tech"><i class="bi bi-plug"></i><span data-i18n="experience.tech.apis">APIs</span></li>
+                  <li class="badge-tech"><i class="bi bi-hdd-network"></i><span
+                      data-i18n="experience.tech.node">Node.js</span></li>
+                  <li class="badge-tech"><i class="bi bi-diagram-3"></i><span
+                      data-i18n="experience.tech.microservices">Micro serviços</span></li>
+                  <li class="badge-tech"><i class="bi bi-plug"></i><span data-i18n="experience.tech.apis">APIs</span>
+                  </li>
                 </ul>
               </div>
               <div class="tech-group tech-cloud">
                 <h4 class="tech-group-title" data-i18n="experience.group.cloud">Cloud e Dados</h4>
                 <ul class="card-tech-list">
-                  <li class="badge-tech"><i class="bi bi-cloud"></i><span data-i18n="experience.tech.aws">AWS</span></li>
-                  <li class="badge-tech"><i class="bi bi-database"></i><span data-i18n="experience.tech.mongo">MongoDB</span></li>
+                  <li class="badge-tech"><i class="bi bi-cloud"></i><span data-i18n="experience.tech.aws">AWS</span>
+                  </li>
+                  <li class="badge-tech"><i class="bi bi-database"></i><span
+                      data-i18n="experience.tech.mongo">MongoDB</span></li>
                 </ul>
               </div>
               <div class="tech-group tech-ai">
                 <h4 class="tech-group-title" data-i18n="experience.group.ai">IA e Automação</h4>
                 <ul class="card-tech-list">
-                  <li class="badge-tech"><i class="bi bi-robot"></i><span data-i18n="experience.tech.chatbots">Chatbots</span></li>
-                  <li class="badge-tech"><i class="bi bi-cpu"></i><span data-i18n="experience.tech.llms">LLMs</span></li>
+                  <li class="badge-tech"><i class="bi bi-robot"></i><span
+                      data-i18n="experience.tech.chatbots">Chatbots</span></li>
+                  <li class="badge-tech"><i class="bi bi-cpu"></i><span data-i18n="experience.tech.llms">LLMs</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -436,15 +463,15 @@
   </footer>
 
   <!-- scripts -->
-  <script src="../particles.js"></script>
-  <script src="Assets/js/i18n.js"></script>
-  <script src="Assets/js/githubStats.js"></script>
-  <script src="Assets/js/app.js"></script>
-  <script src="Assets/js/backtotop.js"></script>
-  <script src="Assets/js/btnSocial.js"></script>
-  <script src="Assets/js/efffectSkills.js"></script>
-  <script src="Assets/js/menu.js"></script>
-  <script src="Assets/js/rolagemx.js"></script>
+  <script defer src="particles.js"></script>
+  <script defer src="Assets/js/i18n.js"></script>
+  <script defer src="Assets/js/githubStats.js"></script>
+  <script defer src="Assets/js/app.js"></script>
+  <script defer src="Assets/js/backtotop.js"></script>
+  <script defer src="Assets/js/btnSocial.js"></script>
+  <script defer src="Assets/js/efffectSkills.js"></script>
+  <script defer src="Assets/js/menu.js"></script>
+  <script defer src="Assets/js/rolagemx.js"></script>
 </body>
 
 </html>
