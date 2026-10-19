@@ -5,26 +5,32 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const backToTopButton = document.getElementById('backToTop');
+  let shown = false;
+  let hideTimer = null;
 
+  // Só mexe no DOM quando o estado muda (o evento de scroll dispara dezenas de vezes por segundo)
   function toggleButtons() {
-    const scrollPosition = window.scrollY;
-    if (scrollPosition > 100) {
+    const shouldShow = window.scrollY > 100;
+    if (shouldShow === shown) return;
+    shown = shouldShow;
+    clearTimeout(hideTimer);
+
+    if (shouldShow) {
       backToTopButton.style.display = 'flex';
-      setTimeout(() => {
+      hideTimer = setTimeout(() => {
         backToTopButton.style.opacity = '1';
       }, 10);
     } else {
       backToTopButton.style.opacity = '0';
-      setTimeout(() => {
+      hideTimer = setTimeout(() => {
         backToTopButton.style.display = 'none';
       }, 500);
     }
   }
 
-  document.addEventListener('scroll', toggleButtons);
+  document.addEventListener('scroll', toggleButtons, { passive: true });
 
   backToTopButton.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: 'smooth', backgroundColor: 'transparent'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
-

@@ -17,11 +17,12 @@ function setupSlider(id) {
   let pos = 0;
   const speed = 1;
   let animationId = null;
+  let hovered = false;
+  let visible = false;
 
   function moveSlider() {
     pos += speed;
-    slider.style.transform = `translateX(-${pos}px)`;
-
+    slider.style.transform = `translate3d(-${pos}px, 0, 0)`;
 
     // Subtrair em vez de zerar preserva os subpixels
     if (pos >= originalWidth) {
@@ -31,20 +32,29 @@ function setupSlider(id) {
     animationId = requestAnimationFrame(moveSlider);
   }
 
-  function pauseSlider() {
+  // Só anima quando está visível e sem hover; nunca empilha dois loops
+  function update() {
     cancelAnimationFrame(animationId);
+    animationId = null;
+    if (visible && !hovered) moveSlider();
   }
 
-  function resumeSlider() {
-    moveSlider();
+  const wrapper = slider.parentElement;
+  if (wrapper) {
+    wrapper.addEventListener("mouseenter", () => { hovered = true; update(); });
+    wrapper.addEventListener("mouseleave", () => { hovered = false; update(); });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        update();
+      }).observe(wrapper);
+      return;
+    }
   }
 
-  moveSlider();
-
-  if (slider.parentElement) {
-    slider.parentElement.addEventListener("mouseenter", pauseSlider);
-    slider.parentElement.addEventListener("mouseleave", resumeSlider);
-  }
+  visible = true;
+  update();
 }
 
 sliderIds.forEach(id => setupSlider(id));
