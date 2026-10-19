@@ -8,7 +8,7 @@ particlesJS('particles-js',
   {
     "particles": {
       "number": {
-        "value": isMobile ? 45 : 75,
+        "value": isMobile ? 79 : 80,
         "density": {
           "enable": true,
           "value_area": 800
