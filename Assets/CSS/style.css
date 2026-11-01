@@ -794,7 +794,7 @@ body {
 .social-buttons a i {
   width: 44px;
   height: 44px;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
   border-radius: 50%;
   display: flex;
   color: white;
@@ -808,7 +808,7 @@ body {
 }
 
 .icon5 a i {
-  margin-bottom: 40px;
+  margin-bottom: 45px;
 }
 
 .social-buttons a {
