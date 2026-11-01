@@ -245,8 +245,10 @@
     top: 0;
   }
 
+  /* Padding simétrico (top = bottom): o grupo de links fica centralizado na tela,
+     não só abaixo do header */
   .nav-menu {
-    padding-top: calc(var(--header-h) + 0.5rem);
+    padding: calc(var(--header-h) + 0.5rem) 0;
   }
 
   .nav-menu a {
