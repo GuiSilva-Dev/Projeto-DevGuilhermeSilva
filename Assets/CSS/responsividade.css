@@ -205,19 +205,6 @@
 /* ===== DESKTOP (a partir de 1025px): visual moderno do GitHub, mesma organização ===== */
 @media (min-width: 1025px) {
 
-  /* Números em cards, na mesma linha centralizada de antes (gap menor: os cards já separam) */
-  .gh-hero-stats {
-    gap: 24px;
-  }
-
-  .gh-hero-stats .gh-stat-item {
-    min-width: 180px;
-    box-sizing: border-box;
-    padding: 24px 32px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(155, 81, 224, 0.35);
-  }
 
 }
 
@@ -424,9 +411,18 @@
     gap: 16px;
   }
 
-  /* Números quebram em 2 linhas no celular: linha 24px, coluna 48px */
+  /* Números em cards como no desktop */
   .gh-hero-stats {
-    gap: 24px 48px;
+    gap: 24px;
+  }
+
+  .gh-hero-stats .gh-stat-item {
+    min-width: 180px;
+    box-sizing: border-box;
+    padding: 24px 32px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(155, 81, 224, 0.35);
   }
 
   .github-card,
