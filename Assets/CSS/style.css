@@ -79,6 +79,11 @@ body {
   line-height: 1
 }
 
+/* Texto corrido precisa de entrelinha maior que o reset (1) para ser legível */
+p {
+  line-height: 1.6
+}
+
 article,
 aside,
 details,
@@ -168,6 +173,8 @@ html {
   width: 100%;
   min-height: 100dvh;
   overflow-x: hidden;
+  /* Âncoras (#projects etc.) não ficam escondidas atrás do header fixo */
+  scroll-padding-top: calc(var(--header-h) + 1rem);
 }
 
 /* Remove o destaque azul ao tocar no mobile (só no html não basta no Android) */
@@ -184,11 +191,83 @@ button:focus:not(:focus-visible),
   outline: none;
 }
 
+/* Foco visível e consistente para quem navega pelo teclado */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 3px;
+}
+
+/* Esconde visualmente mas mantém para leitores de tela */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Trava a rolagem enquanto o menu está aberto (classe usada por menu.js) */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Com o menu aberto, os botões flutuantes não ficam por cima dele */
+body.no-scroll .social-container,
+body.no-scroll #backToTop {
+  visibility: hidden;
+}
+
+/* Variáveis globais (único :root do arquivo) */
 :root {
+  --color-black: #000000;
+  --color-white: #ffffff;
   --card-radius: 20px;
   --bg-dark-overlay: #1f1f1f9a;
   --primary-gradient: linear-gradient(135deg, #9419d2, #dc2430, #dc2449, #9a31cf);
   --shadow-color: rgba(102, 5, 53, 0.765);
+
+  /* Cores de destaque */
+  --accent: #9b51e0;
+  --accent-soft: #b98aff;
+
+  /* Gradientes: títulos de seção e hover de botões */
+  --title-gradient: linear-gradient(135deg, #ff0000, #6a00ff);
+  --hover-gradient: linear-gradient(135deg, #ff000091, #6a00ff8d);
+
+  /* Fonte monoespaçada dos títulos/labels */
+  --font-mono: 'Courier New', Courier, monospace;
+
+  /* Espaço vertical padrão entre as seções principais (cada seção soma 2x: em cima e embaixo).
+     Antes clamp(64px, 8vw, 128px) dava ~220px entre seções em 1366; agora ~104px no celular,
+     ~146px em 1024 e ~175px no desktop */
+  --section-space: clamp(52px, 4vw + 32px, 88px);
+
+  /* Altura do header fixo (com padding): base do hero, do menu aberto e das âncoras.
+     Limites evitam header de 49px no celular deitado e de 200px+ em 1920x1080 */
+  --header-h: clamp(64px, 13dvh, 120px);
+}
+
+/* Título de seção: escala única para Sobre, GitHub, Projetos, Experiências e Contato.
+   Fica antes das regras de cada seção para que ajustes específicos possam sobrescrever. */
+.section-title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(2rem, 3vw + 1rem, 3.5rem);
+  /* cor de fallback caso o background-clip:text não seja suportado */
+  color: rgb(235, 196, 247);
+  background: var(--title-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1px;
+  width: fit-content;
+  margin: 0 auto 3rem;
 }
 
 /* Fundo animado separado */
@@ -238,54 +317,11 @@ button:focus:not(:focus-visible),
 }
 
 
-/** ---- stats.js ---- */
-
-.count-particles {
-  background: #000022;
-  position: absolute;
-  top: 48px;
-  left: 0;
-  width: 80px;
-  color: #13E8E9;
-  font-size: .8em;
-  text-align: left;
-  text-indent: 4px;
-  line-height: 14px;
-  padding-bottom: 2px;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: bold;
-}
-
-.js-count-particles {
-  font-size: 1.1em;
-}
-
-#stats,
-.count-particles {
-  margin-top: 5px;
-  margin-left: 5px;
-}
-
-#stats {
-  border-radius: 3px 3px 0 0;
-  overflow: hidden;
-}
-
-.count-particles {
-  border-radius: 0 0 3px 3px;
-}
-
-
 /* ---- particles.js container ---- */
 
 #particles-js {
   width: 100%;
   height: 100dvh;
-
-  background-image: url('');
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
 }
 
 /* Estiliza a barra inteira */
@@ -313,12 +349,15 @@ button:focus:not(:focus-visible),
 
 /* ESTILO TXT PRINCIPAL DO TOPO */
 body {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 100dvh;
   overflow-x: hidden;
+  /* Fundo de segurança: o .fundo-animado (fixed) cobre a tela, mas sem isto o
+     overscroll/print de página inteira mostrava branco atrás das seções */
+  background-color: #000;
 }
 
 /* Estilo do cabeçalho fixo */
@@ -327,9 +366,12 @@ body {
   user-select: none;
   position: fixed;
   top: 0;
-  width: 100vw;
-  height: 13dvh;
-  padding: 2rem 1.2rem;
+  /* left/right 0 em vez de 100vw: o padding não empurra o menu para fora da tela */
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  height: var(--header-h);
+  padding: 8px 1.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -341,8 +383,13 @@ body {
 }
 
 /* Espaço reservado para o logo no topo */
+/* Tamanho pela altura do header (max-* mantém a proporção do logo) */
 .logo-topo img {
-  width: 260px;
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: calc(var(--header-h) - 16px);
+  max-width: min(260px, 40vw);
   margin: 0 25px;
 }
 
@@ -352,6 +399,7 @@ body {
 
   display: flex;
   align-items: center;
+  gap: 1rem;
   justify-content: flex-end;
   position: relative;
   z-index: 100;
@@ -363,49 +411,53 @@ body {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.6);
   color: white;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
-  font-size: 1rem;
-  border-radius: 6px;
-  padding: 0.4rem 0.7rem;
-  transition: all 0.3s ease;
-  width: 100px;
-}
-
-
-.lang-toggle {
-  cursor: pointer;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  color: white;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
   font-weight: bold;
   font-size: 0.9rem;
   border-radius: 6px;
   padding: 0.4rem 0.7rem;
   transition: all 0.3s ease;
+  /* Rótulo curto (EN/PT): largura pelo conteúdo, alvo de toque mínimo de 44px */
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .lang-toggle:hover {
-  background: linear-gradient(135deg, #ff000091, #6a00ff8d);
+  background: var(--hover-gradient);
   border-color: transparent;
 }
 
-/* Ícone do menu hamburguer */
+/* Ícone do menu hamburguer (agora um <button>, operável por teclado) */
 .hamburger {
   cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  /* Não encolhe ao lado do botão de idioma (antes chegava a 8px de largura no celular) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 44px;
+  min-height: 44px;
 }
 
-/* Esconde o input do tipo checkbox */
-.hamburger input {
-  display: none;
+/* Caixa fixa (não encolhe nem depende do tamanho da fonte); o SVG ocupa a caixa toda */
+.hamburger {
+  width: 64px;
+  height: 64px;
 }
 
 /* SVG do ícone hamburguer */
 .hamburger svg {
-  height: 5em;
+  width: 100%;
+  height: 100%;
   transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 10%;
+  margin: 0;
   padding: 0;
 }
 
@@ -427,13 +479,13 @@ body {
   stroke-dasharray: 12 63;
 }
 
-/* Quando o checkbox está ativado (menu aberto) */
-.hamburger input:checked+svg {
+/* Menu aberto */
+.hamburger[aria-expanded="true"] svg {
   transform: rotate(-45deg);
 }
 
 /* Animação das linhas superior/inferior ao abrir o menu */
-.hamburger input:checked+svg .line-top-bottom {
+.hamburger[aria-expanded="true"] svg .line-top-bottom {
   stroke-dasharray: 20 300;
   stroke-dashoffset: -32.42;
 }
@@ -452,14 +504,17 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
   opacity: 0;
+  /* Fechado: links fora da ordem de Tab */
+  visibility: hidden;
 }
 
 /* Quando o menu está ativo (aberto) */
 .menu-aberto.active {
   height: 100vh;
   opacity: 1;
+  visibility: visible;
 }
 
 /* Container interno com os links de navegação */
@@ -470,7 +525,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4rem;
+  /* safe: se não couber (celular deitado), alinha no topo em vez de cortar */
+  justify-content: safe center;
+  /* Espaço proporcional à altura da tela; rola se ainda assim não couber */
+  gap: clamp(1rem, 6dvh, 4rem);
+  overflow-y: auto;
+  box-sizing: border-box;
+  /* Links não ficam escondidos atrás do header fixo */
+  padding: calc(var(--header-h) + 1rem) 0 1rem;
   transition: opacity 0.5s ease-in-out;
 }
 
@@ -478,8 +540,12 @@ body {
 .nav-menu a {
   user-select: none;
   text-decoration: none;
+  /* Alvo de toque mínimo de 44px */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: white;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
   font-size: 3rem;
   font-weight: bold;
   opacity: 0;
@@ -495,80 +561,182 @@ body {
 
 /* Efeito hover nos links */
 .nav-menu a:hover {
-  background: linear-gradient(135deg, #ff000091, #6a00ff8d);
+  background: var(--hover-gradient);
   color: transparent;
   background-clip: text;
   transition: all 0.3s ease;
 }
 
-/* Título principal */
+/* Hero: bloco centralizado na área abaixo do header fixo */
 .inicio {
-  font-size: 5.5rem;
-  margin-bottom: 60px;
+  --hero-header: var(--header-h);
   position: absolute;
-  top: 50%;
+  top: calc(50% + var(--hero-header) / 2);
   left: 50%;
   transform: translate(-50%, -50%);
+  width: min(100% - 32px, 860px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  color: #fff;
+}
+
+/* Recebe foco pelo "voltar ao topo" (tabindex=-1): não é interativo, sem contorno */
+.inicio h1:focus {
+  outline: none;
 }
 
 .inicio h1 {
-  font-family: 'Courier New', Courier, monospace;
-  background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgba(200, 80, 192, 0.547) 46%, rgb(255, 204, 112) 100%);
+  font-family: var(--font-mono);
+  background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 5rem;
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  line-height: 1.1;
   overflow: hidden;
   white-space: nowrap;
-  width: 100%;
+  max-width: 100%;
 }
 
-/* Container do rotador de palavras */
-.txt-efeito {
-  font-family: 'Courier New', Courier, monospace;
-  background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgba(200, 80, 192, 0.547) 46%, rgb(255, 204, 112) 100%);
+/* Cargo com efeito de digitação (fonte mono: 1 letra = 1ch) */
+.hero-prompt {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  column-gap: .6em;
+  row-gap: .2em;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2.6vw, 2rem);
+  line-height: 1.3;
+}
+
+.hero-role {
+  --chars: 24; /* atualizado pelo i18n.js conforme o idioma */
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+/* Digitação em loop: digita, pausa, apaga e recomeça; o cursor segue o fim do texto */
+.hero-role > span:first-child {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  max-width: calc(var(--chars) * 1ch);
+  animation: hero-type 6s steps(var(--chars), end) .3s infinite;
+  background: linear-gradient(135deg, #ff4d6d, var(--accent-soft));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  overflow: hidden;
-  border-right: .15em solid #892be2;
-  white-space: nowrap;
-  /* max-width anima melhor que width */
-  width: 88%;
-  margin-top: 10px;
-  animation: typing 6s steps(30, end) infinite, blink .9s step-end infinite;
 }
 
-/* Animação de digitação otimizada */
-@keyframes typing {
+.prompt-cursor {
+  display: inline-block;
+  width: .55em;
+  height: 1em;
+  margin-left: .15em;
+  vertical-align: -.12em;
+  background: #892be2;
+  animation: hero-blink .9s step-end infinite;
+}
+
+@keyframes hero-type {
   0% {
     max-width: 0;
   }
 
-  50% {
-    max-width: 100%;
-  }
-
-  75% {
-    max-width: 100%;
+  35%,
+  80% {
+    max-width: calc(var(--chars) * 1ch);
   }
 
   100% {
     max-width: 0;
   }
-
 }
 
-/* Animação do cursor piscando */
-@keyframes blink {
+/* Cursor pisca sem parar */
+@keyframes hero-blink {
+  0% {
+    opacity: 1;
+  }
 
-  0%,
+  50%,
   100% {
-    border-color: #892be2;
+    opacity: 0;
   }
+}
 
-  50% {
-    border-color: transparent;
-  }
+/* Pirâmide centralizada: os 2 botões lado a lado (mesma largura: colunas 1fr do tamanho do maior)
+   e os ícones numa linha própria embaixo. Largura do conteúdo, limitada à tela */
+.hero-ctas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-items: stretch;
+  align-items: center;
+  gap: 12px 16px;
+  width: max-content;
+  max-width: 100%;
+  margin-top: 0;
+}
+
+/* Reaproveita .btn-button; sem margem própria dentro do grupo (seletor duplo: .btn-button vem depois no arquivo) */
+.btn-button.hero-btn {
+  margin-top: 0;
+  min-height: 48px;
+  gap: 8px;
+  /* Ocupa a coluna inteira: os dois botões ficam com a mesma largura */
+  width: 100%;
+  max-width: none;
+  white-space: nowrap;
+}
+
+/* GitHub + LinkedIn: linha de baixo da pirâmide, centralizados */
+.hero-ctas .hero-links {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+/* Primário: gradiente já preenchido */
+.btn-button.hero-btn-primary {
+  color: #fff;
+  border-color: transparent;
+}
+
+.btn-button.hero-btn-primary::before {
+  transform: translate(0%, 0%);
+  background-image: linear-gradient(135deg, #ff003cc4, #8000ffc4);
+}
+
+.hero-links {
+  display: flex;
+  gap: 12px;
+}
+
+.hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: rgba(26, 11, 46, .6);
+  color: #fff;
+  font-size: 1.3rem;
+  transition: background-color .3s ease, box-shadow .3s ease;
+}
+
+.hero-icon:hover {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
 }
 
 /*******BOTAO SOCIAL********/
@@ -582,8 +750,9 @@ body {
 }
 
 .btn-social {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
   background: linear-gradient(135deg, #ffffff00, #00f2ff00);
   border: none;
   border-radius: 50px;
@@ -597,7 +766,7 @@ body {
 }
 
 .btn-social:hover {
-  background: linear-gradient(135deg, #ff000091, #6a00ff8d);
+  background: var(--hover-gradient);
   box-shadow: 0px 0px 10px #6a00ff8d;
   transition: all .3s ease-in-out;
 }
@@ -614,14 +783,16 @@ body {
   flex-direction: column;
   opacity: 0;
   pointer-events: none;
+  /* Fechado: links invisíveis também para teclado/leitor de tela */
+  visibility: hidden;
   transition: all .9s ease-in-out;
   transform: translateY(-11%);
   align-items: center;
 }
 
 .social-buttons a i {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   margin-bottom: 25px;
   border-radius: 50px;
   display: flex;
@@ -643,26 +814,6 @@ body {
 
 }
 
-.icon1 a i {
-  color: #ffffff;
-  background: linear-gradient(150deg, rgba(255, 0, 0, 0.409));
-}
-
-.social-buttons .icon1 a i:hover {
-  box-shadow: 0px 0px 10px rgb(255, 0, 0);
-  transform: scale(1.1);
-
-}
-
-.icon2 a i {
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #ff00f2, #bc1888);
-}
-
-.social-buttons .icon2 a i:hover {
-  box-shadow: 0px 0px 10px rgb(255, 0, 0);
-  transform: scale(1.1);
-
-}
 
 .icon3 a i {
   background: linear-gradient(500deg, rgb(255, 255, 255), rgb(0, 0, 0), white);
@@ -698,6 +849,12 @@ body {
 .social-container.active .social-buttons {
   opacity: 1;
   pointer-events: all;
+  visibility: visible;
+}
+
+.social-buttons a {
+  display: block;
+  border-radius: 50px;
 }
 
 /*******BOTAO BACKTOTOP******/
@@ -706,8 +863,11 @@ body {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  font: inherit;
   border-radius: 50px;
   background-color: var(--color-white);
   color: var(--color-black);
@@ -725,7 +885,7 @@ body {
 }
 
 #backToTop:hover {
-  background: linear-gradient(135deg, #ff000091, #6a00ff8d);
+  background: var(--hover-gradient);
   box-shadow: 0px 0px 10px #6a00ff8d;
   transition: all .3s ease-in-out;
   transform: scale(1.1);
@@ -745,7 +905,7 @@ body {
   max-height: 100%;
 
   /* Evita que uma seção entre na outra */
-  padding: 220px 20px;
+  padding: var(--section-space) 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -758,36 +918,8 @@ body {
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }
 
-.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.sobre h2 {
-  background: linear-gradient(135deg, #ff0000, #6a00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  width: fit-content;
-  margin: 0 auto;
-  font-weight: 700;
-  font-size: 80px;
-  text-align: center;
-  color: rgb(235, 196, 247);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Courier New', Courier, monospace;
-  animation: efeito 2s ease-in-out infinite;
-}
-
-/* Animação de movimento do gradiente */
-@keyframes efeito {
-  to {
-    background-position-x: 0;
-  }
-}
-
 .sobre h3 {
-  color: #6a00ff;
+  color: #a259ff;
   font-size: 2.5rem;
   text-align: center;
 
@@ -795,7 +927,8 @@ body {
 
 .flex {
   display: flex;
-  gap: 200px;
+  flex-wrap: wrap;
+  gap: clamp(48px, 8vw, 200px);
   justify-content: center;
   align-items: center;
 }
@@ -814,12 +947,14 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 450px;
+  /* Base 400px: cabe na mesma linha da foto e cresce até o max-width */
+  flex: 1 1 400px;
+  min-height: 450px;
   max-width: 1000px;
-  padding: 2rem;
-  gap: 1.5rem;
-  margin: 7vh auto 0;
-  margin-left: 3%;
+  padding: 32px;
+  gap: 24px;
+  /* Sem o "7vh auto 0 + 3%": o alinhamento com a foto vem do gap/align-items da .flex */
+  margin: 0;
   position: relative;
   transition: 0.3s;
 }
@@ -831,8 +966,10 @@ p {
 
 .img-sobre {
   position: relative;
-  width: 500px;
-  height: 500px;
+  flex-shrink: 0;
+  width: min(500px, 100%);
+  height: auto;
+  aspect-ratio: 1;
   background: rgba(0, 0, 0, .9);
   border-radius: 50%;
   overflow: hidden;
@@ -906,54 +1043,13 @@ p {
   font-weight: 600;
   letter-spacing: .05em;
   text-transform: uppercase;
-  gap: 10px;
+  line-height: 1.3;
   user-select: none;
 }
 
 .conteudo-img h4 span {
   font-size: 20px;
   font-weight: 300;
-}
-
-.conteudo-img>span {
-  font-size: 50px;
-}
-
-.conteudo-img a {
-  margin-top: 10px;
-  background: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  color: #000;
-  font-weight: 600;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  text-decoration: none;
-  transition: .5s;
-
-}
-
-.conteudo-img a:hover {
-  letter-spacing: .2em;
-}
-
-@media (max-width: 768px) {
-  .img-foto img {
-    position: static;
-    margin: 0 auto;
-    display: block;
-    max-width: 90%;
-  }
-}
-
-@media (max-width: 768px) {
-  .complemento-sobre img {
-    position: static;
-    margin: 0 auto;
-    display: block;
-    max-width: 90%;
-  }
 }
 
 /* ----------------------aayush button starts-------------------*/
@@ -971,19 +1067,24 @@ p {
   max-width: 250px;
   padding: 1rem 2.5rem;
   border-radius: 30px;
-  font-family: gillroy, Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 700;
   position: relative;
   cursor: pointer;
   z-index: 1;
   letter-spacing: 1px;
   margin-top: 1.5rem;
+  /* Agora é um <a>: reproduz o tamanho/alinhamento que o <button> tinha */
+  width: fit-content;
+  box-sizing: border-box;
+  font-size: 13.333px;
+  line-height: normal;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.5s;
 }
 
 .btn-button:hover {
-  transition: 0.5s;
-  scale: 1.0;
-  letter-spacing: 2px;
   background-color: rgba(0, 0, 0, 0.574);
 }
 
@@ -999,7 +1100,7 @@ p {
   background-image: linear-gradient(135deg, #ff003c92, #8000ff8e);
 }
 
-.btn-button:hover::before {
+.btn-button:is(:hover, :focus-visible)::before {
   transform: translate(0%, 0%);
 }
 
@@ -1010,167 +1111,86 @@ p {
   box-shadow: 0px 0px 0px 0px rgba(236, 17, 17, 0.256);
 }
 
-.btn-pdf {
-  position: absolute;
-  left: 27%;
-  top: 680px;
+/* Skills: grupos com título + chips (ícone decorativo + nome visível) */
+.sobre-skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 64px auto 0;
+  box-sizing: border-box;
 }
 
+.skill-group {
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.093);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: box-shadow 0.3s ease;
+}
 
-.sobre-skills {
+.skill-group:hover {
+  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.093), 0 0 20px rgba(166, 1, 255, 0.342);
+}
+
+.sobre .skill-group-title {
+  margin: 0 0 16px;
+  font-size: 1.4rem;
+  text-align: left;
+  color: #a259ff;
+}
+
+.code-prefix {
+  color: #9a94a8;
+}
+
+.skill-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
-  position: relative;
-  top: 100px;
-  justify-content: center;
-}
-
-.softs-skills {
-  background: hsla(0, 0%, 100%, 0);
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.093);
-  border-radius: 16px;
-  color: var(--color-white);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 150px;
-  max-width: 400px;
-  padding: 1rem;
-  gap: 1rem;
-  text-align: center;
-  font-size: 2rem;
-  transition: box-shadow 0.3s ease;
-}
-
-.softs-skills:hover {
-  box-shadow: 0 0 20px rgba(166, 1, 255, 0.342);
-}
-
-.softs-skills {
-  text-align: center;
-  font-size: 2rem;
-}
-
-/* Container da área de rolagem dos ícones */
-.img-softs {
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 0;
-}
-
-/* Tamanho fixo antes da imagem carregar, senão o loop reseta cedo */
-.img-skills i {
-  display: block;
-  width: 68px;
-  height: 68px;
-  flex-shrink: 0;
-}
-
-/* Estilo individual dos ícones */
-.img-skills i img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  transition: transform 0.3s;
-  box-shadow: .5px .5px .5px 0px rgba(0, 0, 0, .9);
-  border-radius: 1px;
-}
-
-/* Efeito ao passar o mouse: aumenta o tamanho do ícone */
-.img-skills i img:hover {
-  transform: scale(1.2);
-}
-
-/* --- CARDS PRINCIPAIS --- */
-.softs-2,
-.softs-p3,
-.softs-p4 {
-  background: hsla(0, 0%, 100%, 0);
-  box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.093);
-  border-radius: 16px;
-  color: var(--color-white);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 150px;
-  max-width: 400px;
-  padding: 1rem;
-  gap: 1rem;
-  text-align: center;
-  font-size: 2rem;
-
-  transition: box-shadow 0.3s ease;
-}
-
-/* Hover dos Cards */
-.softs-2:hover,
-.softs-p3:hover,
-.softs-p4:hover {
-  box-shadow: 0 0 20px rgba(166, 1, 255, 0.342);
-}
-
-/* --- CONTAINERS DE ROLAGEM (Área visível) --- */
-.img-2,
-.img-p3,
-.img-p4 {
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 0;
-  transform: translateZ(0);
-}
-
-/* --- FAIXAS (Trilhos que se movem) --- */
-.img-skills, .img-12, .img-p13, .img-p14 {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  gap: 32px; 
-  padding-right: 32px; 
+  gap: 8px;
   margin: 0;
-  padding-left: 0; 
-  width: max-content; 
-  /* Sem transition para não conflitar com o JS */
-  transition: none !important;
-  will-change: transform;
+  padding: 0;
+  list-style: none;
 }
 
-/* Tamanho fixo antes da imagem carregar, senão o loop reseta cedo */
-.img-12 i,
-.img-p13 i,
-.img-p14 i {
-  display: block;
-  width: 50px;
-  height: 50px;
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 8px;
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  background-color: #1a0b2e;
+  color: #d4b3ff;
+  font-family: monospace;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ícones de 24px exibidos em tamanho nativo: sem borrão */
+.skill-chip img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
-/* --- ÍCONES (Imagens) --- */
-.img-12 i img,
-.img-p13 i img,
-.img-p14 i img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  border-radius: 1px;
-  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Hover nos Ícones */
-.img-12 i img:hover,
-.img-p13 i img:hover,
-.img-p14 i img:hover {
-  transform: scale(1.2);
+.skill-chip:hover {
+  background-color: #2a1248;
+  box-shadow: 0 0 10px rgba(155, 81, 224, .6);
 }
 
 /*=============================== GitHub Stats =============================== */
 
 .github-stats {
   color: white;
-  padding: 80px 20px;
+  padding: var(--section-space) 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1190,19 +1210,9 @@ p {
   text-align: center;
 }
 
+/* Tamanho/gradiente vêm de .section-title; aqui só mantém o subtítulo colado ao título */
 .github-title {
-  background: linear-gradient(135deg, #ff0000, #6a00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  width: fit-content;
-  margin: 0 auto;
-  font-weight: 700;
-  font-size: 48px;
-  text-align: center;
-  color: rgb(235, 196, 247);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 0;
 }
 
 .github-subtitle {
@@ -1217,7 +1227,8 @@ p {
   justify-content: center;
   align-items: flex-start;
   gap: 24px;
-  margin-top: 36px;
+  /* Único espaço entre as estatísticas e os cards (antes 48px + 36px somados) */
+  margin-top: 48px;
 }
 
 .github-card {
@@ -1237,13 +1248,14 @@ p {
 
 /* Cards alimentados por githubStats.js */
 .github-native-card {
+  box-sizing: border-box;
   flex: 1 1 320px;
   max-width: 420px;
   min-width: 260px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(155, 81, 224, 0.35);
   border-radius: 16px;
-  padding: 20px;
+  padding: 24px;
   text-align: left;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -1260,7 +1272,7 @@ p {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   margin: 0 0 16px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
 }
 
 /* Faixa de estatísticas full-width */
@@ -1268,15 +1280,16 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 64px;
-  margin: 32px 0 48px;
+  /* Linha menor que a coluna: quando quebra no celular não abre um vão de 64px */
+  gap: 32px 64px;
+  margin: 32px 0 0;
 }
 
 .gh-stat-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .gh-stat-num {
@@ -1284,12 +1297,12 @@ p {
   font-weight: 800;
   color: #fff;
   line-height: 1;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
 }
 
 .gh-stat-num::after {
   content: '+';
-  color: #b98aff;
+  color: var(--accent-soft);
 }
 
 /* Estatísticas exatas (ex: tempo codando) sem o + */
@@ -1307,14 +1320,14 @@ p {
 .gh-lang-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .gh-lang-row {
   display: grid;
   grid-template-columns: 90px 1fr 38px;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .gh-lang-name {
@@ -1334,7 +1347,7 @@ p {
 
 .gh-lang-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #9b51e0, #ff6ec7);
+  background: linear-gradient(90deg, var(--accent), #ff6ec7);
   border-radius: 4px;
   transition: width 0.6s ease;
 }
@@ -1357,31 +1370,22 @@ p {
 
 .projectSection {
   margin: auto;
+  /* Mesmo tamanho do site publicado (card de 614x346 em 1920); o título em clamp() cabe no card */
   width: 40%;
+  /* Espaço vertical padrão (antes: padding-top de 15rem no título) */
+  padding-block: var(--section-space);
 }
 
-.projectTitle {
-  padding-top: 15rem;
-  background: linear-gradient(135deg, #ff0000, #6a00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  width: fit-content;
-  margin: 0 auto;
-  font-weight: 700;
-  font-size: 80px;
-  text-align: center;
-  color: rgb(235, 196, 247);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Courier New', Courier, monospace;
-  animation: animação 2s ease-in-out infinite;
+/* Cards empilhados com gap (antes margin 4rem auto em cada card) */
+.Container-projetos {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
 }
 
-/* Animação de movimento do gradiente */
-@keyframes animação {
-  to {
-    background-position-x: 0;
-  }
+/* Zera o margin-top de 5rem do #project1: o espaço após o título já vem do .section-title */
+.Container-projetos > #project1 {
+  margin-top: 0;
 }
 
 .outerSectionDiv {
@@ -1391,36 +1395,24 @@ p {
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }
 
-.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.projectContainer {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  gap: 120px;
-}
-
 #project1 {
-  background-image: url(../Img/saas.jpg);
+  background-image: url("../Img/foto site hdmr ar.jpg");
   right: 5%;
   margin-top: 5rem;
 }
 
 #project2 {
-  background-image: url(../Img/software.webp);
+  background-image: url("../../Sub-Pages/CSS/IMG2/Espaço Criativo e Tecnológico de João.jpg");
   left: 5%;
 }
 
 #project3 {
-  background-image: url(../Img/pexels-designecologist-1779487.jpg);
+  background-image: url(../Img/software.webp);
   right: 5%;
 }
 
 #project4 {
-  background-image: url(../Img/coresdecodigo.jpg);
+  background-image: url(../../Sub-Pages/CSS/IMG2/foto-api.webp);
   left: 5%;
 }
 
@@ -1432,10 +1424,16 @@ p {
   background-repeat: no-repeat;
   position: relative;
   border-radius: var(--card-radius);
-  margin: 4rem auto;
+  margin: 0 auto;
   z-index: 1;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  will-change: transform, box-shadow;
+}
+
+/* Desktop grande: card em 80% da coluna, como no site publicado (no flex em coluna ele encolhia para 533px) */
+@media (min-width: 1441px) {
+  .projectCard {
+    width: 80%;
+  }
 }
 
 .projectCard:hover {
@@ -1450,7 +1448,6 @@ p {
   position: absolute;
   inset: 0;
   border-radius: var(--card-radius);
-  will-change: transform, opacity;
 }
 
 .projectCard::before {
@@ -1462,7 +1459,8 @@ p {
   opacity: 0;
 }
 
-.projectCard:hover::before {
+.projectCard:hover::before,
+.projectCard:focus-within::before {
   transform: scaleX(1);
   opacity: 1;
 }
@@ -1485,7 +1483,8 @@ p {
   visibility: hidden;
 }
 
-.projectCard:hover .projectNumber {
+.projectCard:hover .projectNumber,
+.projectCard:focus-within .projectNumber {
   opacity: 1;
   visibility: visible;
 }
@@ -1503,9 +1502,9 @@ p {
 .projectContent {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 16px;
   color: white;
-  padding: 2em;
+  padding: 32px;
   position: absolute;
   bottom: 7%;
   z-index: 5;
@@ -1521,33 +1520,24 @@ p {
   right: 5%;
 }
 
-.projectCard:hover .projectContent {
+.projectCard:hover .projectContent,
+.projectCard:focus-within .projectContent {
   transform: scale(1.05);
 }
 
-.projectSkillsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 60%;
-  gap: 1em;
-}
-
-.projectSkill {
-  width: 40px;
-}
-
 .projectHeading {
-  font-size: 50px;
+  /* Escala fluida única (antes 50px fixos + overrides por breakpoint) */
+  font-size: clamp(1.25rem, 0.9rem + 1.2vw, 2.25rem);
   font-weight: bold;
   line-height: 1.2;
-  font-family: 'Catamaran', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .projectSubHeading {
   font-size: 16px;
   font-style: italic;
-  width: 70%;
-  opacity: 0.7;
+  width: 85%;
+  color: rgba(255, 255, 255, 0.9);
   border-radius: 6px;
   backdrop-filter: blur(8px);
 }
@@ -1559,6 +1549,14 @@ p {
 }
 
 .projectBtn {
+  /* <a> com visual de botão */
+  display: inline-block;
+  box-sizing: border-box;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  line-height: normal;
+  font-family: Arial, Helvetica, sans-serif;
   border-radius: 40px;
   font-size: 0.85rem;
   font-weight: 600;
@@ -1570,6 +1568,11 @@ p {
   transition: all 0.3s ease;
   cursor: pointer;
   background-position: left;
+  /* Alvo de toque mínimo de 44px (antes 27-33px de altura) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
 }
 
 .projectBtn:hover {
@@ -1578,13 +1581,19 @@ p {
   filter: drop-shadow(0px 0px 20px #2101017e);
 }
 
-.icon,
+.project-gh-icon,
 .github {
   cursor: pointer;
   transition: 0.3s;
 }
 
-.icon {
+.project-gh-icon {
+  color: white;
+  font-size: 32px;
+}
+
+/* Ícone dos botões de contato (antes herdava a regra genérica .icon) */
+.social-btn .icon {
   color: white;
   font-size: 32px;
 }
@@ -1592,6 +1601,10 @@ p {
 .github {
   display: flex;
   align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: white;
   border-radius: 40px;
   font-size: 0.80rem;
   font-weight: 600;
@@ -1599,30 +1612,24 @@ p {
   transform-origin: left;
 }
 
-.github:hover {
+.github:is(:hover, :focus-visible) {
   padding: 0.15em 1em;
   background-color: #110101;
   filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.4));
 }
 
-.github:hover::after {
+.github:is(:hover, :focus-visible)::after {
   content: "Github";
   padding-left: 0.6em;
 }
 
-.icon:hover,
-.github:hover .icon {
+.project-gh-icon:hover,
+.github:is(:hover, :focus-visible) .project-gh-icon {
   transform: scale(0.6);
 }
 
 /* --- MOBILE --- */
 @media (max-width: 900px) {
-  .projectContainer {
-    max-width: 650px;
-    margin: 0 auto;
-    gap: 2rem;
-  }
-
   .projectCard {
     height: 250px;
     box-shadow: 0px 0px 50px rgba(61, 0, 66, 0.682);
@@ -1637,14 +1644,15 @@ p {
   }
 
   .projectContent {
-    gap: 0;
-    padding: 0.5em;
+    gap: 12px;
+    padding: 8px;
     bottom: 2%;
     transform: scale(1.05);
   }
 
   /* Sobrescreve o hover do desktop */
-  .projectCard:hover .projectContent {
+  .projectCard:hover .projectContent,
+  .projectCard:focus-within .projectContent {
     transform: scale(1.05);
   }
 
@@ -1655,60 +1663,42 @@ p {
     filter: drop-shadow(0px 0px 10px #ffffff);
   }
 
-  .rightNumber,
-  .leftNumber {
-    top: -20px;
-    left: 85%;
-    right: auto;
-  }
 
   .leftProjectContent,
   .rightProjectContent {
     left: 4%;
   }
 
-  .btnGroup {
-    margin-top: 0.4em;
-  }
-
   .projectBtn {
-    font-size: 0.5em;
-    padding: 0.5em 1em;
-  }
-
-  .projectSkillsContainer {
-    gap: 0.35em;
-  }
-
-  .projectSkill {
-    width: 17px;
-  }
-
-  .projectHeading {
-    font-size: 16px;
+    font-size: 0.8rem;
+    padding: 0.5em 1.2em;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 
   .projectSubHeading {
-    font-size: 9px;
+    font-size: 14px;
   }
 
-  .icon {
+  .project-gh-icon,
+  .social-btn .icon {
     font-size: 16px;
     filter: drop-shadow(0px 0px 5px #ffffff);
   }
 
-  .github:hover {
+  .github:is(:hover, :focus-visible) {
     padding: 0;
     background-color: transparent;
     filter: none;
   }
 
-  .github:hover::after {
+  .github:is(:hover, :focus-visible)::after {
     content: none;
   }
 
-  .icon:hover,
-  .github:hover .icon {
+  .project-gh-icon:hover,
+  .github:is(:hover, :focus-visible) .project-gh-icon {
     transform: none;
   }
 }
@@ -1721,9 +1711,8 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 60px;
   /* Evita que uma seção entre na outra */
-  padding: 150px;
+  padding: var(--section-space) 150px;
 }
 
 .container-portfolio {
@@ -1733,42 +1722,12 @@ p {
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }
 
-.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.txt-portfolio h1 {
-  padding: 6rem;
-  background: linear-gradient(135deg, #ff0000, #6a00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  width: fit-content;
-  margin: 0 auto;
-  font-weight: 700;
-  font-size: 80px;
-  text-align: center;
-  color: rgb(235, 196, 247);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'Courier New', Courier, monospace;
-  animation: rolagem 2s ease-in-out infinite;
-}
-
-/* Animação de movimento do gradiente */
-@keyframes rolagem {
-  to {
-    background-position-x: 0px;
-  }
-}
-
 /* Container que organiza os cards */
 .flex-portfolio {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  margin-top: 30px;
+  gap: 32px;
 }
 
 /* Estilização individual de cada card */
@@ -1812,29 +1771,21 @@ margin: 0 auto;
   text-align: left;
 }
 
-/* Título do card */
-.card-content h2 {
-  color: #a259ff;
-  margin: 0 0 10px;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
 /* Tecnologias por categoria */
 .tech-groups {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-top: 15px;
+    gap: 16px;
+    margin-top: 12px;
 }
 
 .tech-group-title {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #9a94a8;
-    margin: 0 0 6px;
+    margin: 0 0 8px;
 }
 
 .card-tech-list {
@@ -1853,7 +1804,7 @@ margin: 0 auto;
     border-radius: 20px;
     font-size: 0.85rem;
     font-family: monospace;
-    border: 1px solid #9b51e0;
+    border: 1px solid var(--accent);
     transition: all 0.3s ease;
     cursor: default;
 }
@@ -1864,9 +1815,9 @@ margin: 0 auto;
 
 /* Efeito interativo quando passar o mouse por cima */
 .badge-tech:hover {
-    background-color: #9b51e0;
+    background-color: var(--accent);
     color: #ffffff;
-    box-shadow: 0 0 10px #9b51e0;
+    box-shadow: 0 0 10px var(--accent);
     transform: translateY(-2px);
 }
 
@@ -1908,14 +1859,163 @@ margin: 0 auto;
     color: #2a1000;
     box-shadow: 0 0 10px #ff8c3c;
 }
+
+/* Experiências em linha do tempo */
+.flex-portfolio .timeline {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 0 0 40px;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, #ff0000, #6a00ff);
+  opacity: .7;
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item+.timeline-item {
+  margin-top: 32px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -36px;
+  /* Centro do ponto alinhado ao logo: 32 (padding) + 24 (meio do logo) - 9 (meio do ponto) */
+  top: 47px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #000;
+  border: 2px solid var(--accent-soft);
+}
+
+/* Posição atual: ponto preenchido com brilho */
+.is-current .timeline-dot {
+  background: linear-gradient(135deg, #ff003c, #8000ff);
+  border-color: #fff;
+  box-shadow: 0 0 0 4px rgba(155, 81, 224, .25), 0 0 14px var(--accent);
+}
+
+.card.timeline-card {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  /* Padding só no card (antes card 2rem + conteúdo 20px) */
+  padding: 32px;
+  box-sizing: border-box;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.timeline-card .card-content {
+  padding: 0;
+  text-align: left;
+}
+
+.timeline-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* .timeline-card na frente: vence ".card img" (width 90% + zoom no hover) */
+.timeline-card .timeline-logo {
+  margin: 0;
+  transform: none;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(185, 138, 255, .5);
+  object-fit: cover;
+}
+
+/* Logo da empresa não dá zoom (o ".card img:hover" genérico tem especificidade maior) */
+.timeline-card .timeline-logo:hover {
+  transform: none;
+}
+
+.timeline-head-text {
+  min-width: 0;
+}
+
+.timeline-card .timeline-role {
+  margin: 0 0 4px;
+  color: #a259ff;
+  font-size: 1.35rem;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.timeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin: 0;
+  color: #cfc6dc;
+  font-size: .9rem;
+}
+
+.timeline-period {
+  white-space: nowrap;
+}
+
+.timeline-company {
+  color: #fff;
+  font-weight: 700;
+}
+
+.timeline-highlights {
+  margin: 12px 0 0;
+  padding-left: 1.2rem;
+  color: #e6def0;
+}
+
+.timeline-highlights li {
+  list-style: disc;
+  margin-bottom: 4px;
+}
+
+.tech-stack-label {
+  margin: 24px 0 0;
+  font-size: .8rem;
+  color: #9a94a8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Prefixo "// " dos títulos de seção: cor própria, fora do gradiente */
+.section-prefix {
+  font-size: .55em;
+  vertical-align: .25em;
+  background: none;
+  -webkit-text-fill-color: var(--accent-soft);
+  color: var(--accent-soft);
+  text-transform: none;
+}
+
 /********FORMULARIO********/
 
 .formulario {
   max-width: 100%;
   max-height: 100%;
-  margin-bottom: 60px;
-  /* Evita que uma seção entre na outra */
-  padding: 20px;
+  /* Vertical vem do margin do .container-contato (--section-space) */
+  padding: 0 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1929,27 +2029,24 @@ margin: 0 auto;
   text-align: center;
   width: 100%;
   height: 100%;
-  margin-top: 200px;
-  margin-bottom: 100px;
+  margin-top: var(--section-space);
+  margin-bottom: var(--section-space);
 
   opacity: 0;
   will-change: opacity, transform;
   transform: translateX(+100%);
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
   background: rgba(65, 64, 64, 0.433);
-  padding: 3rem 5rem 10rem;
+  /* Antes 3rem 5rem 10rem: sobrava um vão de 160px abaixo das redes sociais */
+  padding: 40px 32px;
   border-radius: 20px;
+  /* Efeito de vidro: fundo translúcido + blur + halo largo (como no site publicado) */
   box-shadow: 1px 1px 5px 50px rgba(40, 40, 40, 0.356);
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
-}
-
-.show {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateX(0);
 }
 
 .form {
@@ -1962,43 +2059,91 @@ margin: 0 auto;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  margin-top: -100px;
+  margin-top: 0;
   background-color: #fa0c0c00;
 }
 
-.container-contato h2 {
-  background: linear-gradient(135deg, #ff0000, #6a00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 4rem;
-  margin-bottom: 50px;
-  animation: animate 2s ease-in-out infinite;
-}
-
-/* Animação de movimento do gradiente */
-@keyframes animate {
-  to {
-    background-position-x: 0;
-  }
+/* Título do card de contato mais perto do texto (os 3rem do .section-title são entre seções) */
+.conteudo-form .section-title {
+  margin-bottom: 24px;
 }
 
 .container-contato p {
   font-size: 1rem;
   color: #aaa;
-  margin-bottom: 150px;
-
+  margin-bottom: 24px;
 }
 
 input,
 textarea {
-  width: 93%;
+  width: 100%;
   padding: 12px;
-  margin: 5px 0;
+  margin: 0;
   border: 1px solid hsla(0, 0%, 100%, 0.474);
   border-radius: 20px;
   background: #00000000;
   color: #fff;
   resize: none;
+  box-sizing: border-box;
+  /* 16px em todas as larguras (antes 13.3px do navegador no desktop) */
+  font-size: 1rem;
+}
+
+/* Campos de uma linha com altura mínima de toque (o honeypot .sr-only fica de fora pelo !important) */
+input {
+  min-height: 44px;
+}
+
+/* Mensagem com altura útil; a pessoa pode aumentar na vertical */
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #b3b3b3;
+}
+
+/* Label + campo agrupados: 8px entre eles via gap (antes margin-bottom negativo na label) */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.form-label {
+  text-align: left;
+  color: #d4b3ff;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Erro só depois que a pessoa interagiu com o campo */
+input:user-invalid,
+textarea:user-invalid {
+  border-color: #ff6b6b;
+}
+
+.btn-form:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Resultado do envio (contactForm.js); vence o margin-bottom de ".container-contato p" */
+.form .form-status {
+  min-height: 1.5em;
+  margin: 0;
+  color: #d4b3ff;
+}
+
+.form .form-status[data-state="success"] {
+  color: #00c896;
+}
+
+.form .form-status[data-state="error"] {
+  color: #ff6b6b;
 }
 
 .btn-form {
@@ -2011,6 +2156,7 @@ textarea {
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
+  min-height: 44px;
 }
 
 .btn-form:hover {
@@ -2018,33 +2164,28 @@ textarea {
 }
 
 .social-section {
-  box-shadow: 1px 1px 5px 50px rgba(103, 103, 103, 0.118);
+  box-shadow: 0 0 20px rgba(103, 103, 103, 0.18);
   border-radius: 20px;
-  margin-top: 150px;
+  /* 24px + gap do form + linha reservada do status = ~64px abaixo do Enviar */
+  margin-top: 24px;
+  padding: 24px 16px;
   background-color: rgba(103, 103, 103, 0.118);
-
 }
 
 .social-section h3 {
-  background: linear-gradient(135deg, #ff0000, #6a00ff);
+  background: var(--title-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 2.4rem;
+  /* 2.4rem quebrava "Conecte-se comigo" em duas linhas no card */
+  font-size: 1.75rem;
+  line-height: 1.2;
   text-align: center;
-  padding: 1REM;
-  animation: animate 5s ease-in-out infinite;
+  margin-bottom: 16px;
 }
 
-/* Animação de movimento do gradiente */
-@keyframes animate {
-  to {
-    background-position-x: 0;
-  }
-}
-
-:root {
-  --color-white: #ffffff;
-  --color-primary: #0A66C2;
+/* Espaço igual entre os botões em todas as larguras (antes só o espaço em branco do HTML) */
+.social-btn {
+  margin: 4px;
 }
 
 .social-btn {
@@ -2052,7 +2193,7 @@ textarea {
   align-items: center;
   gap: 20px;
   padding: 10px 19px;
-  background: linear-gradient(135deg, #ff000091, #6a00ff8d);
+  background: var(--hover-gradient);
   color: var(--color-white);
   border-radius: 30px;
   cursor: pointer;
@@ -2072,11 +2213,11 @@ textarea {
   transition: transform .4s ease, opacity .4s ease;
 }
 
-.social-btn:hover {
+.social-btn:is(:hover, :focus-visible) {
   width: 200px;
 }
 
-.social-btn .text {
+.social-btn:is(:hover, :focus-visible) .text {
   transform: translateX(0);
   opacity: 1;
 }
@@ -2085,12 +2226,21 @@ textarea {
 .footer {
   background-color: rgb(0, 0, 0);
   width: 100%;
-  ;
-  padding: 3rem 0;
+  /* Embaixo, espaço para os botões flutuantes não cobrirem o copyright */
+  padding: 3rem 0 5.5rem;
+}
+
+.txt-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-inline: 16px;
 }
 
 .txt-footer p {
-  color: #7700ff;
+  /* Menor que o texto do corpo (antes herdava os 1.1rem do p) */
+  font-size: 0.875rem;
+  color: var(--accent-soft);
   text-align: center;
 }
 
@@ -2099,4 +2249,46 @@ textarea {
   opacity: 1;
   filter: blur(0);
   transform: translateX(0);
+}
+
+/* Erro do GitHub: link para o perfil */
+.gh-error a {
+  color: var(--accent-soft);
+  text-decoration: underline;
+  /* Alvo de toque de 44px sem mudar o visual do link (antes 15px de altura) */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Quem pede menos movimento: sem animações/transições e seções já visíveis */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .container-sobre,
+  .container-github,
+  .outerSectionDiv,
+  .container-portfolio,
+  .container-contato {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Hero completo e estático: sem digitação nem cursor */
+  .hero-role > span:first-child {
+    animation: none !important;
+    max-width: none;
+  }
+
+  .prompt-cursor {
+    display: none;
+  }
 }

@@ -1,6 +1,10 @@
-/* Estiliza a barra inteira */
-::-webkit-scrollbar {
-  overflow-y: hidden;
+/* Variáveis (mesmos nomes/valores de Assets/CSS/style.css; esta folha é carregada sozinha nas subpáginas) */
+:root {
+  --accent: #9b51e0;
+  --accent-soft: #b98aff;
+  --title-gradient: linear-gradient(135deg, #ff0000, #6a00ff);
+  --hover-gradient: linear-gradient(135deg, #ff000091, #6a00ff8d);
+  --font-mono: 'Courier New', Courier, monospace;
 }
 
 html,
@@ -8,6 +12,16 @@ body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
+}
+
+/* Fundo de segurança só no html: no body ele cobria o .fundo-animado (z-index: -1) e a página ficava preta */
+html {
+  background-color: #000;
+}
+
+/* Mesma fonte do texto da home (sem isso o navegador usava Times New Roman) */
+body {
+  font-family: var(--font-mono);
 }
 
 /* Remove o destaque azul ao tocar no mobile */
@@ -20,6 +34,12 @@ body {
 a:focus:not(:focus-visible),
 button:focus:not(:focus-visible) {
   outline: none;
+}
+
+/* Foco visível e consistente para quem navega pelo teclado */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 3px;
 }
 
 /* Fundo animado separado */
@@ -59,7 +79,8 @@ button:focus:not(:focus-visible) {
 
 .container-portfolio-2 {
   opacity: 0;
-  transform: translateY(100%);
+  /* Deslocamento pequeno: com 100% o container ficava fora da tela em celulares baixos */
+  transform: translateY(24px);
   will-change: opacity, transform;
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
   height: 100dvh;
@@ -73,12 +94,47 @@ button:focus:not(:focus-visible) {
 button {
   background: none;
   border: none;
-  outline: none;
 }
 
 .btn-back {
   position: absolute;
   margin: 40px;
+}
+
+/* Link de voltar (antes <button><a>): área de toque >= 44px, mesmo visual */
+.btn-back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+/* Botão de idioma (mesmo estilo da home), no canto superior direito */
+.lang-toggle {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  z-index: 2;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: white;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  transition: all 0.3s ease;
+  width: 100px;
+  min-height: 44px;
+}
+
+.lang-toggle:hover {
+  background: var(--hover-gradient);
+  border-color: transparent;
 }
 
 .btn-back i {
@@ -100,7 +156,7 @@ button {
   color: rgb(235, 196, 247);
   letter-spacing: 1px;
   text-transform: uppercase;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
 }
 
 /* Container que organiza os cards */
@@ -165,7 +221,7 @@ button {
   gap: 14px;
   margin-top: 20px;
   padding: 16px;
-  border-left: 2px solid #9b51e0;
+  border-left: 2px solid var(--accent);
   background: rgba(155, 81, 224, 0.05);
   border-radius: 0 12px 12px 0;
 }
@@ -177,7 +233,7 @@ button {
 }
 
 .case-label {
-  color: #b98aff;
+  color: var(--accent-soft);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -200,7 +256,7 @@ button {
 }
 
 .detalhes-title {
-  color: #b98aff;
+  color: var(--accent-soft);
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -237,7 +293,7 @@ button {
 
 .tech-chip:hover {
   transform: translateY(-3px);
-  border-color: #9b51e0;
+  border-color: var(--accent);
   box-shadow: 0 0 12px rgba(155, 81, 224, 0.4);
 }
 
@@ -254,13 +310,16 @@ button {
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  border: 1px solid #9b51e0;
+  border: 1px solid var(--accent);
   border-radius: 999px;
-  color: #b98aff;
+  color: var(--accent-soft);
   font-weight: bold;
   text-decoration: none;
   white-space: nowrap;
   transition: all 0.3s ease;
+  /* Alvo de toque mínimo de 44px em todos os tamanhos (antes 29px no notebook) */
+  min-height: 44px;
+  box-sizing: border-box;
 }
 
 .link-pill i {
@@ -268,14 +327,15 @@ button {
 }
 
 .link-pill:hover {
-  background: #9b51e0;
+  background: var(--accent);
   color: #fff;
-  box-shadow: 0 0 12px #9b51e0;
+  box-shadow: 0 0 12px var(--accent);
   transform: translateY(-2px);
 }
 
 /*NOTEBOOK RESPONSIVO*/
-@media (min-width:1024px) and (max-width:1920px) and (orientation: landscape) {
+/* 1025px: em 1024 exato valia junto com o bloco de celular (max-width: 1024px) */
+@media (min-width:1025px) and (orientation: landscape) {
   * {
     margin: 0;
     padding: 0;
@@ -286,7 +346,7 @@ button {
   }
 
   .card {
-    max-width: 30%;
+    max-width: min(720px, 90%);
   }
 
   .detalhes {
@@ -338,7 +398,7 @@ button {
   .container-portfolio-2 {
     opacity: 0;
     filter: blur(15px);
-    transform: translateY(+50%);
+    transform: translateY(24px);
     transition: all 2s ease;
     padding-bottom: 50px;
     height: 100%;
@@ -353,12 +413,22 @@ button {
   .txt-portfolio h1 {
     font-size: 1.9rem;
     text-align: center;
+    /* Espaço para o voltar/idioma no topo e sem estourar a largura em 360-375px */
+    padding: 4.5rem 1rem 2rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
   }
 
   button {
     background: none;
     border: none;
-    outline: none;
+  }
+
+  .lang-toggle {
+    top: 20px;
+    right: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
   }
 
   .btn-back {
@@ -369,10 +439,8 @@ button {
   .btn-back i {
     color: rgb(200, 80, 192);
     font-size: 30px;
-    outline: none;
   }
   .card {
-    width: none;
     box-shadow: none;
   }
 
@@ -411,5 +479,44 @@ button {
   .link-pill {
     padding: 8px 16px;
     font-size: 0.75rem;
+  }
+}
+
+/* Celular: card com calha de 16px (antes 32px do card + 20px do conteúdo = texto espremido) */
+@media (max-width: 600px) {
+  .card {
+    padding: 16px;
+  }
+
+  .card-content {
+    padding: 20px 4px 0;
+  }
+
+  .lang-toggle {
+    width: auto;
+    min-width: 64px;
+    right: 16px;
+  }
+
+  .btn-back {
+    margin: 20px 16px;
+  }
+}
+
+/* Quem pede menos movimento: sem animações/transições e conteúdo já visível */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .container-portfolio-2 {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }

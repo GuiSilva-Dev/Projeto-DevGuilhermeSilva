@@ -1,12 +1,38 @@
 // Estatísticas direto da API do GitHub (serviços como github-readme-stats sofrem rate-limit)
 (function () {
   let userName = "GuiSilva-Dev";
-  let cacheKey = "gh-stats-cache-v2";
+  let cacheKey = "gh-stats-cache-v3"; // v3: estrelas = recebidas nos repos próprios
   let cacheTTL = 60 * 60 * 1000; // 1 hora
 
   let statsBody = document.getElementById("gh-stats-body");
   let langsBody = document.getElementById("gh-langs-body");
+  let langsCard = document.getElementById("gh-langs-card");
+  let cardsBox = document.querySelector(".github-cards");
+  let streakImg = cardsBox ? cardsBox.querySelector("img.github-card") : null;
   if (!statsBody && !langsBody) return;
+
+  // Card de sequência (serviço externo) carregou de verdade? (onerror do HTML o esconde se falhar)
+  function streakLoaded() {
+    return !!streakImg && streakImg.complete && streakImg.naturalWidth > 0 && streakImg.style.display !== "none";
+  }
+
+  // Com a API fora do ar: some com a caixa dos cards se a sequência também não carregou,
+  // em vez de deixar um bloco vazio. Se a imagem (lazy) chegar depois, a caixa volta.
+  function hideEmptyCards() {
+    if (!cardsBox) return;
+    if (streakLoaded()) {
+      cardsBox.style.display = "";
+      return;
+    }
+    cardsBox.style.display = "none";
+    if (streakImg && !streakImg.complete) {
+      // Imagem lazy dentro de caixa com display:none nunca carregaria: força o carregamento
+      streakImg.loading = "eager";
+      streakImg.addEventListener("load", function () {
+        if (streakLoaded()) cardsBox.style.display = "";
+      }, { once: true });
+    }
+  }
 
   function t(key) {
     let lang = (window.currentLang === "en") ? "en" : "pt";
@@ -14,15 +40,17 @@
     return dict[key] || key;
   }
 
+  // Retorna { data, fresh } ou null. Antes devolvia um objeto { error } (truthy),
+  // que era renderizado como dados ("undefined") e impedia o renderError().
   function readCache() {
     try {
       let raw = localStorage.getItem(cacheKey);
-      if (!raw) return { error: "no cache" };
+      if (!raw) return null;
       let parsed = JSON.parse(raw);
-      if (Date.now() - parsed.ts > cacheTTL) return { error: "cache expired" };
-      return parsed.data;
+      if (!parsed || !parsed.data) return null;
+      return { data: parsed.data, fresh: Date.now() - parsed.ts <= cacheTTL };
     } catch (e) {
-      return { error: "cache read error" + e.message };
+      return null;
     }
   }
 
@@ -30,11 +58,14 @@
     try {
       localStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), data: data }));
     } catch (e) {
-      return { error: "cache write error" + e.message };
+      // Sem storage (modo privado/cota cheia): segue sem cache
     }
   }
 
+  let lastData = null;
+
   function render(data) {
+    lastData = data;
     // Tempo codando não vem da API; calculado aqui para usar o idioma detectado
     let dateStart = new Date(2026, 3, 13); // Início do desenvolvimento
     let dateCurrent = new Date();
@@ -42,20 +73,24 @@
     const monthsDiff = (dateCurrent.getFullYear() - dateStart.getFullYear()) * 12 + (dateCurrent.getMonth() - dateStart.getMonth()) + (dateCurrent.getDate() >= dateStart.getDate());
     const yearsDiff = monthsDiff / 12;
 
-    const formatNumber = (num) => {
-      return num.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    let locale = window.currentLang === "en" ? "en-US" : "pt-BR";
+    const formatNumber = (num, digits) => {
+      return Number(num || 0).toLocaleString(locale, { minimumFractionDigits: digits, maximumFractionDigits: digits });
     }
 
-    let codingYears = formatNumber(yearsDiff);
+    let codingYears = formatNumber(yearsDiff, 1);
 
     if (statsBody) {
       statsBody.innerHTML =
-        '<div class="gh-stat-item"><span class="gh-stat-num">' + data.repos + '</span><span class="gh-stat-label" data-i18n="github.stat.repos">' + t("github.stat.repos") + '</span></div>' +
-        '<div class="gh-stat-item"><span class="gh-stat-num">' + data.stars + '</span><span class="gh-stat-label" data-i18n="github.stat.stars">' + t("github.stat.stars") + '</span></div>' +
-        '<div class="gh-stat-item"><span class="gh-stat-num">' + codingYears + '</span><span class="gh-stat-label" data-i18n="github.stat.codingTime">' + t("github.stat.codingTime") + '</span></div>';
+        '<div class="gh-stat-item"><span class="gh-stat-num">' + formatNumber(data.repos, 0) + '</span><span class="gh-stat-label" data-i18n="github.stat.repos">' + t("github.stat.repos") + '</span></div>' +
+        '<div class="gh-stat-item"><span class="gh-stat-num">' + formatNumber(data.stars, 0) + '</span><span class="gh-stat-label" data-i18n="github.stat.stars">' + t("github.stat.stars") + '</span></div>' +
+        '<div class="gh-stat-item"><span class="gh-stat-num gh-stat-num--noplus">' + codingYears + '</span><span class="gh-stat-label" data-i18n="github.stat.codingTime">' + t("github.stat.codingTime") + '</span></div>';
     }
 
     if (langsBody) {
+      // Volta a mostrar o card caso um erro anterior o tenha escondido
+      if (langsCard) langsCard.style.display = "";
+      if (cardsBox) cardsBox.style.display = "";
       let langs = data.langs || [];
       if (!langs.length) {
         langsBody.innerHTML = '<div class="gh-loading">—</div>';
@@ -78,22 +113,24 @@
   }
 
   function renderError() {
-    let msg = '<div class="gh-error">' + t("github.error") + '</div>';
-    if (statsBody) statsBody.innerHTML = msg;
-    if (langsBody) langsBody.innerHTML = msg;
+    let msg = '<div class="gh-error"><span data-i18n="github.error">' + t("github.error") + '</span> ' +
+      '<a href="https://github.com/' + userName + '" target="_blank" rel="noopener" data-i18n="github.errorLink">' + t("github.errorLink") + '</a></div>';
+    // Mensagem uma vez só (no bloco de estatísticas); o card de linguagens fica vazio
+    if (statsBody) {
+      statsBody.innerHTML = msg;
+      if (langsBody) langsBody.innerHTML = '';
+      // Card de linguagens vazio só ocupava espaço (principalmente no celular)
+      if (langsCard) langsCard.style.display = "none";
+    } else if (langsBody) {
+      langsBody.innerHTML = msg;
+    }
+    hideEmptyCards();
   }
 
-  // Total de estrelados pelo cabeçalho Link, sem baixar todas as páginas
-  function getStarredCount() {
-    return fetch("https://api.github.com/users/" + userName + "/starred?per_page=1").then(function (r) {
-      if (!r.ok) throw new Error("starred fetch failed");
-      let link = r.headers.get("Link");
-      if (!link) {
-        return r.json().then(function (arr) { return arr.length; });
-      }
-      let match = link.match(/[?&]page=(\d+)>; rel="last"/);
-      return match ? parseInt(match[1], 10) : 0;
-    });
+  // Estrelas recebidas = soma de stargazers_count dos repositórios próprios
+  // (antes contava os repositórios que ELE marcou com estrela)
+  function sumStars(repos) {
+    return repos.reduce(function (sum, repo) { return sum + (repo.stargazers_count || 0); }, 0);
   }
 
   // Soma os bytes de todas as linguagens de cada repo, não só a principal
@@ -127,17 +164,15 @@
       fetch("https://api.github.com/users/" + userName + "/repos?per_page=100&type=owner").then(function (r) {
         if (!r.ok) throw new Error("repos fetch failed");
         return r.json();
-      }),
-      getStarredCount()
+      })
     ]).then(function (results) {
       let user = results[0];
       let repos = results[1];
-      let starredCount = results[2];
 
       return getLanguageTotals(repos).then(function (langs) {
         let data = {
           repos: user.public_repos || 0,
-          stars: starredCount,
+          stars: sumStars(repos),
           followers: user.followers || 0,
           langs: langs
         };
@@ -148,12 +183,34 @@
     });
   }
 
-  let cached = readCache();
-  if (cached) {
-    render(cached);
+  function start() {
+    // Ao trocar o idioma, refaz os números no formato do novo idioma (0,6 x 0.6)
+    let toggleBtn = document.getElementById("langToggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", function () {
+        if (lastData) render(lastData);
+      });
+    }
+
+    let cached = readCache();
+    if (cached) {
+      render(cached.data);
+    }
+
+    // Cache dentro do TTL: não refaz as ~N+2 chamadas (API sem token = 60 req/hora por IP).
+    // Cache vencido continua na tela como fallback se a API falhar.
+    if (!cached || !cached.fresh) {
+      fetchFresh().then(render).catch(function () {
+        if (!cached) renderError();
+      });
+    }
   }
 
-  fetchFresh().then(render).catch(function () {
-    if (!cached) renderError();
-  });
+  // Espera o i18n.js definir window.currentLang (ele registra o DOMContentLoaded antes)
+  // para formatar números e textos no idioma certo
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
 })();

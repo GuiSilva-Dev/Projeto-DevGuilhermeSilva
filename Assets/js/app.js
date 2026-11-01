@@ -1,4 +1,7 @@
 // Config do particles.js (inline; particlesJS.load exigiria servir o particles.json)
+// Quem pede menos movimento no sistema vê as partículas paradas
+var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 particlesJS('particles-js',
   
   {
@@ -52,11 +55,13 @@ particlesJS('particles-js',
         "enable": true,
         "distance": 150,
         "color": "#ffffff",
+        // Pré-definido: com move desligado (reduced motion) o particles.js desenha antes do init converter a cor
+        "color_rgb_line": { "r": 255, "g": 255, "b": 255 },
         "opacity": 0.4,
         "width": 1
       },
       "move": {
-        "enable": true,
+        "enable": !prefersReducedMotion,
         "speed": 6,
         "direction": "none",
         "random": false,
@@ -119,3 +124,22 @@ particlesJS('particles-js',
   }
 
 );
+
+// Pausa o loop de animação quando o hero sai da tela (o canvas não fica visível no resto da página)
+(function () {
+  var container = document.getElementById('particles-js');
+  var instance = window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS;
+  if (!container || !instance || !('IntersectionObserver' in window)) return;
+
+  var paused = false;
+  new IntersectionObserver(function (entries) {
+    var visible = entries[0].isIntersecting;
+    if (!visible && !paused) {
+      cancelRequestAnimFrame(instance.fn.drawAnimFrame);
+      paused = true;
+    } else if (visible && paused) {
+      paused = false;
+      instance.fn.vendors.draw(); // reagenda o próprio requestAnimFrame se move.enable
+    }
+  }).observe(container);
+})();

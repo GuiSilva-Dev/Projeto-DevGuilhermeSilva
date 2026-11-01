@@ -1,14 +1,5 @@
-// Alterna .show conforme o elemento entra/sai da tela
-const myObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    } else {
-      entry.target.classList.remove('show');
-    }
-  });
+// Revela o conteúdo ao carregar. Antes usava IntersectionObserver, mas o container
+// (mais alto que a tela e deslocado para baixo) não "entrava" em telas baixas: página preta.
+document.querySelectorAll('.container-portfolio-2').forEach((el) => {
+  requestAnimationFrame(() => el.classList.add('show'));
 });
-
-const elements = document.querySelectorAll('.container-portfolio-2');
-
-elements.forEach((element) => myObserver.observe(element));

@@ -52,7 +52,6 @@ NewPortfolio/
 │       ├── backtotop.js     # Botão de voltar ao topo
 │       ├── btnSocial.js     # Lógica do botão flutuante de redes sociais
 │       ├── effectPalavra.js # Efeito de digitação (não incluído no contexto, mas referenciado)
-│       ├── efffectSkills.js # Lógica do carrossel infinito de skills
 │       ├── menu.js          # Controle do menu mobile
 │       └── rolagemx.js      # Animação de elementos ao rolar a página
 └── Sub-Pages/          # Páginas de detalhes dos projetos

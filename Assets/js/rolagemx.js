@@ -1,12 +1,12 @@
-const ObserverOptions = {
-};
-
-// Alterna .show conforme o elemento entra/sai da tela
-const myObserver = new IntersectionObserver((entries) => {
+// Revela cada seção uma única vez, na primeira vez que entra na tela
+const myObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
-    entry.target.classList.toggle("show", entry.isIntersecting);
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+      observer.unobserve(entry.target);
+    }
   });
-}, ObserverOptions);
+});
 
 document.querySelectorAll(
   ".container-sobre, .container-github, .outerSectionDiv, .container-portfolio, .container-contato, .container-portfolio-2"
@@ -15,8 +15,8 @@ document.querySelectorAll(
 );
 
 document.addEventListener('DOMContentLoaded', () => {
-  if( history.state) {
-    // Volta ao topo sem animação
-    window.scrollTo({top:0, left:0, behavior:"instant"});
+  // Volta ao topo ao recarregar, exceto quando a URL aponta para uma seção (ex.: index.html#projects)
+  if (history.state && !window.location.hash) {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
 });

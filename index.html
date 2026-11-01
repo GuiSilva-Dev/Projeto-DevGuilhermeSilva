@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,11 +20,23 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Guilherme Silva - Desenvolvedor Full Stack">
   <meta name="twitter:description" content="Portfólio com projetos em React, Node.js, E-commerce, SaaS e APIs RESTful.">
-  <link rel="canonical" href="">
+  <link rel="canonical" href="https://guisdev.netlify.app/">
   <link rel="icon" href="Assets/Img/logo.port.png">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://api.github.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" media="screen" href="Assets/CSS/style.css">
   <link rel="stylesheet" href="Assets/CSS/responsividade.css">
+  <!-- defer: baixam em paralelo e executam na ordem, após o parse (antes do DOMContentLoaded) -->
+  <script src="particles.js" defer></script>
+  <script src="Assets/js/i18n.js" defer></script>
+  <script src="Assets/js/githubStats.js" defer></script>
+  <script src="Assets/js/app.js" defer></script>
+  <script src="Assets/js/backtotop.js" defer></script>
+  <script src="Assets/js/btnSocial.js" defer></script>
+  <script src="Assets/js/menu.js" defer></script>
+  <script src="Assets/js/rolagemx.js" defer></script>
+  <script src="Assets/js/contactForm.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,7 +45,7 @@
     "jobTitle": "Desenvolvedor Full Stack",
     "email": "Guilherme.lsp10@gmail.com",
     "telephone": "+55 11 94522-4638",
-    "image": "Assets/Img/img foto pessoal.png",
+    "image": "Assets/Img/foto-pessoal.webp",
     "description": "Desenvolvedor e estudante de Ciência da Computação especializado em soluções web modernas",
     "sameAs": [
       "https://www.linkedin.com/in/luiz-guilherme-da-silva-pereira-a64793251/",
@@ -49,76 +61,86 @@
 <body>
   <!-- animação de fundo -->
   <div class="fundo-animado"></div>
-  <div class="orbita-fundo">
-    <div class="esfera esfera1"></div>
-    <div class="esfera esfera2"></div>
-  </div>
   <header class="header">
     <div class="logo-topo">
-      <img src="Assets/Img/logo.port.png" alt="Guilherme Silva - Logo do portfólio" loading="lazy">
+      <img src="Assets/Img/logo.port.png" alt="Guilherme Silva - Logo do portfólio" width="500" height="261">
     </div>
     <div class="menu">
-      <label class="hamburger">
-        <input type="checkbox" id="menuToggle">
-        <svg viewBox="0 0 32 32">
+      <!-- Fora do .nav-menu: fica acessível com o menu fechado e acima do overlay -->
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+      <button type="button" class="hamburger" id="menuToggle" aria-label="Menu" aria-expanded="false"
+        aria-controls="menuAberto">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
           <path class="line line-top-bottom"
             d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22">
           </path>
           <path class="line" d="M7 16 27 16"></path>
         </svg>
-      </label>
+      </button>
     </div>
-    <div class="menu-aberto">
+    <div class="menu-aberto" id="menuAberto">
       <nav class="nav-menu">
         <a href="#particles-js" data-i18n="nav.inicio">INÍCIO</a>
         <a href="#section-sobre" data-i18n="nav.sobre">SOBRE</a>
         <a href="#projects" data-i18n="nav.projetos">PROJETOS</a>
         <a href="#portfolio" data-i18n="nav.experiencias">EXPERIÊNCIAS</a>
         <a href="#formulario" data-i18n="nav.contato">CONTATO</a>
-        <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">EN</button>
       </nav>
     </div>
   </header>
   <!--BOTAO DE ROLAGEM PARA O TOPO-->
-  <div id="backToTop" class="fixed-button">
-    <i class="bi bi-chevron-up"></i>
-  </div>
+  <button type="button" id="backToTop" class="fixed-button" aria-label="Voltar ao topo"
+    data-i18n-aria-label="a11y.backToTop">
+    <i class="bi bi-chevron-up" aria-hidden="true"></i>
+  </button>
 
   <!--BOTAO DE REDES SOCIAIS-->
   <div class="social-container">
-    <button class="btn-social" onclick="toggleMenu()">
-      <i class="bi bi-menu-button-wide"></i>
-
-      <div class="social-buttons">
-        <div class="icon1"><a href="mailto:Guilherme.lsp10@gmail.com"><i class="bi bi-envelope-at"></i></a></div>
-        <div class="icon3"><a href="https://github.com/GuiSilva-Dev"><i class="bi bi-github"></i></a></div>
-        <div class="icon4"><a href="https://www.linkedin.com/in/luiz-guilherme-da-silva-pereira-a64793251/"><i
-              class="bi bi-linkedin"></i></a></div>
-        <div class="icon5"><a href="https://wa.me/+5511945224638"><i class="bi bi-whatsapp"></i></a></div>
-      </div>
+    <button type="button" class="btn-social" id="socialToggle" aria-label="Redes sociais"
+      data-i18n-aria-label="a11y.social" aria-expanded="false" aria-controls="socialButtons">
+      <i class="bi bi-menu-button-wide" aria-hidden="true"></i>
     </button>
+    <div class="social-buttons" id="socialButtons">
+      <div class="icon3"><a href="https://github.com/GuiSilva-Dev" target="_blank" rel="noopener"
+          aria-label="GitHub"><i class="bi bi-github" aria-hidden="true"></i></a></div>
+      <div class="icon4"><a href="https://www.linkedin.com/in/luiz-guilherme-da-silva-pereira-a64793251/"
+          target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+      </div>
+      <div class="icon5"><a href="https://wa.me/+5511945224638" target="_blank" rel="noopener"
+          aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a></div>
+    </div>
   </div>
   <!-- particles.js container -->
   <div id="particles-js"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
   <main>
     <div id="inicio" class="inicio">
-      <div class="txt-inicio">
-        <h1>Guilherme Silva</h1>
-      </div>
-      <div class="txt-efeito">
-        <h2 data-i18n="hero.role">Software Developer</h2>
+      <h1>Guilherme Silva</h1>
+      <!-- Cargo com efeito de digitação em loop (digita, pausa, apaga); estático com movimento reduzido -->
+      <p class="hero-prompt">
+        <span class="hero-role"><span data-i18n="hero.role">Desenvolvedor Full Stack</span><span
+            class="prompt-cursor" aria-hidden="true"></span></span>
+      </p>
+      <div class="hero-ctas">
+        <a class="btn-button hero-btn hero-btn-primary" href="#projects"><span
+            data-i18n="hero.ctaProjects">Ver projetos</span></a>
+        <a class="btn-button hero-btn" href="Assets/Img/Curriculo-Luiz-Guilherme.pdf" download><i
+            class="bi bi-download" aria-hidden="true"></i><span data-i18n="hero.ctaCv">Baixar CV</span></a>
+        <div class="hero-links">
+          <a class="hero-icon" href="https://github.com/GuiSilva-Dev" target="_blank" rel="noopener"
+            aria-label="GitHub (abre em nova aba)" data-i18n-aria-label="hero.githubAria"><i class="bi bi-github"
+              aria-hidden="true"></i></a>
+          <a class="hero-icon" href="https://www.linkedin.com/in/luiz-guilherme-da-silva-pereira-a64793251/"
+            target="_blank" rel="noopener" aria-label="LinkedIn (abre em nova aba)"
+            data-i18n-aria-label="hero.linkedinAria"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+        </div>
       </div>
     </div>
-  </main>
 
   <section id="section-sobre" class="sobre">
     <div class="container-sobre">
       <div class="txt-sobre">
-        <h2 data-i18n="about.title">
-          Sobre</h2>
+        <h2 class="section-title"><span class="section-prefix" aria-hidden="true">// </span><span data-i18n="about.title">Sobre</span></h2>
       </div>
       <div class="flex">
         <div class="box-sobre">
@@ -132,69 +154,52 @@
           </p>
         </div>
 
-        <div class="btn-pdf">
-          <a href="Assets/Img/Curriculo Luiz Guilherme.pdf.pdf" Download>
-            <button class="btn-button"><span data-i18n="about.downloadCv">BAIXAR CV</span></button>
-          </a>
-        </div>
         <div class="img-sobre">
           <div class="conteudo-img">
-            <img src="Assets/Img/img foto pessoal.png"
-              alt="Foto de perfil de Guilherme Silva - Desenvolvedor Full Stack" loading="lazy">
-            <span>💻</span>
+            <img src="Assets/Img/foto-pessoal.webp" width="880" height="880"
+              alt="Foto de perfil de Guilherme Silva - Desenvolvedor Full Stack" loading="lazy" decoding="async">
             <h4>Guilherme Silva <br><span data-i18n="about.role">Desenvolvedor</span></h4>
           </div>
         </div>
 
       </div><!-- fim flex-->
       <div class="sobre-skills">
-        <div class="softs-skills">
-          <h3 data-i18n="skills.tools">Ferramentas</h3>
-          <nav class="img-softs">
-            <ul class="img-skills" id="bar-skills">
-              <i><img src="assets/img/icons8-git-48.png" alt="Git - Ferramenta de controle de versão"
-                  loading="lazy"></i>
-              <i><img src="assets/img/icons8-amazon-aws-24.png" alt="Amazon AWS logo representing cloud services"
-                  loading="lazy"></i>
-              <i><img src="assets/img/icons8-github-50.png" alt="GitHub - Plataforma de desenvolvimento"
-                  loading="lazy"></i>
-              <i><img src="assets/img/icons8-docker-48.png" alt="Docker - Plataforma de containerização"
-                  loading="lazy"></i>
-            </ul>
-          </nav>
+        <div class="skill-group">
+          <h3 class="skill-group-title"><span class="code-prefix" aria-hidden="true">// </span><span data-i18n="skills.tools">Ferramentas</span></h3>
+          <ul class="skill-list">
+            <li class="skill-chip"><img src="Assets/Img/icons8-git-48.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>Git</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-amazon-aws-24.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>AWS</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-github-50.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>GitHub</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-docker-48.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>Docker</span></li>
+            <li class="skill-chip"><img src="Assets/Img/llm.svg" alt="" width="24" height="24" loading="lazy" decoding="async"><span>LLM</span></li>
+          </ul>
         </div>
-        <div class="softs-2">
-          <h3 data-i18n="skills.frontend">Front-End</h3>
-          <nav class="img-2">
-            <ul class="img-12" id="bar">
-              <i><img src="assets/img/icons8-tailwindcss-48.png" alt="Tailwind CSS - Framework de CSS"></i>
-              <i><img src="assets/img/icons8-html5-48.png" alt="HTML5 - Linguagem de marcação"></i>
-              <i><img src="assets/img/icons8-css-48.png" alt="CSS3 - Estilização web"></i>
-              <i><img src="assets/img/icons8-react-24.png" alt="React - Biblioteca JavaScript"></i>
-              <i><img src="assets/img/icons8-bootstrap-24.png" alt="Bootstrap - Framework CSS"></i>
-            </ul>
-          </nav>
+        <div class="skill-group">
+          <h3 class="skill-group-title"><span class="code-prefix" aria-hidden="true">// </span><span data-i18n="skills.frontend">Front-End</span></h3>
+          <ul class="skill-list">
+            <li class="skill-chip"><img src="Assets/Img/icons8-html5-48.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>HTML5</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-css-48.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>CSS3</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-react-24.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>React</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-tailwindcss-48.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>Tailwind CSS</span></li>
+            <li class="skill-chip"><img src="Assets/Img/nextjs.svg" alt="" width="24" height="24" loading="lazy" decoding="async"><span>Next.js</span></li>
+          </ul>
         </div>
-        <div class="softs-p3">
-          <h3 data-i18n="skills.backend">Back-End</h3>
-          <nav class="img-p3">
-            <ul class="img-p13" id="bar-pt3">
-              <i><img src="assets/img/icons8-js-48.png" alt="JavaScript - Linguagem de programação"></i>
-              <i><img src="assets/img/icons8-nodejs-48.png" alt="Node.js - Runtime JavaScript"></i>
-              <i><img src="assets/img/icons8-c-47.png" alt="C - Linguagem de programação"></i>
-              <i><img src="assets/img/icons8-logo-java-coffee-cup-48.png" alt="Java - Linguagem de programação"></i>
-            </ul>
-          </nav>
+        <div class="skill-group">
+          <h3 class="skill-group-title"><span class="code-prefix" aria-hidden="true">// </span><span data-i18n="skills.backend">Back-End</span></h3>
+          <ul class="skill-list">
+            <li class="skill-chip"><img src="Assets/Img/typescript.svg" alt="" width="24" height="24" loading="lazy" decoding="async"><span>TypeScript</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-nodejs-48.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>Node.js</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-logo-java-coffee-cup-48.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>Java</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-c-47.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>C</span></li>
+          </ul>
         </div>
-        <div class="softs-p4">
-          <h3 data-i18n="skills.database">Banco de dados</h3>
-          <nav class="img-p4">
-            <ul class="img-p14" id="bar-pt4">
-              <i><img src="assets/img/icons8-mysql-48.png" alt="MySQL - Banco de dados relacional"></i>
-              <i><img src="Assets/Img/icons8-mongodb-24.png" alt="MongoDB - Banco de dados NoSQL"></i>
-              <i><img src="Assets/Img/icons8-sqlite-50.png" alt="SQLite - Banco de dados leve"></i>
-            </ul>
-          </nav>
+        <div class="skill-group">
+          <h3 class="skill-group-title"><span class="code-prefix" aria-hidden="true">// </span><span data-i18n="skills.database">Banco de dados</span></h3>
+          <ul class="skill-list">
+            <li class="skill-chip"><img src="Assets/Img/icons8-mysql-48.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>MySQL</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-mongodb-24.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>MongoDB</span></li>
+            <li class="skill-chip"><img src="Assets/Img/icons8-sqlite-50.png" alt="" width="24" height="24" loading="lazy" decoding="async"><span>SQLite</span></li>
+          </ul>
         </div>
       </div><!-- fim sobre-skills-->
     </div><!-- fim container-sobre-->
@@ -203,19 +208,20 @@
 
   <section id="github-stats" class="github-stats">
     <div class="container-github">
-      <h2 class="github-title" data-i18n="github.title">Atividade no GitHub</h2>
+      <h2 class="section-title github-title"><span class="section-prefix" aria-hidden="true">// </span><span data-i18n="github.title">Atividade no GitHub</span></h2>
       <p class="github-subtitle" data-i18n="github.subtitle">Estatísticas geradas automaticamente a partir do meu perfil público.</p>
-      <div class="gh-hero-stats" id="gh-stats-body">
+      <div class="gh-hero-stats" id="gh-stats-body" aria-live="polite">
         <div class="gh-loading" data-i18n="github.loading">Carregando dados do GitHub...</div>
       </div>
 
       <div class="github-cards">
         <img class="github-card" src="https://streak-stats.demolab.com/?user=GuiSilva-Dev&hide_border=true&background=00000000&stroke=9b51e0&ring=9b51e0&fire=ff6ec7&currStreakLabel=d4b3ff&currStreakNum=ffffff&sideLabels=d4b3ff&sideNums=ffffff&dates=aaaaaa"
-          alt="Sequência de contribuições no GitHub de Guilherme Silva" loading="lazy">
+          alt="Sequência de contribuições no GitHub de Guilherme Silva" width="495" height="195" loading="lazy" decoding="async"
+          onerror="this.style.display='none'">
 
         <div class="github-native-card" id="gh-langs-card">
           <h3 class="gh-card-title" data-i18n="github.lang.title">Tecnologias mais usadas</h3>
-          <div class="gh-lang-list" id="gh-langs-body">
+          <div class="gh-lang-list" id="gh-langs-body" aria-live="polite">
             <div class="gh-loading" data-i18n="github.loading">Carregando dados do GitHub...</div>
           </div>
         </div>
@@ -225,26 +231,22 @@
 
   <section id="projects" class="projectSection">
     <div class="outerSectionDiv">
-      <h2 class="projectTitle" data-i18n="projects.title">Projetos</h2>
+      <h2 class="section-title projectTitle"><span class="section-prefix" aria-hidden="true">// </span><span data-i18n="projects.title">Projetos</span></h2>
       <div class="Container-projetos">
         <div class="projectCard" id="project1">
 
           <div class="projectNumber leftNumber">01</div>
           <div class="projectContent leftProjectContent">
-            <div class="projectSkillsContainer">
-              <!--*MINI IMG NO PROJECT1-->
-            </div>
-            <h2 class="projectHeading" data-i18n="projects.p1.heading">Desenvolvimento Saas</h2>
+            <h3 class="projectHeading" data-i18n="projects.p1.heading">SaaS</h3>
             <p class="projectSubHeading" data-i18n="projects.p1.text">
-              Vitrine de um SaaS para gestão de negócios online, simples e escalável — do cadastro ao pagamento, tudo em um
-              só lugar.
+              Landing page responsiva para uma assistência técnica de eletrodomésticos, focada em converter visitantes em
+              clientes via WhatsApp e formulário.
             </p>
             <div class="btnGroup">
-              <a href="Sub-Pages/pagina-1.html">
-                <button class="projectBtn" data-i18n="projects.learnMore">Saiba Mais</button>
-              </a>
-              <a href="https://github.com/AayushBharti/Razorpay-clone" class="github" target="_blank">
-                <i title="GitHub Link" class="fa-brands fa-github icon"></i>
+              <a class="projectBtn" href="Sub-Pages/pagina-1.html" data-i18n="projects.learnMore">Saiba Mais</a>
+              <a href="https://github.com/GuiSilva-Dev/Projeto-Maintenance-store" class="github" target="_blank" rel="noopener"
+                aria-label="Código no GitHub" data-i18n-aria-label="projects.githubAria">
+                <i class="bi bi-github project-gh-icon" aria-hidden="true"></i>
               </a>
             </div>
           </div>
@@ -253,20 +255,16 @@
         <div class="projectCard" id="project2">
           <div class="projectNumber rightNumber">02</div>
           <div class="projectContent rightProjectContent">
-            <div class="projectSkillsContainer">
-              <!--*MINI IMG NO PROJECT2-->
-            </div>
-            <h2 class="projectHeading" data-i18n="projects.p2.heading">Portfólio e Site pessoal</h2>
+            <h3 class="projectHeading" data-i18n="projects.p2.heading">Portfólio e Site pessoal</h3>
             <p class="projectSubHeading" data-i18n="projects.p2.text">
               Portfólios personalizados que unem design responsivo e identidade única, feitos para impressionar e
               converter.
             </p>
             <div class="btnGroup">
-              <a href="Sub-Pages/pagina-2.html">
-                <button class="projectBtn" data-i18n="projects.learnMore">Saiba Mais</button>
-              </a>
-              <a href="https://github.com/AayushBharti/Discord-clone" class="github" target="_blank">
-                <i title="GitHubLink" class="fa-brands fa-github icon"></i>
+              <a class="projectBtn" href="Sub-Pages/pagina-2.html" data-i18n="projects.learnMore">Saiba Mais</a>
+              <a href="https://github.com/GuiSilva-Dev/Projeto-Site-Advogada" class="github" target="_blank" rel="noopener"
+                aria-label="Código no GitHub" data-i18n-aria-label="projects.githubAria">
+                <i class="bi bi-github project-gh-icon" aria-hidden="true"></i>
               </a>
             </div>
           </div>
@@ -274,20 +272,16 @@
         <div class="projectCard" id="project3">
           <div class="projectNumber leftNumber">03</div>
           <div class="projectContent leftProjectContent">
-            <div class="projectSkillsContainer">
-              <!--*MINI IMG NO PROJECT3-->
-            </div>
-            <h2 class="projectHeading" data-i18n="projects.p3.heading">Sistema de Recibo Digital</h2>
+            <h3 class="projectHeading" data-i18n="projects.p3.heading">Sistema de Recibo Digital</h3>
             <p class="projectSubHeading" data-i18n="projects.p3.text">
               Emissão de recibos e notas fiscais em segundos: preencha, gere e receba por e-mail — sem papel, sem
               complicação.
             </p>
             <div class="btnGroup">
-              <a href="Sub-Pages/pagina-3.html">
-                <button class="projectBtn" data-i18n="projects.learnMore">Saiba Mais</button>
-              </a>
-              <a href="https://github.com/AayushBharti/Password-Generator" class="github" target="_blank">
-                <i title="GitHubLink" class="fa-brands fa-github icon"></i>
+              <a class="projectBtn" href="Sub-Pages/pagina-3.html" data-i18n="projects.learnMore">Saiba Mais</a>
+              <a href="https://github.com/GuiSilva-Dev/Software-NF-E" class="github" target="_blank" rel="noopener"
+                aria-label="Código no GitHub" data-i18n-aria-label="projects.githubAria">
+                <i class="bi bi-github project-gh-icon" aria-hidden="true"></i>
               </a>
             </div>
           </div>
@@ -295,19 +289,16 @@
         <div class="projectCard" id="project4">
           <div class="projectNumber rightNumber">04</div>
           <div class="projectContent rightProjectContent">
-            <div class="projectSkillsContainer">
-              <!--*MINI IMG NO PROJECT4-->
-            </div>
-            <h2 class="projectHeading" data-i18n="projects.p4.heading">API RESTful</h2>
+            <h3 class="projectHeading" data-i18n="projects.p4.heading">API RESTful</h3>
             <p class="projectSubHeading" data-i18n="projects.p4.text">
               API RESTful robusta em Node.js e Express, com persistência em SQLite e endpoints prontos para cadastro de
               usuários.
+            </p>
             <div class="btnGroup">
-              <a href="Sub-Pages/pagina-4.html">
-                <button class="projectBtn" data-i18n="projects.learnMore">Saiba Mais</button>
-              </a>
-              <a href="" class="github" target="_blank">
-                <i title="GitHubLink" class="fa-brands fa-github icon"></i>
+              <a class="projectBtn" href="Sub-Pages/pagina-4.html" data-i18n="projects.learnMore">Saiba Mais</a>
+              <a href="https://github.com/GuiSilva-Dev/Api-Rest-com-Node.js" class="github" target="_blank" rel="noopener"
+                aria-label="Código no GitHub" data-i18n-aria-label="projects.githubAria">
+                <i class="bi bi-github project-gh-icon" aria-hidden="true"></i>
               </a>
             </div>
           </div>
@@ -319,45 +310,87 @@
   <section id="portfolio" class="portfolio">
     <div class="container-portfolio">
       <div class="txt-portfolio">
-        <h1 data-i18n="experience.title">
-          Experiências</h1>
+        <h2 class="section-title"><span class="section-prefix" aria-hidden="true">// </span><span data-i18n="experience.title">Experiências</span></h2>
       </div>
       <div class="flex-portfolio">
-        <div class="card">
-          <div class="card-content">
-            <h2 data-i18n="experience.role">Desenvolvedor FullStack</h2>
-            <div class="tech-groups">
-              <div class="tech-group tech-frontend">
-                <h4 class="tech-group-title" data-i18n="experience.group.frontend">Frontend</h4>
-                <ul class="card-tech-list">
-                  <li class="badge-tech"><i class="bi bi-code-slash"></i><span data-i18n="experience.tech.react">React.js</span></li>
+        <ol class="timeline">
+          <li class="timeline-item is-current">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card timeline-card">
+              <div class="card-content">
+                <header class="timeline-head">
+                  <img class="timeline-logo" src="Assets/Img/proa_ai_logo.jpeg" alt="Proa.ai" width="48" height="48"
+                    loading="lazy" decoding="async">
+                  <div class="timeline-head-text">
+                    <h3 class="timeline-role"><span data-i18n="experience.role">Desenvolvedor Full Stack</span></h3>
+                    <p class="timeline-meta">
+                      <span class="timeline-company">Proa.ai</span>
+                      <span class="timeline-period"><span aria-hidden="true">·</span> <time datetime="2026-04"
+                          data-i18n="experience.job1.period">Abr 2026 — atual</time></span>
+                    </p>
+                  </div>
+                </header>
+                <!-- TODO(Guilherme): 2-3 conquistas/responsabilidades no estágio. Descomente e preencha
+                  (crie as chaves no i18n.js em pt e en):
+                <ul class="timeline-highlights">
+                  <li data-i18n="experience.job1.h1">...</li>
+                  <li data-i18n="experience.job1.h2">...</li>
+                </ul>
+                -->
+                <p class="tech-stack-label" data-i18n="experience.stackLabel">Stack utilizada</p>
+                <div class="tech-groups">
+                  <div class="tech-group tech-frontend">
+                    <h4 class="tech-group-title" data-i18n="experience.group.frontend">Frontend</h4>
+                    <ul class="card-tech-list">
+                      <li class="badge-tech"><i aria-hidden="true" class="bi bi-code-slash"></i><span data-i18n="experience.tech.react">React.js</span></li>
+                      <li class="badge-tech"><i aria-hidden="true" class="bi bi-code-slash"></i><span data-i18n="experience.tech.next">Next.js</span></li>
+                    </ul>
+                  </div>
+                  <div class="tech-group tech-backend">
+                    <h4 class="tech-group-title" data-i18n="experience.group.backend">Backend</h4>
+                    <ul class="card-tech-list">
+                      <li class="badge-tech"><i aria-hidden="true" class="bi bi-hdd-network"></i><span data-i18n="experience.tech.node">Node.js</span></li>
+                      <li class="badge-tech"><i aria-hidden="true" class="bi bi-diagram-3"></i><span data-i18n="experience.tech.microservices">Micro serviços</span></li>
+                      <li class="badge-tech"><i aria-hidden="true" class="bi bi-plug"></i><span data-i18n="experience.tech.apis">APIs</span></li>
+                    </ul>
+                  </div>
+                  <div class="tech-group tech-cloud">
+                    <h4 class="tech-group-title" data-i18n="experience.group.cloud">Cloud e Dados</h4>
+                    <ul class="card-tech-list">
+                      <li class="badge-tech"><i aria-hidden="true" class="bi bi-cloud"></i><span data-i18n="experience.tech.aws">AWS</span></li>
+                      <li class="badge-tech"><i aria-hidden="true" class="bi bi-database"></i><span data-i18n="experience.tech.mongo">MongoDB</span></li>
+                    </ul>
+                  </div>
+                  <div class="tech-group tech-ai">
+                    <h4 class="tech-group-title" data-i18n="experience.group.ai">IA e Automação</h4>
+                    <ul class="card-tech-list">
+                      <li class="badge-tech"><i aria-hidden="true" class="bi bi-robot"></i><span data-i18n="experience.tech.chatbots">Chatbots</span></li>
+                      <li class="badge-tech"><i aria-hidden="true" class="bi bi-cpu"></i><span data-i18n="experience.tech.llms">LLMs</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+          <!-- Exemplo para adicionar outra experiência (copie o <li> abaixo, descomente e preencha):
+          <li class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card timeline-card">
+              <div class="card-content">
+                <p class="timeline-meta">
+                  <span class="timeline-company" data-i18n="experience.job2.company">NOME DA EMPRESA</span>
+                  <span aria-hidden="true">·</span>
+                  <time datetime="AAAA-MM" data-i18n="experience.job2.period">MÊS/ANO – MÊS/ANO</time>
+                </p>
+                <h3 class="timeline-role" data-i18n="experience.job2.role">CARGO</h3>
+                <ul class="timeline-highlights">
+                  <li data-i18n="experience.job2.h1">CONQUISTA 1</li>
                 </ul>
               </div>
-              <div class="tech-group tech-backend">
-                <h4 class="tech-group-title" data-i18n="experience.group.backend">Backend</h4>
-                <ul class="card-tech-list">
-                  <li class="badge-tech"><i class="bi bi-hdd-network"></i><span data-i18n="experience.tech.node">Node.js</span></li>
-                  <li class="badge-tech"><i class="bi bi-diagram-3"></i><span data-i18n="experience.tech.microservices">Micro serviços</span></li>
-                  <li class="badge-tech"><i class="bi bi-plug"></i><span data-i18n="experience.tech.apis">APIs</span></li>
-                </ul>
-              </div>
-              <div class="tech-group tech-cloud">
-                <h4 class="tech-group-title" data-i18n="experience.group.cloud">Cloud e Dados</h4>
-                <ul class="card-tech-list">
-                  <li class="badge-tech"><i class="bi bi-cloud"></i><span data-i18n="experience.tech.aws">AWS</span></li>
-                  <li class="badge-tech"><i class="bi bi-database"></i><span data-i18n="experience.tech.mongo">MongoDB</span></li>
-                </ul>
-              </div>
-              <div class="tech-group tech-ai">
-                <h4 class="tech-group-title" data-i18n="experience.group.ai">IA e Automação</h4>
-                <ul class="card-tech-list">
-                  <li class="badge-tech"><i class="bi bi-robot"></i><span data-i18n="experience.tech.chatbots">Chatbots</span></li>
-                  <li class="badge-tech"><i class="bi bi-cpu"></i><span data-i18n="experience.tech.llms">LLMs</span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+            </article>
+          </li>
+          -->
+        </ol>
       </div><!--fim flex-portfolio-->
     </div><!--fim container-portfolio-->
   </section>
@@ -367,63 +400,81 @@
     <div class="container-contato">
       <div class="flex">
         <div class="conteudo-form">
-          <h2 data-i18n="contact.title">
-            Contato
-          </h2>
+          <h2 class="section-title"><span class="section-prefix" aria-hidden="true">// </span><span data-i18n="contact.title">Contato</span></h2>
           <p data-i18n="contact.text">
             Tem um projeto em mente ou precisa de uma solução digital? Entre em contato e vamos conversar!
           </p>
-          <div class="complemento-form">
-          </div>
-          <form class="form" action="https://formsubmit.co/Guilherme.lsp10@gmail.com" target="_blank" method="post"
-            autocomplete="off">
-            <input type="text" name="nome" id="nome" placeholder="Seu nome"
-              data-i18n-placeholder="contact.namePlaceholder" required autocomplete="off">
-            <input type="phone" name="telefone" id="telefone" placeholder="Seu numero"
-              data-i18n-placeholder="contact.phonePlaceholder" required autocomplete="off">
-            <input type="text" name="email" id="email" placeholder="seu e-mail"
-              data-i18n-placeholder="contact.emailPlaceholder" required autocomplete="off">
-            <textarea name="mensagem" id="mensagem" placeholder="Descreva sua mensagem aqui..."
-              data-i18n-placeholder="contact.messagePlaceholder" required autocomplete="off"></textarea>
-            <button class="btn-form"><span data-i18n="contact.send">Enviar</span></button>
+          <!-- Sem JS: envia normalmente pelo action. Com JS: contactForm.js envia via fetch (AJAX) e mostra o status aqui mesmo -->
+          <form class="form" id="contactForm" action="https://formsubmit.co/Guilherme.lsp10@gmail.com" method="post">
+            <input type="hidden" name="_subject" value="Novo contato pelo portfólio">
+            <input type="hidden" name="_template" value="table">
+            <!-- Honeypot anti-spam: invisível para pessoas; bots que preenchem são descartados pelo FormSubmit -->
+            <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form-field">
+              <label class="form-label" for="nome" data-i18n="contact.nameLabel">Nome</label>
+              <input type="text" name="nome" id="nome" placeholder="Seu nome"
+                data-i18n-placeholder="contact.namePlaceholder" required autocomplete="name">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="telefone" data-i18n="contact.phoneLabel">Telefone</label>
+              <input type="tel" name="telefone" id="telefone" placeholder="Seu número (opcional)"
+                data-i18n-placeholder="contact.phonePlaceholder" autocomplete="tel">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="email" data-i18n="contact.emailLabel">E-mail</label>
+              <input type="email" name="email" id="email" placeholder="seu e-mail"
+                data-i18n-placeholder="contact.emailPlaceholder" required autocomplete="email">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="mensagem" data-i18n="contact.messageLabel">Mensagem</label>
+              <textarea name="mensagem" id="mensagem" placeholder="Descreva sua mensagem aqui..."
+                data-i18n-placeholder="contact.messagePlaceholder" required maxlength="2000"></textarea>
+            </div>
+            <button type="submit" class="btn-form"><span data-i18n="contact.send">Enviar</span></button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
           </form>
+
           <div class="social-section">
             <h3 data-i18n="contact.connectTitle">Conecte-se comigo</h3>
 
             <a href="https://www.linkedin.com/in/luiz-guilherme-da-silva-pereira-a64793251/" class="social-btn"
-              target="_blank">
+              target="_blank" rel="noopener">
               <span class="icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true" focusable="false">
                   <path
                     d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7 0h5v2.56c.7-1.3 2.4-2.56 4.8-2.56 5.12 0 6 3.36 6 7.72V24h-5v-7c0-1.6-.03-3.68-2.4-3.68-2.4 0-2.76 1.88-2.76 3.56V24H7V8z" />
                 </svg></span>
-              <span class="text" data-i18n="contact.connect">Vamos se Conectar</span>
+              <span class="text">LinkedIn</span>
             </a>
 
-            <a href="https://www.instagram.com/guii.syllva/" class="social-btn" target="_blank">
+            <a href="https://www.instagram.com/guii.syllva/" class="social-btn" target="_blank" rel="noopener">
               <span class="icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true" focusable="false">
                   <path
                     d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm8.88 2.13a1.12 1.12 0 110 2.25 1.12 1.12 0 010-2.25zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" />
                 </svg>
               </span>
-              <span class="text" data-i18n="contact.connect">Vamos se Conectar</span>
+              <span class="text">Instagram</span>
             </a>
 
-            <a href="https://github.com/GuiSilva-Dev" class="social-btn" target="_blank">
+            <a href="https://github.com/GuiSilva-Dev" class="social-btn" target="_blank" rel="noopener">
               <span class="icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true" focusable="false">
                   <path
                     d="M12 0.297C5.372 0.297 0 5.67 0 12.297c0 5.28 3.438 9.75 8.207 11.325.6.111.793-.261.793-.577 0-.285-.012-1.237-.017-2.244-3.338.724-4.042-1.61-4.042-1.61-.546-1.386-1.333-1.755-1.333-1.755-1.09-.745.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.832 2.807 1.303 3.492.997.108-.776.418-1.303.76-1.602-2.665-.305-5.466-1.333-5.466-5.93 0-1.31.467-2.382 1.235-3.22-.123-.304-.535-1.527.117-3.176 0 0 1.008-.322 3.3 1.23a11.45 11.45 0 013.003-.403c1.02.005 2.045.138 3.003.403 2.29-1.552 3.296-1.23 3.296-1.23.654 1.649.242 2.872.12 3.176.77.838 1.233 1.91 1.233 3.22 0 4.61-2.805 5.624-5.475 5.92.43.372.823 1.104.823 2.222 0 1.604-.015 2.898-.015 3.293 0 .319.192.694.8.576C20.565 22.043 24 17.573 24 12.297 24 5.67 18.627 0.297 12 0.297z" />
                 </svg>
               </span>
-              <span class="text" data-i18n="contact.connect">Vamos se Conectar</span>
+              <span class="text">GitHub</span>
             </a>
           </div><!--fim social-section-->
         </div><!--fim conteudo-form-->
       </div><!--fim flex-->
     </div><!--fim container-contato-->
   </section>
+  </main>
 
   <footer class="footer">
     <div class="container-footer">
@@ -435,16 +486,6 @@
 
   </footer>
 
-  <!-- scripts -->
-  <script src="../particles.js"></script>
-  <script src="Assets/js/i18n.js"></script>
-  <script src="Assets/js/githubStats.js"></script>
-  <script src="Assets/js/app.js"></script>
-  <script src="Assets/js/backtotop.js"></script>
-  <script src="Assets/js/btnSocial.js"></script>
-  <script src="Assets/js/efffectSkills.js"></script>
-  <script src="Assets/js/menu.js"></script>
-  <script src="Assets/js/rolagemx.js"></script>
 </body>
 
 </html>
