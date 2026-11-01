@@ -750,8 +750,8 @@ body {
 }
 
 .btn-social {
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   background: linear-gradient(135deg, #9b51e0, #7b2cbf);
   border: 2px solid rgba(155, 81, 224, 0.6);
@@ -773,8 +773,8 @@ body {
 }
 
 .btn-social i {
-  font-size: 24px;
-  width: 28px;
+  font-size: 20px;
+  width: 24px;
   color: rgb(255, 255, 255);
 }
 
@@ -792,13 +792,13 @@ body {
 }
 
 .social-buttons a i {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 28px;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 25px;
   border-radius: 50%;
   display: flex;
   color: white;
-  font-size: 24px;
+  font-size: 22px;
   text-decoration: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
@@ -2201,19 +2201,18 @@ textarea:user-invalid {
   display: inline-flex;
   align-items: center;
   gap: 20px;
-  padding: 12px 20px;
+  padding: 10px 19px;
   background: linear-gradient(135deg, #9b51e0, #7b2cbf);
   color: var(--color-white);
   border-radius: 30px;
   cursor: pointer;
   overflow: hidden;
-  width: 52px;
+  width: 21px;
   transition: width 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease;
   white-space: nowrap;
   font-family: Arial, sans-serif;
   border: 1px solid rgba(155, 81, 224, 0.4);
   box-shadow: 0 0 20px rgba(155, 81, 224, 0.3);
-  font-weight: 600;
 }
 
 .social-btn .text {
