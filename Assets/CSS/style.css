@@ -753,11 +753,11 @@ body {
   width: 44px;
   height: 44px;
   padding: 0;
-  background: linear-gradient(135deg, #9b51e0, #7b2cbf);
-  border: 2px solid rgba(155, 81, 224, 0.6);
-  border-radius: 50%;
+  background: linear-gradient(135deg, #ffffff00, #00f2ff00);
+  border: none;
+  border-radius: 50px;
   display: flex;
-  box-shadow: 0 0 20px rgba(155, 81, 224, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 10px rgb(255, 255, 255);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   z-index: 2;
@@ -767,8 +767,7 @@ body {
 
 .btn-social:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 30px rgba(155, 81, 224, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.2);
-  border-color: rgba(155, 81, 224, 1);
+  box-shadow: 0px 0px 20px rgb(255, 255, 255);
   transition: all 0.3s ease-in-out;
 }
 
@@ -798,7 +797,7 @@ body {
   border-radius: 50%;
   display: flex;
   color: white;
-  font-size: 22px;
+  font-size: 20px;
   text-decoration: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
