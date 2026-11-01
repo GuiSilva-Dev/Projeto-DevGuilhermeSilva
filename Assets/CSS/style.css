@@ -2201,31 +2201,28 @@ textarea:user-invalid {
   align-items: center;
   gap: 20px;
   padding: 10px 19px;
-  background: linear-gradient(135deg, #9b51e0, #7b2cbf);
+  background: var(--hover-gradient);
   color: var(--color-white);
   border-radius: 30px;
   cursor: pointer;
   overflow: hidden;
   width: 21px;
-  transition: width 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: width .4s ease;
   white-space: nowrap;
   font-family: Arial, sans-serif;
-  border: 1px solid rgba(155, 81, 224, 0.4);
-  box-shadow: 0 0 20px rgba(155, 81, 224, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.211);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
 }
 
 .social-btn .text {
   display: inline-block;
   transform: translateX(-100%);
   opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform .4s ease, opacity .4s ease;
 }
 
 .social-btn:is(:hover, :focus-visible) {
   width: 200px;
-  box-shadow: 0 0 30px rgba(155, 81, 224, 0.6);
-  border-color: rgba(155, 81, 224, 0.8);
-  transform: translateY(-2px);
 }
 
 .social-btn:is(:hover, :focus-visible) .text {
