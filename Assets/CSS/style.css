@@ -766,9 +766,10 @@ body {
 }
 
 .btn-social:hover {
+  background: var(--hover-gradient);
+  box-shadow: 0px 0px 10px #6a00ff8d;
+  transition: all .3s ease-in-out;
   transform: scale(1.1);
-  box-shadow: 0px 0px 20px rgb(255, 255, 255);
-  transition: all 0.3s ease-in-out;
 }
 
 .btn-social i {
@@ -793,7 +794,7 @@ body {
 .social-buttons a i {
   width: 44px;
   height: 44px;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
   border-radius: 50%;
   display: flex;
   color: white;
@@ -804,6 +805,10 @@ body {
   justify-items: center;
   align-items: center;
   border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.icon5 a i {
+  margin-bottom: 40px;
 }
 
 .social-buttons a {
