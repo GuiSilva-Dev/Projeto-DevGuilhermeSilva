@@ -3,6 +3,22 @@ document.addEventListener('DOMContentLoaded', function () {
   const menuAberto = document.querySelector('.menu-aberto');
   const navLinks = document.querySelectorAll('.nav-menu a');
   const body = document.body;
+
+  // Header vira "vidro" translúcido depois que a página desce um pouco (estilo em .header--rolado)
+  const headerEl = document.querySelector('.header');
+  if (headerEl) {
+    let rolado = null;
+    const atualizarHeader = function () {
+      const agora = window.scrollY > 24;
+      if (agora !== rolado) {
+        rolado = agora;
+        headerEl.classList.toggle('header--rolado', agora);
+      }
+    };
+    atualizarHeader();
+    document.addEventListener('scroll', atualizarHeader, { passive: true });
+  }
+
   if (!menuToggle || !menuAberto) return;
 
   // Tudo que fica fora do header: com o menu aberto vira inert (sem foco/clique/leitor de tela)
