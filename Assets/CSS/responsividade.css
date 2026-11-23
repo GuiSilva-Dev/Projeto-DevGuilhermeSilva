@@ -222,10 +222,19 @@
     width: 100%;
   }
 
+  /* Telas menores: 3 manchas em vez de 4 e grade mais fina.
+     A animação continua (só transform, leve), mas mais lenta */
+  .aurora {
+    width: 80vmax;
+    animation-duration: 40s;
+  }
+
+  .aurora--turquesa {
+    display: none;
+  }
+
   .fundo-animado::before {
-    animation: none;
-    transform: translate(0, 0) !important;
-    background-size: cover;
+    background-size: 44px 44px;
   }
 
   /* Calha lateral de 16px; o logo/menu não têm margem própria aqui */
